@@ -1,0 +1,13 @@
+<div class="form-group">
+
+  <div class="d-flex">
+    <label>TDDD Exemption:</label>
+    <label class="lato-bold-font" *ngIf="label"><i *ngIf="icon" class="{{icon}} me-1"></i>{{label}} <span
+        class="required" [ngClass]="{'text-danger':isRequired}" *ngIf="isRequired">*</span></label>
+    <label class="switch"> 
+      <input type="checkbox" class="default form-control" [attr.disabled]=""  (input)="onChangeValue($event)"
+        [formControl]="control">
+      <span class="slider round"></span>
+    </label>
+  </div>
+</div>

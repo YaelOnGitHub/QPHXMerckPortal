@@ -1,0 +1,18 @@
+<div class="backshadow" *ngIf="showPopUp">
+  <div class="model-countdown" >
+      <div class="modal d-block" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header modal-header-inactive" >
+                      <span class="fa fa-user-circle inactive-icon"></span>
+                      <h2 class="modal-title idle-heading">Inactivity</h2>
+                  </div>
+                  <div class="modal-body">
+                      <p class="idle-msg"><span class="idle-message">Your session is going to expire in</span></p>
+                      <h1 class="idle-count" >{{counter | countdown}}</h1>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

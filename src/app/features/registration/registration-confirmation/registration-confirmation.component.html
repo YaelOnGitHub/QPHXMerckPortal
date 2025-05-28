@@ -1,0 +1,18 @@
+<div class="registration-card ">
+    <app-intro-header *ngIf="!isSocialLogin"  [headerData]="'REGISTRATION_FORM_CONFIRMATION_MSG_HEADER_TEXT'|textDescription" [withBorder]="false" [icon]="isMerck ? '' : 'fak fa-thanks'">
+        <h1 class="confirmation-heading text-capitalize mb-4">{{'registrationConfirmation.message' | translate}} {{hcpName}}, {{designation}} </h1>
+    </app-intro-header>
+
+    <app-intro-header *ngIf="isSocialMediaEnable && isSocialLogin"  [headerData]="'REGISTRATION_FORM_SOCIAL_CONFIRMATION_MSG_HEADER_TEXT'|textDescription" [withBorder]="false" [icon]="'fak fa-thanks'">
+      <h1 *ngIf="!isMerck"  class="confirmation-heading text-capitalize mb-4">{{'registrationConfirmation.message' | translate}} {{hcpName}}, {{designation}} </h1>
+      <h1 *ngIf="isMerck" class="confirmation-heading text-capitalize mb-4">{{hcpName}}, {{designation}} </h1>
+  </app-intro-header>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6 mb-4">
+            <div class="text-center mt-4">
+                <button class="btn btn-primary btn-round" (click)="onRedirectLogin()">{{'registrationConfirmation.action' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

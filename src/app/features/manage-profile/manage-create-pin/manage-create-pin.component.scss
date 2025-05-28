@@ -1,0 +1,15 @@
+@import "../../../../styles/mixin";
+.content {
+    min-height: calc(100vh - 1400px);
+    padding-left: 13%;
+    padding-top: 3%;
+    padding-right: 13%;
+    padding-bottom: 3%;
+}
+.header {
+    @include font(var(--fontRegular), 700, 20px, 24px);
+    color: #494d58;
+}
+ 
+ 
+ 

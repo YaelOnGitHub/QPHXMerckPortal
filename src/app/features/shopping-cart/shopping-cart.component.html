@@ -1,0 +1,120 @@
+<div id="shopping-cart-container" class="container-fluid main-container">
+  <div class="col-wrapper">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="intro-section ">
+          <div class="row">
+            <div class="col-sm-12 mb-4">
+              <button type="button" class="btn btn-primary btn-round" (click)="onRedirectToProductPage()">Back</button>
+            </div>
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+                  <app-intro-header [headerData]="'ORDER_CHECKOUT_PAGE_HEADER_TEXT' | textDescription"
+                    [iconSize]="'3em'" [withBorder]="true" [isWrapper]="true" [icon]="''">
+                    <h2>Review and Submit</h2>
+                  </app-intro-header>
+                </div>
+                <div class="col-5 col-sm-5 col-md-4 col-lg-4">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="isAddressDisable" class="alert alert-warning">
+          <div class="icon hidden-xs">
+            <i class="fa-sharp fa-solid fa-circle-info"></i>
+          </div>
+          <span class="cs-validation" [innerHTML]="'CONTROLLED_SUBSTANCE_DEA_MISSING_TEXT' | textDescription"></span>
+        </div>
+        <div class="cart-section-header d-flex justify-content-between align-items-sm-center">
+          <div>
+            <i class="fak fa-lg fa-new-address primary-text-color"></i> <span class="ms-2">Shipping
+              Address</span>
+          </div>
+          <div class="total-items">
+            <p class="mb-0" *ngIf="totalItem">
+              Total: <span>{{totalItem}}</span><span *ngIf="totalItem==1">
+                Item</span><span *ngIf="totalItem>1"> Items</span>
+
+            </p>
+          </div>
+        </div>
+
+        <app-shipping-address [isEditUpdateControls]="true"></app-shipping-address>
+
+        <!-- Preferred Delivery Days section start -->
+
+        <app-delivery-day *ngIf="IS_PREFERRED_DAYS"
+          (deliveryDateEmitter)="receiveDeliveryDate($event)"></app-delivery-day>
+        <!-- Preferred Delivery Days section End -->
+
+
+        <div class="cart-section-header d-flex justify-content-between align-items-sm-center">
+          <div>
+            <i class="fak fa-samples fa-lg me-2 primary-text-color"></i> <span>Items Requested</span>
+          </div>
+          <div class="add-more-item">
+            <a href="javascript:void(0);" (click)="onRedirectToProductPage()">Add more items</a>
+          </div>
+        </div>
+        <app-requested-items></app-requested-items>
+        <div class="cart-section-header">
+          <i class="fak fa-t-c fa-lg me-2 primary-text-color"></i>
+          <span>Terms and Conditions</span>
+        </div>
+        <app-terms-and-conditions [requestedProductList]="requestedProductList "></app-terms-and-conditions>
+        <div class="cart-section-header"><i class="fak fa-order-subm fa-lg me-2 primary-text-color"></i>
+          <span>Request Submission</span>
+        </div>
+
+        <div class="order-submission-container">
+
+          <section class="order-submission-content container-fluid">
+            <div [formGroup]="formGroup" class="row d-flex">
+              <div class="col-lg-12 col-12 ">
+                <span class="content" [innerHTML]="'PIN_CHECKOUT_TERMS_AND_CONDITIONS' | textDescription"></span>
+              </div>
+              <div class="col-lg-6 col-12  font-highlighted">
+              </div>
+              <div class="col-lg-2 col-12">
+                <div class="enter-pin-input-wrapper">
+                  <div *ngIf="PREFERRED_VERIFICATION_METHOD === IS_PIN_AUTHENTICATION">
+                    <app-text-input [placeholder]="'Enter PIN'" [type]="'password'" [label]="'PIN'"
+                      [formControlName]="'createPin'" [maxLength]="'4'" (change)="checkPinPattern('createPin')"
+                      [isRequired]="true">
+                    </app-text-input>
+                    <div class="forgotPin">
+                      <a href="javascript:void(0);" (click)="forgotPin()">Forgot PIN?</a>
+                    </div>
+                  </div>
+                  <div *ngIf="PREFERRED_VERIFICATION_METHOD === IS_PASSWORD_AUTHENTICATION">
+                    <app-text-input [placeholder]="'Enter Password'" [type]="'password'" [label]="'Password'"
+                      [formControlName]="'password'" [isRequired]="true">
+                    </app-text-input>
+                  </div>
+
+
+                </div>
+              </div>
+              <div id='contentMobile' class="col-6  ">
+                <button type="button" class="btn" (click)="onRedirectToProductPage()">Back</button>
+              </div>
+              <div id="submit" class="col-lg-3 col-6 align-self-center mb-3">
+                <button type="submit"
+                  [disabled]="!(formGroup.valid && isTermAndConditionValid && isAtLeastOneProductItemValid && isAtLeastOneAddressValid)"
+                  class="btn btn-primary btn-round btn-auto" (click)="onSubmit()">Submit</button>
+              </div>
+              <div *ngIf="isAtLeastOneProductItemValid" class="text-danger cancel-btn col-lg-4 mb-2 ">
+                <span class="cursor" (click)="onCancelOrder()">Cancel</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+ <div class="main-container manage-profile-wrapper">
+    <div class="manage-profile-tabs">
+        <tabset>
+          <ng-container *ngFor="let tabz of tabs">
+            <tab *ngIf="tabz.show" [heading]="tabz.title" [id]="tabz.router" [active]="tabz.active"
+                [disabled]="tabz.disabled"
+                [removable]="tabz.removable" (selectTab)="onTabSelect($event)" (removed)="removeTabHandler(tabz)" [customClass]="tabz.content">
+            </tab>
+          </ng-container>
+
+          <div class="filter-mobile-view d-block d-sm-block d-sm-block d-lg-none back-btn">
+            <button type="button" class="btn btn-primary btn-round btn-height-auto"
+                (click)="redirectToBack()">Back</button>
+          </div>
+            <div class="tabs-content-wrapper">
+                <div id="tabs-content-layer"></div>
+                <div class="tabs-content-body-wrapper">
+                    <div class="tabs-content-body">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </tabset>
+    </div>
+</div>

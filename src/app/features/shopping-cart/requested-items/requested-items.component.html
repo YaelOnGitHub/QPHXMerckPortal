@@ -1,0 +1,72 @@
+<div class="requested-item-wrapper">
+    <!-- <form [formGroup]="formGroup"> -->
+    <ng-container>
+        <ng-container *ngFor="let item of requestedProductList | keyvalue ; let i = index">
+            <div class="requested-item-card">
+                <div class="requested-item-header">
+                    Request <a href="javascript:void(0);">{{i + 1}}</a>
+                </div>
+                <div class="requested-item-body" *ngFor="let product of requestedProductList[item.key]">
+                    <div class="requested-item-list d-flex">
+                        <div class="flex-shrink-0 product-img  me-3">
+                            <img class="img" *ngIf="product.thumbnailURL" [attr.alt]="product.name"
+                                [attr.title]="product.name" [src]="product.thumbnailURL" />
+                            <i *ngIf="!product.thumbnailURL" [attr.title]="product.name"
+                                class="fak fa-inventory icon fa-4x"></i>
+                        </div>
+                        <div class="product-description-wrapper flex-grow-1">
+                            <div class="product-description-row row">
+                                <div class="col-sm-8 col-lg-6 col-xl-5">
+                                    <h2 [title]="product.name">{{product.name}}</h2>
+                                    <div class="d-flex justify-content-start product-description-item">
+                                        <span class="me-2">Manufacturer: {{product.manufacturerName}}</span>
+                                        <!-- <span>Distributor: - </span> -->
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-lg-3 col-xl-3">
+                                  <ng-container *ngIf="!product?.previouslySubscribed && !checkSRFStatus(product?.srfId)">
+                                    <div *ngIf="product?.isSubscribeable !== null ? product.isSubscribeable : false" class="form-group">
+                                      <label class="col checkbox-wrapper subscribe">Automated Request
+                                      <input type="checkbox" id="isSubscribed" name="isSubscribed" (change)="onSubscribe($event,requestedProductList[item.key],product)"
+                                        aria-label="" [checked]="product?.isSubscribed">
+                                        <span class="checkmark"></span>
+                                      </label>
+                                    </div>
+                                  </ng-container>
+                                </div>
+
+                                <div class="product-quantity col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                                    <form [formGroup]="formGroup">
+                                        <app-stepper-input class="d-flex justify-content-center stepper-content"
+                                            [min]="0" [max]="product?.availableQuantity"
+                                            [step]="product?.unitsPerPackage" [ngModelOptions]="{standalone: true}" [(ngModel)]="product.selectedQuantity"
+                                            [productItem]="product">
+                                        </app-stepper-input>
+                                    </form>
+                                </div>
+                                <div class="product-remove col-sm-2">
+                                    <a href="javascript:void(0);" class="error" title="Delete item"
+                                        (click)="onDeleteProduct(product)"><i class="fak fa-trash"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </ng-container>
+        <div *ngIf="totalItem>0"
+            class="requested-item-footer d-flex justify-content-start justify-content-md-end align-items-sm-center">
+            <div class="total-items">Total: <span>{{totalItem}}</span><span *ngIf="totalItem==1"> Item</span><span
+                    *ngIf="totalItem>1"> Items</span></div>
+        </div>
+        <div *ngIf="!totalItem" class="requested-item-card p-2 d-flex justify-content-center  align-items-center">
+            <div class="no-items">No product</div>
+        </div>
+    </ng-container>
+    <!-- </form> -->
+    <!-- <div class="requested-item-footer d-flex justify-content-start justify-content-md-end align-items-sm-center">
+        <div class="total-items">TOTAL: <span>{{totalItem}} items</span></div>
+    </div> -->
+</div>

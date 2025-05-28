@@ -1,0 +1,133 @@
+<div [innerHTML]="dcmHtml">
+</div>
+
+<div *ngIf="isQphma" class="main-container container-fluid multi-landing" id="qphmaLandingContainer">
+
+  <div class="landing-area">
+    <div class="landing-area-content">
+          <!-- Ads banner  -->
+          <!-- <div id="ad-container"  class="ads-container"></div> -->
+          <div class="ads-container"><img src="https://qprx-artifacts.s3.us-east-1.amazonaws.com/SIT/images/generic-images/ads-banner.png" /></div>
+          <!-- Ads banner  -->
+      <div class="landing-banner">
+
+                
+          <div class="landing_page-content-area">
+          <p>Welcome to QPharmaRx.com</p>
+
+          <h5 class="for-desktop">The easy and convenient way for requesting samples from participating pharmaceutical companies shipped directly to your healthcare practice.</h5>
+          <!-- <h5 class="for-mobile"></h5> -->
+        
+          <div class="register-request-section">
+            <img src="https://qprx-artifacts.s3.amazonaws.com/SIT/images/generic-images/register-request-signin.png">
+          </div>
+
+          </div>
+      </div>
+      <div class="banner-liner"><p>QPharmaRx is a secure, easy to use platform designed and managed by QPharma Inc. for US healthcare practitioners to request product samples, coupons and informational materials from multiple pharmaceutical manufacturers.</p></div>
+
+    </div>
+
+  
+    <form class="landing-form">
+      <div class="form-bg">
+          <div class="landing-logo">
+            <img src="https://qprx-artifacts.s3.amazonaws.com/SIT/images/generic-images/Group+28026.png" alt="logo">
+          </div>
+          <div class="landing-content">
+            <p class="">Experience the future of <br/>requesting pharmaceutical <br/> samples today!</p>
+          </div>
+
+          <div class="new-user-btn">
+            <span>New User?</span>
+            <button class="btn btn-primary custom-button-style" (click)="onRedirectToRegister(true)"
+              type="button">Register</button>
+            
+          </div>      
+
+          <div class="start-btn">
+            <span>Already have an account</span>
+            <button class="btn btn-primary custom-button-style" (click)="loginQphma()"
+              type="button">Login</button>
+            <a href="javascript:void(0);" (click)="forgotPassword()" class="forgot-password" >Forgot Password?</a>
+          </div>
+
+          <div *ngIf="isSocialMediaEnable" class="card-footer text-center pt-0">
+            <p style="margin-top: 10px;">or via Google/Apple login</p>
+            <div class="social-media-login d-flex justify-content-center align-items-center">
+
+              <div class="google-login me-4">
+                <asl-google-signin-button shape="circle" size="large"
+                  logo_alignment="center">
+                </asl-google-signin-button>
+              </div>
+              <a (click)="onAppleAuthLogin()" class="facebook-login">
+                <i class="fa-brands fa-apple"></i>
+              </a>
+            </div>
+          </div>
+
+            <div class="needHelp-questions">
+              <a href="/help" title="Questions? " class="questions"><span>Questions?</span></a>
+            </div>
+      </div>
+    </form>
+    
+
+  </div>
+  <p class="mobile-para-aftr-quest">The easy and convenient way for requesting samples from participating pharmaceutical companies shipped directly to your healthcare practice.</p>
+<div class="mobile-bottom-image">
+  <img src="https://qprx-artifacts.s3.amazonaws.com/SIT/images/generic-images/bottom-image.png" />
+</div>
+
+</div>
+     
+
+<!-- Landing Page for Merck -->
+<div *ngIf="!isQphma" class="main-container container-fluid merck-container">
+  <section class="auth-container">
+    <div class="row d-flex justify-content-center content">
+      <div class="col-sm-5 border-right">
+        <div class="header-text-left">
+          DISCOVER THE MERCK SAMPLE PORTAL PLATFORM BY REGISTERING FOR AN ACCOUNT
+        </div>
+        <!-- <div class="header-text-left" [innerHTML]="'LANDING_PAGE_INFO_LEFT_DESCRIPTION' | textDescription: false">
+        
+        </div> -->
+       
+        <p class="large">If you have already registered, please “Sign In.”</p>
+        <p class="large mb-4">Otherwise, please register by selecting “Register.”</p>
+
+        <div class="dual-btn">
+          <button (click)="login()" class="btn">Sign In</button>
+          <button (click)="registration()" class="btn btn-fill">Register</button>
+        </div>
+      </div>
+
+      <div class="col-sm-6 right-content">
+        <div class="header-text-right" [innerHTML]="'LANDING_PAGE_HEADER_TEXT' | textDescription: false">
+        </div>
+        <div *ngIf="!isMerck" class="register-request-section">
+          <img src="https://qprx-artifacts.s3.amazonaws.com/SIT/images/generic-images/register-request-signin.png">
+        </div>
+        <div *ngIf="isMerck" class="large" [innerHTML]="'LANDING_PAGE_INFO_DESCRIPTION'|textDescription:true">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div *ngIf="isMerck" class="top-footer">
+    <div class="merck-landing-description" [innerHTML]="'LANDING_PAGE_LICENSE_DESCRIPTION'|textDescription:true">
+    </div>
+    <figure>
+      <img
+          src="https://qprx-artifacts.s3.amazonaws.com/SIT/images/brand-images/merck/Merck_landing_image.png"
+        alt="">
+    </figure>
+  </div>
+  <div *ngIf="isMerck" class="faq-footer-text" [innerHTML]="'LANDING_APPLICATION_FOOTER_TEXT'|textDescription:true"></div>
+
+
+
+ 
+</div>

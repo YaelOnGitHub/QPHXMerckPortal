@@ -1,0 +1,107 @@
+<div class="product-details-container modal-container">
+  <div id="intro-header">
+      <div id="intro-bg-layer">
+          <div type="button" aria-label="Close" class="close pull-right mt-2 me-3" (click)="closeModal()">
+              <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
+          <div class="manufacturer-logo pull-left p-1">
+              <img *ngIf="isMultiTenant" class="ms-4" style="max-height:40px" [src]="data?.manufacturerLogo" alt="" />
+          </div>
+      </div>
+      <div class="intro-wrapper">
+          <div class="intro-body">
+          </div>
+      </div>
+  </div>
+  <div class="modal-body container-fluid">
+
+    <div class="row mb-3">
+        <div class="col-6 product-status-wrapper">
+          <span class="product-status-name" [ngClass]="getProductStatus(data?.status)">{{data?.status}}</span>
+          <span class="new-product-tag" *ngIf="data?.isNew">New</span>
+      </div>
+  
+      <div id='contentDesktop' class="col-6 visit-product" *ngIf="data?.productDetailsPageURL">
+        <button class="visit-product-wrapper cursor"
+            (click)="accessLink(data?.productDetailsPageURL)">Visit product page</button>
+    </div>
+
+    </div>
+   
+
+      <div [formGroup]="formGroup">
+          <div class="row no-gutters">
+              <div class="col-lg-4 col-12 ">
+                  <div class="left-wrapper">
+                      <div class="product-img">
+                          <img *ngIf="data?.thumbnailURL" [src]="data.thumbnailURL" alt="Product Image">
+                          <div class="d-flex justify-content-center"><i *ngIf="!data?.thumbnailURL"
+                                  class="fak fa-inventory icon fa-4x"></i></div>
+                      </div>
+                      <span class="small text-qtn">Quantity</span>
+                      <app-stepper-input class="mb-2 mt-2 d-flex" [min]="0"
+                          [max]="data?.availableQuantity" [step]="data?.unitsPerPackage" formControlName="quantityStepper" [productItem]="data"  [modalRef]="_modalRef">
+                      </app-stepper-input>
+                      <div *ngIf="isRecurringShow" class="recurring-section">
+                        <div class="form-group">
+                          <label class="col checkbox-wrapper subscribe"   [ngClass]="{'disable-text': isSubscribeCheckboxDisabled}" >{{subscribeTxt}}
+                          <input type="checkbox" id="isSubscribed" name="isSubscribed"
+                            aria-label="" formControlName="isSubscribed" [checked]="isSubscribed"  (change)="onSubscribe($event)">
+                            <span class="checkmark" [ngClass]="{'disable-background': isSubscribeCheckboxDisabled}" ></span>
+                          </label>
+                        </div>
+                        <span class="recurring-description" title="{{subscribeDescriptionToolTip}}">{{subscribeDescription | slice:0:52}} {{subscribeDescription.length > 52 ? '...' : ''}} 
+                          <a [routerLink]="['/manage/subscriptions']" (click)="closeModal()">Automated Requests</a>
+                        </span>
+                      </div>
+                  </div>
+              </div>
+                <div class="col-lg-8  col-12 container-fluid">
+                    <div class="row no-gutters pe-0">
+                        <div class="col-lg-12 col-8 product-name-header mb-3" [title]="getProductName(data)">{{getProductName(data)}}</div>
+                        <div class="col-lg-4 col-4 mt-2 mb-4">
+                            <div class="row pe-0">
+                            </div>
+                        </div>
+                        <div *ngIf="boxWarning !== null && boxWarning !== undefined && boxWarning.trim() !== ''" #boxWarning  class="box-warning" [ngClass]="{'no-borders': isDefaultWarning}" >
+                        </div>
+
+                      <div class="col-sm-12 mt-2">
+                          <div id='contentDesktop' class="product-link-wrapper"
+                              *ngIf="data?.productAdditionalUrls?.length>0">
+                              <ng-container *ngFor="let item of data?.productAdditionalUrls">
+                                  <div class="product-link-item cursor  border-box px-2 me-2"
+                                      (click)="accessLink(item?.linkUrl)">
+                                      <i *ngIf="!item?.iconUrl" class="fa-thin fa-up-right-from-square access-link-icon"></i>
+                                      <img *ngIf="item?.iconUrl" [src]="item?.iconUrl" alt="icon"/>
+                                      <span class="primary link-description-font ms-1">{{item?.linkTitle}}</span>
+                                  </div>
+                              </ng-container>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+  </div>
+  <div class="modal-footer mt-2 d-flex justify-content-end align-items-center">
+      <div id='contentMobile' class="row hr pb-4">
+          <ng-container *ngIf="data?.productAdditionalUrls?.length>0">
+              <div *ngFor="let item of data?.productAdditionalUrls">
+                  <div class="col-lg-6 col-12 mt-2 pull-left">
+                      <div class="cursor border-box px-2 me-2" (click)="accessLink(item?.linkUrl)">
+                        <img *ngIf="item?.iconUrl" [src]="item?.iconUrl" alt="icon"/>
+                        <span class="primary link-description-font ms-1">{{item?.linkTitle}}</span>
+                      </div>
+                  </div>
+              </div>
+          </ng-container>
+      </div>
+      <div class="d-flex justify-content-end  align-items-center action-btns">
+          <button type="button" class="btn btn-link-black btn-small btn-round" (click)="closeModal()">Close</button>
+          <button type="button" [disabled]="formGroup.get('quantityStepper')?.value===0"
+              class="ms-1 btn btn-primary btn-round btn-small ms-2" (click)="onAddProduct()">Add</button>
+      </div>
+  </div>
+</div>

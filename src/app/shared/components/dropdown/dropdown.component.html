@@ -1,0 +1,51 @@
+<div class="form-group app-dropdown-container">
+  <label class="lato-bold-font" *ngIf="header">
+    <i *ngIf="icon" class="{{icon}} me-1"></i>
+    {{ header }}
+    <span class="required" [ngClass]="{ 'text-danger': isRequired }" *ngIf="isRequired">*</span>
+  </label>
+
+  <div class="form-input-group dropdown-value-container">
+    <ng-select id="id" class="custom" [ngClass]="{ 'disable-select': disabled, 'ng-select-disabled': disabled }"
+      #ngSelect [searchable]="searchable" [items]="dropDownOptions" placeholder="{{ placeholder }}"
+      bindLabel="{{ bindLabel }}" [formControl]="control" bindValue="{{ bindValue }}" [multiple]="multiSelect"
+      [clearable]="clearable" (change)="setSelection($event)" [readonly]="disabled" [notFoundText]="noFoundText"
+      [maxSelectedItems]="maxSelectedItems" [closeOnSelect]="!multiSelect" [groupBy]="groupBy"
+      [(ngModel)]="dropdownOptionModelSelection" [appendTo]="appendTo">
+      <ng-template ng-header-tmp *ngIf="isExtraHeader">
+        <ng-content></ng-content>
+      </ng-template>
+      <ng-template ng-optgroup-tmp let-item="item" *ngIf="isGroupBy">
+        {{item[groupBy]}}
+      </ng-template>
+    </ng-select>
+    <!-- <i class="fa fa-chevron-down custom-icon-arrow" aria-hidden="true"></i> -->
+  </div>
+  <small class="text-danger" *ngIf="control && !control.valid && control.touched">{{ errorMsg }}</small>
+
+  <ng-template #selectedItemTemaplate>
+    <div *ngIf="selectedOptions && selectedOptions.length > 0" class="row">
+      <div class="col-lg-12">
+        <span *ngFor="let option of selectedOptions;" class="q-chips">
+          <span *ngIf="bindLabel">{{ option[bindLabel] }}</span>
+          <span *ngIf="!bindLabel">{{ option }}</span>
+          <span class="close-icon" (click)="removeSelection(option)">
+            <i class="fal fa-times fa-lg"></i>
+          </span>
+        </span>
+
+        <span *ngIf="!removeAllBtnWithText" class="q-chips-clear-all" (click)="removeAllSelection()">
+          <i class="fal fa-times fa-lg"></i>
+        </span>
+
+        <div *ngIf="removeAllBtnWithText" class="q-chips-clear-all-text" style="display: inline-block;"
+          (click)="removeAllSelection()">
+          <span class="q-chips-clear-all">
+            <i class="fal fa-times fa-lg"></i>
+          </span>
+          <span class="pl-2">Clear All</span>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

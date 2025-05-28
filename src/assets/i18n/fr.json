@@ -1,0 +1,216 @@
+{
+  " hcpSearch": {
+    "title": "Recherche d'éligibilité des utilisateurs",
+    "searchResultsTitle ": "Résultats de la recherche HCP",
+    "formFields": [
+      {
+        "label": "Recherche par numéro NPI (identifiant national du fournisseur)"
+      },
+      {
+        "label": "NPI Individuel Number",
+        "error": "Veuillez utiliser un numéro NPI valide",
+        "placeholder": "Entrez NPI"
+      },
+      {
+        "label": "Recherche par licence et désignation"
+      },
+      {
+        "label": "État de la licence",
+        "error": "Veuillez vous assurer de fournir des informations dans les champs obligatoires",
+        "espace réservé": "Sélectionner"
+      },
+      {
+        "étiquette": "Désignation",
+        "error": "Veuillez vous assurer de fournir des informations dans les champs obligatoires",
+        "espace réservé": "Sélectionner"
+      },
+      {
+        "label": "Numéro de licence",
+        "error": "Veuillez utiliser un numéro de licence valide",
+        "placeholder": "Entrer la licence"
+      }
+    ],
+    "dataFields": [
+      { "title": "Prénom" },
+      { "title": "Nom de famille" },
+      { "title": " Désignation " },
+      { "title": "État de la licence" },
+      { "title": "Numéro de licence" },
+      { "title": "Numéro NPI" }
+    ],
+    "actions": [
+      { "title": "Rechercher" },
+      { "title": "Connexion" },
+      { "title": "S'inscrire" },
+      { "title": "Retour" }
+    ],
+    "messages": {
+      "loading": "Chargement...",
+      "dataNotFound": "HCP introuvable",
+      "alreadyRegistered": "Déjà Inscrit ?",
+      "noInfoFound": "Nous n'avons pas pu trouver vos informations.",
+      "registerManually": "Veuillez cliquer sur le bouton ci-dessous pour procéder à l'enregistrement manuel"
+    }
+  },
+  "registrationForm": {
+    "pageTitles": [
+      { "title": "Informations professionnelles" },
+      { "title": "Licences d'État" },
+      { "title": "Adresses" },
+      { "title": "LICENCE" },
+      { "title": "ADRESSE" },
+      { "title": "Conditions d'utilisation" }
+    ],
+    "formFields": [
+      {
+        "label": "Prénom",
+        "placeholder": "Entrez le prénom"
+      },
+      {
+        "label": "Nom de famille",
+        "placeholder": "Entrez le nom de famille"
+      },
+      {
+        "label": "E-mail",
+        "placeholder": "Entrez votre adresse e-mail"
+      },
+      {
+        "label": "Numéro NPI",
+        "placeholder": "Entrez NPI"
+      },
+      {
+        "label": " Spécialité ",
+        "error": "Veuillez vous assurer de fournir les informations dans les champs obligatoires.",
+        "placeholder": "Sélectionner la spécialité "
+      },
+      {
+        "label": "Désignation Prof.",
+        "error": "Veuillez vous assurer de fournir les informations dans les champs obligatoires.",
+        "placeholder": "Sélectionner la désignation"
+      },
+      {
+        "label": "Confirmer l'e-mail",
+        "fieldMatchError": "Les champs ne correspondent pas.",
+        "placeholder": "Entrez votre adresse e-mail"
+      },
+      {
+        "label": "Numéro de licence",
+        "error": "Veuillez utiliser un numéro de licence valide."
+      },
+      {
+        "label": "État de la licence"
+      },
+      {
+        "label": "Adresse"
+      },
+      {
+        "label": "Ville"
+      },
+      {
+        "label": "État"
+      },
+      { "label": "ZIP" },
+      { "label": "DEA" },
+      { "label": "Téléphone" },
+      { "label": "Fax" }
+    ],
+    "actions": [
+      { "label": "Ajouter nouveau" },
+      { "label": "Ajouter une nouvelle licence" },
+      { "label": "Ajouter une nouvelle adresse" },
+      { "label": "Modifier" },
+      { "label": "Supprimer la licence" }
+    ],
+    "messages": {
+      "noLicenseFound": "Aucune licence trouvée. Vous pouvez l'ajouter maintenant.",
+      "noAddressFound": "Aucune adresse trouvée. Vous pouvez l'ajouter maintenant.",
+      "acceptText": "J'accepte tout ce qui précède.",
+      "back": "Retour",
+      "submit": "Soumettre"
+    }
+  },
+  "registrationConfirmation": {
+    "message": "Félicitations",
+    "action": "Connexion"
+  },
+  "deleteLicenseAddress": {
+    "message": "Une fois supprimé, il ne peut pas être annulé.",
+    "actions": [{ " label": "Annuler" }, { "label": "Supprimer" }]
+  },
+  "addEditAddress": {
+    "actions": [
+      { "label": "Ajouter une adresse" },
+      { "label": "Modifier l'adresse" },
+      { "label": "Ajouter une nouvelle adresse" },
+      { "label": "Annuler" },
+      { "label": "Enregistrer l'adresse" }
+    ],
+    "formFields": [
+      {
+        "label": "Adresse",
+        "placeholder": "Entrez l'adresse"
+      },
+      {
+        "label": "Ville",
+        "placeholder": "Entrez la ville"
+      },
+      {
+        "label": "État",
+        "placeholder": "Sélectionner l'État",
+        "error": "Veuillez vous assurer de fournir les informations dans les champs obligatoires."
+      },
+      {
+        "label": "ZIP",
+        "placeholder": "Entrez le code postal"
+      },
+      {
+        "label": "DEA",
+        "placeholder": "Entrez DEA"
+      },
+      {
+        "label": "Téléphone",
+        "placeholder": "Entrez le numéro de téléphone"
+      },
+      {
+        "label": "Fax",
+        "placeholder": "Entrez le numéro de fax"
+      }
+    ]
+  },
+  "addEditLicense": {
+    "pageTitles": [
+      {
+        "label": "Ajouter une licence d'État"
+      },
+      {
+        "label": "Modifier la licence d'état"
+      }
+    ],
+    "formFields": [
+      {
+        "label": "Numéro de licence",
+        "placeholder": "Entrez le numéro de licence"
+      },
+      {
+        "label": "État",
+        "placeholder": "Sélectionner l'état",
+        "error": "Veuillez vous assurer de fournir les informations dans les champs obligatoires."
+      }
+    ],
+    "action": [
+      {
+        "label": "Ajouter une nouvelle licence",
+        "placeholder": "Entrez le numéro de licence"
+      },
+      {
+        "label": "Annuler"
+      },
+      {
+        "label": "Enregistrer la licence"
+      }
+    ]
+  },
+  "common": {
+    "validityText": "Veuillez utiliser un valide "
+  }
+}

@@ -1,0 +1,33 @@
+version: 0.2
+
+env:
+    variables:
+        CACHE_CONTROL: "86400"
+        BUILD_FOLDER: "dist"
+phases:
+  install:
+    runtime-versions:
+        nodejs: 16
+    commands:
+        - echo Installing source NPM dependencies...
+        - npm install
+        - npm install -g @angular/cli@15.0.0
+  build:
+    commands:
+        - echo Build started for DEV
+        - npm ci
+        #- npm --verbose ci #&& npm run build
+        - ng build --configuration="sit"
+artifacts:
+  base-directory: 'dist/*'
+  discard-paths: no
+  files:
+    - "**/*"
+
+  secondary-artifacts:
+    SIT_Artifacts:
+      name: $(date +%Y-%m-%d)-$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      base-directory: 'dist/*'
+      discard-paths: no
+      files:
+        - "**/*"

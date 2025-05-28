@@ -1,0 +1,31 @@
+textarea{
+    height: 22px;
+    width: 100%;
+    color: #4A4A4A;
+    font-size: 14px;
+    outline: none;
+    border: none;
+    resize: none;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    line-height: 22px;
+    box-sizing: border-box;
+    display: block;
+}
+textarea::placeholder{color: #9E9E9E;}
+
+.focus-border {
+    border: 1px solid transparent;
+    border-radius: 8px;
+    transition: border-color 0.2s ease;
+}
+
+.focus-border:focus-within {
+    border-color: #08A8EE;
+}
+
+svg{
+    cursor: pointer;
+}
+  

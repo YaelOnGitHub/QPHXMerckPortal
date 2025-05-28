@@ -1,0 +1,54 @@
+<div class="products-listing-wrapper">
+    <div class="row sort-search-wrapper mt-2 mb-4">
+      <div class="row px-2 intro-section">
+        <div *ngIf="isBrandEnable"  class="col-md-8 col-sm-12 mb-4">
+            <button id='contentDesktop' type="button" class="btn btn-primary btn-round width-155"
+                (click)="onRedirectBrandPage()">Back</button>
+        </div>
+          <div class="search-group col-md-4 col-sm-12 mb-4">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Type a Product Name"  [(ngModel)]="searchProductValue"
+                (keyup)="onSearchProduct($event,$event?.target?.value)" />
+                <span class="input-group-text" *ngIf="searchProductValue==''"><i
+                        class="fa-light fa-magnifying-glass"></i></span>
+                <span class="input-group-text" (click)="onClearSearch()" *ngIf="searchProductValue!==''"><i
+                        class="fa-light fa-xmark"></i></span>
+            </div>
+            <div class="filter-mobile-view d-block d-sm-block d-sm-block d-lg-none">
+                <button type="button" class="btn btn-primary btn-round btn-height-auto"
+                    (click)="onFilterOpen()">Filters</button>
+            </div>
+        </div>
+      </div>
+
+        <div class="row">
+            <app-intro-header [headerData]="'PRODUCT_DASHBOARD_HEADER_TEXT' | textDescription" [iconSize]="'3em'" [withBorder]="true" [isWrapper]="true"
+            [icon]="''">
+                <h1>Products <span *ngIf="totalItems > 0 ">({{totalItems}})</span></h1>
+            </app-intro-header>
+        </div>
+    </div>
+
+    <div class="prodict-item-wrapper">
+        <div class="row" *ngIf="displayProducts?.length">
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4" *ngFor="let productItem of displayProducts">
+                <app-product-item [productItem]="productItem" [oldSubscribedProducts]="oldSubscribedProducts">
+                </app-product-item>
+            </div>
+        </div>
+        <div class="row" *ngIf="!displayProducts?.length">
+            <div class="col-sm-12 no-result-found">
+                No product available!
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <pagination [boundaryLinks]="true" [totalItems]="totalItems" [itemsPerPage]="productRequestParam.take"
+                    (pageChanged)="pageChanged($event)"  [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+                    lastText="&raquo;">
+                </pagination>
+            </div>
+        </div>
+    </div>
+
+</div>

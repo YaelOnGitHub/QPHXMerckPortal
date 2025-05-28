@@ -1,0 +1,276 @@
+@import "../../../../styles/mixin";
+@import "../../../../styles/responsive";
+@import "../../../../styles/variables";
+
+
+.alert-danger {
+  border-color: var(--colorGrayShade_3);
+  background-color: var(--colorWhite);
+  color: var(--alertColor);
+}
+
+.body-title {
+  @include font(var(--fontRegular), 400, 18px, 24px);
+}
+
+.modal-container .modal-header {
+  padding: 30px;
+}
+
+.custom-icons {
+  position: absolute;
+  top: 50%;
+  margin-left: 20px;
+  transform: translateY(-42%);
+}
+
+.tdddExemptDisable {
+  pointer-events: none;
+  .switch {
+    opacity: 0.6;
+  }
+}
+
+
+.toggle-exempt {
+  border: 1px solid var(--tdddBorderColor);
+  margin: 0 12px 2px;
+  width: calc(100% - 24px);
+  padding: 4px 10px 4px 14px;
+  border-radius: 3px;
+
+ 
+}
+
+.tddelement-half {
+  margin-bottom: 15px;
+  margin-top: -3px;
+  position: relative;
+}
+
+.tddelement-half .text-input-container .form-group label,
+.tddelement-half .app-dropdown-container label {
+  flex: 1 1 100% !important;
+}
+
+.tddelement-half .text-input-container {
+  border: 1px solid var(--tdddBorderColor);
+  padding: 6px 12px 0px;
+  border-radius: 3px;
+  border-top: 0;
+
+  .form-group {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-direction: row !important;
+    position: relative;
+  }
+  small.text-danger {
+    position: absolute;
+    right: 0;
+    bottom: -11px;
+}
+}
+
+/* Override only for this instance */
+.custom-error-container {
+  display: block;
+  width: 100%;
+  position: relative;
+  top: 0; /* Ensure that error messages are displayed below the input */
+}
+
+/* Adjusting the error message position */
+.custom-error-container .text-danger {
+  position: absolute;
+  top: 90%; /* Position the error below the input */
+  left: 0;
+  font-size: 14px; /* Increase the font size */
+  transform: translateY(-5px); /* Fine-tune vertical positioning */
+  color: red; /* Ensure the error color is noticeable */
+  z-index: 1; /* Ensure the error message appears above the input field */
+}
+
+
+
+
+.tddelement-half .app-dropdown-container {
+  border: 1px solid var(--tdddBorderColor);
+  padding: 10px 32px 5px;
+  border-radius: 3px;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-direction: row !important;
+}
+
+.modal-container .modal-body {
+  padding: 28px 50px 15px 38px;
+}
+
+.tddd-verification-conditions {
+  background: var(--registrationIntroBg);
+  padding: 19px 41px;
+}
+
+.form-group .dropdown-value-container {
+  width: 210px !important;
+}
+
+// @media (min-width: 768px) {
+  .alert {
+    border-radius: 6px;
+    display: table;
+    width: 100%;
+    padding: 6px;
+    padding-left: 78px;
+    position: relative;
+    border: 1px solid rgba(254, 111, 97, 0.66);
+  }
+
+  .alert .close {
+    color: var(--alertColor);
+    opacity: 1;
+    float: none;
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    margin-top: -12px;
+    font-size: 25px;
+  }
+
+  .alert .icon {
+    text-align: center;
+    width: 58px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 15px;
+    border-radius: 6px 0 0 6px;
+  }
+
+  .alert .tddd-icon i {
+    font-size: 20px;
+    color: var(--colorWhite);
+    left: 21px;
+    margin-top: -10px;
+    position: absolute;
+    top: 50%;
+  }
+
+  .alert .icon img {
+    font-size: 20px;
+    color: var(--colorWhite);
+    left: 18px;
+    margin-top: -10px;
+    position: absolute;
+    top: 50%;
+  }
+
+  .alert.alert-danger .icon,
+  .alert.alert-danger .icon:after {
+    border-color: none;
+    background: #eaf371;
+
+  }
+
+
+.toggle-container {
+  display: flex;
+  align-items: center; // Center items vertically
+  gap: 10px; // Space between the label and switch
+  margin: 0 2px 0; // Adjust margins as needed
+  padding: 16px 0; // Adjust padding as needed
+}
+
+.toggle-container label {
+  margin: 0; // Remove any default margin
+}
+
+  /* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 16px;
+  margin-right: 10px;
+  margin-left: auto;
+  float: right;
+}
+
+label {
+  font-family: var(--fontRegular);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--textPrimary);
+  margin-bottom: 0px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  display: none;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  background-color: var(--toggleColor);
+  -webkit-transition: .4s;
+  transition: .4s;
+
+  left: -1px;
+  bottom: -3px;
+}
+
+input.default:checked+.slider {
+  background-color: var(--primaryColor);
+}
+
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+  height: 20px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+  border-radius: 50%;
+  height: 28px;
+  width: 28px;
+}
+
+
+.tddd-row {
+  position: relative;
+}
+
+// }

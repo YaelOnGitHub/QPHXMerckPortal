@@ -1,0 +1,46 @@
+<div class="add-edit-license-container modal-container">
+    <header class="modal-header">
+        <span>Add Address</span>
+        <span type="button" aria-label="Close" class="close pull-right" (click)="closeModal()">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </span>
+    </header>
+    <div [formGroup]="formGroup">
+        <div class="modal-body">
+            <div class="row">
+                <app-text-input [label]="'Address'" [placeholder]="'Enter address'" [formControlName]="'address1'"
+                    [isRequired]="true">
+                </app-text-input>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <app-text-input [label]="'City'" [placeholder]="'Enter city'" [formControlName]="'city'"
+                        [isRequired]="true">
+                    </app-text-input>
+                </div>
+                <div class="col-lg-6">
+                    <app-dropdown [multiSelect]="false" [header]="'State'" [placeholder]="'Select State'"
+                        [formControlName]="'state'"
+                        [errorMsg]="'Please make sure to provide information in the required fields.'"
+                        [searchable]="true" [dropDownOptions]="stateList" [bindLabel]="'abbreviation'"
+                        [bindValue]="'abbreviation'" [isRequired]="true">
+                    </app-dropdown>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <app-text-input [label]="'SLN'" [placeholder]="'Enter SLN'" [formControlName]="'sln'">
+                    </app-text-input>
+                </div>
+                <div class="col-lg-6">
+                    <app-text-input [label]="'DEA'" [maxLength]="'9'" [placeholder]="'Enter DEA'" [formControlName]="'dea'">
+                    </app-text-input>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button *ngIf="!isEdit" type="button" [disabled]="!formGroup.valid"
+                class="primary-btn ms-5 btn btn-round cursor" (click)="addAddress()">Add address</button>
+        </div>
+    </div>
+</div>

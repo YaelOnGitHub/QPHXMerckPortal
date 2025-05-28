@@ -1,0 +1,8 @@
+@import "../../../../styles/mixin";
+.delete-license-container {
+    .address-text {
+        @include font(var(--fontBold), 600, 16px, 20px);
+        text-transform: capitalize;
+        color: var(--textPrimary);
+    }
+}

@@ -1,0 +1,69 @@
+<div class="manage-change-pin-wrapper">
+  <app-intro-header [headerData]="'CHANGE_PIN_HEADER_TEXT' | textDescription" [iconSize]="'3.5em'" [withBorder]="false"
+    [isWrapper]="false" [icon]="'fak fa-create-pin'">
+    <h1>Change PIN</h1>
+  </app-intro-header>
+
+  <div class="manage-change-pin-form">
+    <form [formGroup]="formGroup">
+      <div class="row">
+        <div class="col-lg-4 order-1 order-lg-1 mb-sm-2">
+          <app-text-input [label]="'Enter current PIN'" [formControlName]="'enterCurrentPin'"
+            [type]="enterCurrentPin ? 'text' : 'password'" onpaste="return false;" ondrop="return false;"
+            [isRequired]="true" [placeholder]="'Enter current PIN'" [maxLength]="'4'" appDisableCutCopyPaste
+            (change)="onCurrentPinChanged()">
+            <div class="input-group-text">
+              <i alt="show" class="far fa-eye eye-show" (click)="enterCurrentPin = !enterCurrentPin"
+                *ngIf="enterCurrentPin"></i>
+              <i alt="hide" class="far fa-eye-slash eye-hide" (click)="enterCurrentPin = !enterCurrentPin"
+                *ngIf="!enterCurrentPin"></i>
+            </div>
+          </app-text-input>
+        </div>
+        <div class="col-lg-4 order-3 order-lg-2">
+          <app-text-input [label]="'Create new PIN'" [formControlName]="'createNewPin'"
+            [type]="showPassword ? 'text' : 'password'" onpaste="return false;" ondrop="return false;"
+            [isRequired]="true" [placeholder]="'Create new PIN'" [maxLength]="'4'" appDisableCutCopyPaste
+            (change)="onNewPinChanged()">
+            <div class="input-group-text">
+              <i alt="show" class="far fa-eye eye-show" (click)="showPassword = !showPassword" *ngIf="showPassword"></i>
+              <i alt="hide" class="far fa-eye-slash eye-hide" (click)="showPassword = !showPassword"
+                *ngIf="!showPassword"></i>
+            </div>
+          </app-text-input>
+        </div>
+        <div class="col-lg-4 order-4 order-lg-3">
+          <app-text-input [label]="'Confirm new PIN'" [formControlName]="'confirmNewPin'"
+            [type]="showPassword ? 'text' : 'password'" onpaste="return false;" ondrop="return false;"
+            [isRequired]="true" [placeholder]="'Confirm new PIN'" [maxLength]="'4'" appDisableCutCopyPaste
+            (change)="onConfirmPinChanged()">
+          </app-text-input>
+        </div>
+        <div class="col-4 order-2 order-lg-4 mt-sm-2">
+          <a href="javascript:void(0);" (click)="forgotPin()">Forgot PIN?</a>
+        </div>
+      </div>
+      <div class="manage-change-pin-terms-conditions-wrapper mt-5">
+        <div class="card-container termsAndConditions-container">
+          <div class="header">{{('registrationForm.pageTitles' | translate)[5]?.title}}</div>
+          <div class="body">
+            <div class="row g-3">
+              <div class="col-lg-12"><span [innerHTML]="'CHANGE_PIN_TERMS_CONDITIONS'|textDescription"></span></div>
+              <div class="col-lg-12">
+                <label class="col checkbox-wrapper d-flex align-items-center justify-start-start mb-2">
+                  <span class="sub-content">{{('registrationForm.messages.acceptText' |
+                    translate)}}</span>
+                  <input type="checkbox" [formControlName]="'acceptTermsAndConditions'">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <div class="d-flex flex-wrap justify-content-center justify-content-md-end justify-content-lg-end">
+                <button type="button" [disabled]="!formGroup.valid" class="btn btn-primary  btn-round   width-155"
+                  (click)="onSubmit();">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>

@@ -1,0 +1,39 @@
+<div class="profile-management-wrapper">
+
+  <app-intro-header [iconSize]="'3.5em'" [headerData]="'MANAGE_PROFILE_HEADER_TEXT'|textDescription"
+    [withBorder]="false" [isWrapper]="false" [icon]="'fa-regular fa-gear'">
+    <h1>Manage Profile </h1>
+
+  </app-intro-header>
+
+  <div class="profile-management-content-wrapper mt-4">
+    <div class="row profile-row">
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div *ngIf="!isSocialLogin" class="view-profile">
+          <h2 class="mb-0 mt-4">{{accountDetails?.firstName + ' ' + accountDetails?.lastName}}</h2>
+          <P>{{accountDetails?.email}}</P>
+        </div>
+
+        <div *ngIf="isSocialMediaEnable && isSocialLogin" class="view-profile">
+          <h2 class="mb-0 mt-4">{{accountDetails?.firstName + ' ' + accountDetails?.lastName}}</h2>
+          <P>{{accountDetails?.email}}</P>
+        </div>
+      </div>
+      <ng-container *ngIf="isSocialMediaEnable && isSocialLogin">
+        <div class="col-lg-2 col-md-3 col-sm-6 social-login">
+          <div class="google-login" *ngIf="socialLoginType == 'google'">
+            <img src="../assets/images/google-icon.jpg" alt="Google">
+          </div>
+          <div *ngIf="socialLoginType == 'apple'">
+            <i class="fa-brands fa-apple"></i>
+          </div>
+
+        </div>
+
+        <div class="social-container d-flex">
+          <button class="btn btn-primary btn-round width-320" (click)="deactivateAccount()">Deactivate Account</button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="card alert-card">
+    <div class="card-header alert-header d-flex justify-content-between align-items-center" [ngClass]="{'success':isModal,'error':!isModal, 'warning': isWarning}">
+        <div class="alert-heading" *ngIf="!isCustomTitle">
+            <span *ngIf="isModal">Success</span>
+            <span *ngIf="!isModal && !isWarning">Error</span>
+            <span *ngIf="isWarning">Warning</span>
+        </div>
+        <div class="alert-heading" *ngIf="isCustomTitle">
+            <span>{{customTitle}}</span>
+        </div>
+        <div class="close" (click)="onCancel()"><i class="fa-regular fa-xmark fa-lg"></i></div>
+    </div>
+    <div *ngIf="!isMultiTenantOrderSubmission" class="card-body" [ngClass]="{'text-center': !textAligment}">
+        <div class="alert-icon mb-2" *ngIf="icon!=''" [ngClass]="{'success':isModal,'error':!isModal}">
+            <i class="fa-regular fa-4x" [ngClass]="icon"></i>
+        </div>
+        <h5 class="card-title">{{Heading}}</h5>
+        <p class="card-text">{{SubHeading}}</p>
+        <p [innerHTML]="extraText"></p>
+    </div>
+
+    <div *ngIf="isMultiTenantOrderSubmission" class="card-body" [ngClass]="{'text-center': !textAligment}">
+        <div class="alert-icon mb-2" *ngIf="icon!=''" [ngClass]="{'success':isModal,'error':!isModal}">
+            <i class="fa-regular fa-4x" [ngClass]="icon"></i>
+        </div>
+        <h5 class="card-title">{{Heading}}</h5>
+        <p class="card-text">{{SubHeading}}</p>
+        <p class="sucessfull-Orders" *ngFor="let order of orderSubmissionData?.orderNumbers;let i = index">
+            <strong class="primary">{{order}}</strong>
+        </p>
+
+        <p *ngIf="orderSubmissionData?.orderResultMessages.length !==0" class="card-text">Order rejected number</p>
+        <p class="rejected-Orders" *ngFor="let order of orderSubmissionData?.orderResultMessages;let i = index">
+            <strong class="primary">{{order}}</strong>
+        </p>
+    </div>
+
+
+    <div class="card-footer text-center">
+        <Button type="button" *ngIf="isRequiredCancelBtn" class="btn btn-link-black  btn-round btn-small me-2"
+            (click)="onCancel()">{{cancelBtnText}}
+        </Button>
+        <button type="button" *ngIf="isRequiredOkBtn" (click)="onConfirm()"
+            class="btn btn-primary btn-round btn-small">{{okBtnText}}</button>
+    </div>
+</div>

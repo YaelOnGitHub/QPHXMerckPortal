@@ -1,0 +1,54 @@
+<div class="card product-item-card">
+    <div class="card-header p-0 d-flex justify-content-between align-items-start">
+        <div class="manufacturer-logo">
+            <img *ngIf="productItem.manufacturerLogo && isMultiTenant" [src]="productItem.manufacturerLogo"
+                [attr.alt]="productItem.manufacturerName" [attr.title]="productItem.manufacturerName" />
+            <div class="icon" *ngIf="!productItem.manufacturerLogo">
+                <!-- logo -->
+            </div>
+        </div>
+        <div class="product-status-wrapper pt-1">
+            <span class="product-status-name"
+                [ngClass]="getProductStatus(productItem.status)?.class">{{getProductStatus(productItem.status)?.showTitle}}</span>
+            <span class="new-product-tag" *ngIf="productItem.isNew">New</span>
+        </div>
+    </div>
+    <div class="card-body p-0">
+      <div class="product-details">
+        <div class="product-brand-img">
+            <img class="img" *ngIf="productItem.thumbnailURL" [attr.alt]="productItem.name"
+                [attr.title]="productItem.name" [src]="productItem.thumbnailURL" />
+            <i *ngIf="!productItem.thumbnailURL" [attr.title]="productItem.name"
+                class="fak fa-inventory icon"></i>
+        </div>
+        <div class="product-description">
+            <h4 class="mb-1" [attr.title]="getProductName(productItem)">{{getProductName(productItem) | slice:0:80}}{{getProductName(productItem).length > 80 ? '...': ''}}</h4>
+        </div>
+      </div>
+
+        <div #boxWarning *ngIf="boxWarning !== null && boxWarning !== undefined && boxWarning.trim() !== ''" class="box-warning mb-2 mt-2" [ngClass]="{'no-borders' : isDefaultWarning}">
+        </div>
+        <span class="d-block mb-2 limit">Limit: {{productItem.limit}}</span>
+    </div>
+    <div class="card-footer p-0">
+      <div *ngIf="productItem.isDownloadable && isMultiTenant" [ngClass]="{'dual-btn' : productItem.status == 'Available'}">
+          <button type="button"
+            class="btn btn-primary btn-width-auto btn-round" style="margin-left: 10px;" (click)="downloadLink(productItem)">Download
+          </button>
+
+          <button *ngIf="productItem.status == 'Available' && !productItem.isProductSelected" type="button"
+            class="btn btn-primary btn-width-auto btn-round" style="margin-left: 10px;"  (click)="openProductDetails('new')">View Details
+          </button>
+          <button *ngIf="productItem.status == 'Available' && productItem.isProductSelected" type="button"
+            class="btn btn-secondary btn-width-auto btn-round" style="margin-left: 10px;"  (click)="openProductDetails('edit')">Edit Details
+          </button>
+
+      </div>
+      <div *ngIf="!productItem.isDownloadable">
+        <button *ngIf="!productItem.isProductSelected" type="button" [disabled]="productItem.status !== 'Available'"
+            class="btn btn-primary btn-width-auto btn-round" style="margin-left: 10px;"  (click)="openProductDetails('new')">View Details</button>
+        <button *ngIf="productItem.isProductSelected" type="button" [disabled]="productItem.status !== 'Available'"
+            class="btn btn-secondary btn-width-auto btn-round" style="margin-left: 10px;"  (click)="openProductDetails('edit')">Edit Details</button>
+      </div>
+    </div>
+</div>

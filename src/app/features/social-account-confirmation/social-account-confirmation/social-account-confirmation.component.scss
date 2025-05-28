@@ -1,0 +1,43 @@
+
+@import "../../../../styles/responsive";
+
+.alert-warning {
+    border-color: var(--colorGrayShade_3);
+    color: var(--alertColor);
+    display: flex;
+    .icon {  
+      padding-right: 15px;
+    }
+  
+    span {
+      font-weight: 600;
+    }
+  
+  }
+
+  .alert-success {
+    display: flex;
+    .icon {  
+      padding-right: 15px;
+    }
+  
+    span {
+      font-weight: 600;
+    }  
+  }
+
+  .social-container {
+    background-color: var(--layoutBgColor);
+    background-image: url("../../../../assets//images/backgrounds/product-page-dots-bg.png");
+    padding: 45px 90px;
+  }
+
+  @media (max-width: map_get($grid-breakpoints, sm)) {
+    .social-container {
+      padding: 0 !important;
+    }
+
+    .btn-container {
+      text-align: center;
+    }
+  }

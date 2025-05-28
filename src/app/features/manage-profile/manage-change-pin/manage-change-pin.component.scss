@@ -1,0 +1,36 @@
+@import "../../../../styles/mixin";
+@import "../../../../styles/responsive";
+@import "../../../../styles/variables";
+
+
+
+.manage-change-pin-terms-conditions-wrapper {
+    .termsAndConditions-container {
+      .header {
+        color: unset;
+        background-color: var(--tableStripBgColor);
+      }
+    }
+    .card-header {
+        background-color: var(--tableStripBgColor);
+        @include font(var(--fontBold), 500, 20px, 24px);
+        color: var(--colorOnSurface1);
+    }
+
+    ul {
+        li {
+            @include font(var(--fontBold), 500, 14px, 22px);
+            color: var(--colorOnSurface1);
+        }
+    }
+    p{
+        @include font(var(--fontRegular), 500, 16px, 22px);
+        color: var(--colorOnSurface1);
+    }
+}
+
+@media (max-width: map_get($grid-breakpoints, md)) {
+    .manage-change-pin-terms-conditions-wrapper {
+        margin: 0;
+    }
+}

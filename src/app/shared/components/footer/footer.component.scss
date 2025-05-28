@@ -1,0 +1,229 @@
+@import "../../../../styles/responsive";
+@import "../../../../styles/variables";
+@import "../../../../styles/mixin";
+
+footer {
+  // margin-top: 2rem;
+  // width: 100%;
+  min-height: auto;
+  // background: var(--footerBgColor);
+  background-color:#2d7db0;
+  
+ .text-center {
+  text-align: center;
+ }
+  .navbar {
+    padding: 5px 30px;
+  }
+
+  .footer-container {
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    .navbar-brand {
+      flex-basis: 15%;
+      margin: 0px;
+    }
+
+    .qphrma-footer {
+      color: #f3fbfa;
+    }
+
+    .footer-list {
+      flex-basis: 85%;
+      padding: 8px;
+      color: var(--colorWhite);
+      @include font(var(--fontRegular), 400, 14px, 18px);
+
+      .row {
+        text-align: center;
+      }
+
+      ::ng-deep a {
+        color: var(--colorWhite);
+
+        &:hover {
+          color: var(--primaryColor);
+        }
+      }
+      ::ng-deep .footer-telephone{
+        background: url("https://qprx-artifacts.s3.amazonaws.com/SIT/images/generic-images/footer-phone.png") 0 3px no-repeat;
+        padding-left: 20px;
+      }
+      ::ng-deep .footer-email{
+        background: url("https://qprx-artifacts.s3.amazonaws.com/SIT/images/generic-images/footer-email.png") 0 3px no-repeat;
+        padding-left: 23px;
+      }
+    }
+  }
+
+  &.merck-footer {
+    border-top: 2px solid #ccc;
+    background: unset;
+  }
+
+  &.qther-footer {
+    border-top: 2px solid #ccc;
+    background: unset;
+  }
+
+
+  .footer-content {
+    display: grid;
+
+    .access-logo {
+      margin-left: auto;
+      padding-right: 10px;
+    }
+   }
+  
+
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    // gap: 15px;
+    color: var(--primaryColor);
+    @include font(var(--fontRegular), 400, 14px, 18px);
+    margin-top: 10px;
+
+    li:first-child {
+      padding-right: 15px;
+    }
+  }
+
+  li+li {
+    border-left: 1px solid;
+    padding-left: 15px;
+    margin-right: 15px;
+  }
+
+  .footer-description {
+    flex-basis: 85%;
+    padding: 8px;
+    color: var(--textSecondary);
+    @include font(var(--fontRegular), 400, 14px, 18px);
+
+    .row {
+      text-align: center;
+    }
+
+    a {
+      color: var(--colorWhite);
+
+      &:hover {
+        color: var(--colorWhite);
+      }
+    }
+
+    ::ng-deep a {
+      color: var(--colorWhite);
+
+      &:hover {
+        color: var(--primaryColor);
+      }
+    }
+    ::ng-deep .footer-telephone{
+      background: url("https://qprx-artifacts.s3.amazonaws.com/SIT/images/generic-images/footer-phone.png") 0 3px no-repeat;
+      padding-left: 20px;
+    }
+    ::ng-deep .footer-email{
+      background: url("https://qprx-artifacts.s3.amazonaws.com/SIT/images/generic-images/footer-email.png") 0 3px no-repeat;
+      padding-left: 23px;
+    }
+    ::ng-deep .footer-telephone-qthera, ::ng-deep .footer-email-qthera{
+      color:#6d6d77;
+      &:hover{
+        text-decoration: underline;
+        color:#6d6d77;
+      }
+    }
+
+
+  }
+
+}
+
+.mobile-para-aftr-quest, .mobile-bottom-image, .footer-left-nav, .footer-right-logo, .info-mobile-footer{display: none;}
+@media (max-width: map_get($grid-breakpoints, md)) {
+  footer {
+    height: auto;
+    position: relative;
+    background: var(--footerBgColorMobile);
+
+    .navbar {
+      padding: 5px 15px;
+    }
+
+    .footer-container {
+      justify-content: center;
+      align-items: center;
+
+      .footer-list {
+        .row {
+          text-align: left;
+        }
+
+        flex-basis: 100%;
+        margin-top: 0px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+@media #{map-get($device-media-queries,mobile)} {
+.footer-container{
+  display: none;
+}
+  footer{
+    background-color:#2d7db0;
+  }
+  .merck-footer{
+    background-color: var(--footerBgColorMobile) !important;
+  }
+  .qther-footer{
+    background-color: var(--footerBgColorMobile) !important;
+  }
+  .footer-left-nav{
+    display: inline-block !important; 
+    width:60%;
+    ul{
+      display: grid;
+      float: left;
+      li{
+        display: inline-block;
+        border: none;
+        padding-left:0;
+        margin-bottom: 8px;
+        a{
+          text-decoration: none;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+  .footer-right-logo{
+    display: inline-block !important;
+    vertical-align:top;
+  }
+  .qphrma-footer{
+    padding:0 25px 20px;
+    color:#ffffff;
+    ::ng-deep a {
+      color: var(--colorWhite);
+      text-decoration: underline;
+      }
+      ::ng-deep .footer-telephone{
+        background: url("https://qprx-artifacts.s3.amazonaws.com/SIT/images/generic-images/footer-phone.png") 0 3px no-repeat;
+        padding-left: 15px;
+        margin-left: 10px;
+      }
+      ::ng-deep .footer-email{
+        background: url("https://qprx-artifacts.s3.amazonaws.com/SIT/images/generic-images/footer-email.png") 0 3px no-repeat;
+        padding-left:23px;
+        margin-left: 5px;
+      }
+  }
+  .info-mobile-footer{display: block;}
+}

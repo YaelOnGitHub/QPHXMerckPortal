@@ -1,0 +1,22 @@
+<div class="modal-container">
+    <header class="modal-header">
+        <span>{{label}}</span>
+        <span type="button" aria-label="Close" class="close pull-right" (click)="closeModal()">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </span>
+    </header>
+    <div>
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class="row">
+                    <label>Are you sure you wish to continue?</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-link-black  btn-small btn-round" (click)="closeModal()">{{btnCancelTxt}}</button>
+            <button type="button" class="btn btn-primary ms-1  btn-small btn-round"
+                (click)="onConfirm()">{{btnSuccessTxt}}</button>
+        </div>
+    </div>
+</div>

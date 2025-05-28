@@ -1,0 +1,181 @@
+@import "../../../../styles/responsive";
+@import "../../../../styles/mixin";
+@import "../../../../styles/variables";
+
+.registration-form-container {
+
+
+  .social-box {
+    justify-content: center;
+    display: flex;
+
+    p {
+      padding-top: 12px;
+    }
+      i {
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        border: 1px solid var(--colorGrayShade_3);
+        line-height: 50px;
+    }
+
+      .google-login {
+        // color: var(--googleColorCode);
+        // font-size: 1.3em;
+        padding-left: 10px;
+        img {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      .apple-login {
+        i {
+          font-size: 40px;
+          padding-left: 15px;
+          border: 0;
+          line-height: 35px;
+        }
+      }
+
+      .facebook-login {
+        color: var(--facebookColorCode);
+        font-size: 1.3em;
+      }
+  }
+
+
+  .termsAndConditions-container {
+    .header {
+      color: unset;
+    }
+  }
+    #contentDesktop {
+        display: block;
+    }
+
+    #contentMobile {
+        display: none;
+    }
+
+    .color-primary {
+        color: var(--primaryColor);
+    }
+
+    .color-secondary {
+        color: var(--deleteIconColor);
+    }
+
+    .status-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 70px;
+        height: 18px;
+        border-radius: 2px;
+
+        .status-label {
+            @include font(var(--fontRegular), 400, 12px, 20px);
+            color: #ffffff;
+        }
+    }
+
+    .valid-address {
+        background-color: #0bc2a1;
+    }
+
+    .invalid-address {
+        background-color: #ff796c;
+    }
+
+    .pending-address {
+        background-color: #3bb7dc;
+    }
+
+    .disable-select .ng-has-value {
+        background-color: unset ;
+        .ng-arrow-wrapper {
+            display: none;
+        }
+    }
+
+    .section-label {
+        color: var(--textSecondary);
+        @include font(var(--fontRegular), 500, 18px, 18px);
+    }
+
+    .btn-link {
+        @include font(var(--fontRegular), 500, 14px, 17px);
+        text-decoration: none;
+    }
+
+    .checkbox {
+        // padding-top: 2rem;
+        // //  padding-left: 7rem;
+        // padding-bottom: 2rem;
+
+        input[type="checkbox"] {
+            width: 1.75rem;
+            height: 1.75rem;
+            box-shadow: 0px 1px 2px 1px #00000026;
+            border-radius: 2px !important;
+        }
+    }
+
+    @media (max-width: map_get($grid-breakpoints, md)) {
+        #contentDesktop {
+            display: none;
+        }
+
+        #contentMobile {
+            display: block;
+        }
+
+        .license-info {
+            flex-direction: column;
+        }
+
+        .box-name {
+            order: 1;
+        }
+
+        .box-email {
+            order: 4;
+        }
+
+        .box-confirmEmail {
+            order: 5;
+        }
+
+        .box-npi {
+            order: 2;
+        }
+
+        .box-speciality,
+        .box-designation {
+            order: 3;
+        }
+
+        .checkbox {
+            padding-left: none !important;
+        }
+    }
+}
+
+ 
+ 
+
+@media (max-width: map_get($grid-breakpoints, md)) {
+    .col-12>div {
+        border: 1px solid var(--colorCardBorder_1);
+        border-radius: 5px;
+        background-color: var(--colorSurface);
+
+        &.add-license {
+            border-style: dotted;
+            height: 80px;
+        }
+    }
+}
+ 

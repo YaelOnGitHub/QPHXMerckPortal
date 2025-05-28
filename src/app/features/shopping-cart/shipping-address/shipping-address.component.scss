@@ -1,0 +1,23 @@
+@import "../../../../styles/mixin";
+@import "../../../../styles/responsive";
+@import "../../../../styles/variables";
+.checkbox-wrapper{
+    padding-left: 35px;
+}
+
+.address-card-add-container{
+    min-height: 235px;
+}
+
+.new-address {
+  text-align: end;
+
+  button {
+    text-align: inherit;
+    margin-bottom: 20px;
+    border: 0;
+  }
+  span {
+    color: var(--primaryColor);
+  }
+}

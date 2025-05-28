@@ -1,0 +1,90 @@
+<footer *ngIf="isMerck" class="merck-footer">
+  <div class="row">
+    <div class="col-md-5 col-sm-12">
+      <div class="description footer-description">
+        <div class="col-sm-12 text-start" [innerHTML]="'APPLICATION_FOOTER'|textDescription"></div>
+      </div>
+    </div>
+    <div class="col-md-7 col-sm-12 footer-content">
+      <ul >
+        <li><a href="https://dsr.msd.com/DSR/United_States/English/" target="_blank">Your Privacy Choices <img src="../../../../assets/images/icons/yourprivacychoices_teal.svg" alt="image" style="margin-top:-2px; margin-left: 4px;"></a></li>
+        <li><a href="https://www.msdprivacy.com/us/en/chd-policy/" target="_blank">Consumer Health Data Privacy Policy</a></li>
+        <li><a href="https://www.merck.com/terms-of-use/" target="_blank">Terms of Use</a></li>
+        <li><a href="https://www.msdprivacy.com/us/en/" target="_blank">Privacy Policy</a></li>
+        <li><a href="https://www.msd.com/our-commitment-to-accessibility-for-all" target="_blank">Accessibility</a>
+        </li>
+      </ul>
+      <span class="access-logo">
+        <a href="https://www.levelaccess.com/merck/?utm_%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20campaign=merck"
+          target="_blank">
+          <img src="../../../../assets/images/landing-img/webaccessibilityicon.png" alt="image">
+        </a>
+      </span>
+
+    </div>
+  </div>
+</footer>
+
+<!-- <footer *ngIf="isQthera" class="qther-footer">
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <div class="description footer-description text-center">
+        <div class="col-sm-12 " [innerHTML]="'APPLICATION_FOOTER'|textDescription"></div>
+      </div>
+    </div>
+
+  </div>
+</footer> -->
+
+
+<footer *ngIf="isQphma || isQthera">
+
+  <nav class="navbar">
+    <div class="container-fluid footer-container">
+      <span class="navbar-brand d-none  d-md-block d-lg-block d-xl-block" href="javascript:void(0);">
+        <a target="_blank" href="https://qpharmacorp.com/" >
+          <img class="client-logo" src="https://qprx-artifacts.s3.amazonaws.com/SIT/images/generic-images/QP-Logo.png" alt="client-logo">
+        </a>
+      </span>
+      <div class="footer-list">
+        <div class="row">
+          <div class="col-sm-12 qphrma-footer" [innerHTML]="'APPLICATION_FOOTER'|textDescription">
+
+          </div>
+          
+        </div>
+      </div>
+      <span class="navbar-brand d-block  d-md-none d-lg-none d-xl-none" href="javascript:void(0);">
+        <a class="navbar-brand" (click)="redirectToRoute()" href="javascript:void(0);">
+          <img class="client-logo" src="https://qprx-artifacts.s3.amazonaws.com/SIT/images/generic-images/logo.png" alt="client-logo">
+        </a>
+      </span>
+
+    </div>
+  </nav>
+
+  <!-- footer for mobile -->
+   <div class="footer-left-nav">
+      <ul>                    
+
+        <li><a [class.nav-active]="isActive('/about-us')" href="/about-us">About Us</a></li>
+        <li><a target="_blank" href="https://qpharmacorp.com/company/privacy-policy/">Privacy Policy</a></li>
+        <li><a target="_blank" href="https://qpharmacorp.com/company/infrastructure-security-policy/">Security</a></li>
+        <li><a [class.nav-active]="isActive('/help')" href="/help">Help</a></li>
+      </ul>
+   </div>
+
+   <div class="footer-right-logo">
+    <a class="navbar-brand" (click)="redirectToRoute()" href="https://qpharmacorp.com/" target="_blank" rel="noopener">
+      <img class="client-logo" src="https://qprx-artifacts.s3.amazonaws.com/SIT/images/generic-images/QP-Logo.png" alt="logo">
+    </a>
+
+   </div>
+   
+   <div class="col-sm-12 qphrma-footer info-mobile-footer" [innerHTML]="'APPLICATION_FOOTER'|textDescription">
+
+   </div>
+  <!-- footer for mobile -->
+
+
+</footer>

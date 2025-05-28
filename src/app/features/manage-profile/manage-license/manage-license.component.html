@@ -1,0 +1,77 @@
+<section class="license-container overflow-hidden container-fluid">
+    <app-intro-header [headerData]="null" [iconSize]="'3.5em'" [headerData]="'MANAGE_LICENSE_HEADER_TEXT'|textDescription" [withBorder]="false" [isWrapper]="false"
+        [icon]="'fak fa-license-number'">
+        <h1>Manage Licenses ({{license?.length}})</h1>
+    </app-intro-header>
+
+    <div *ngIf="displayAddNewLicense" class="new-license">
+      <button type="button" class="btn btn-default" (click)="addLicense()" aria-label="Left Align">
+        <i class="fak fa-lg fa-license-number primary-color"></i>
+        <span class="ms-2">Add License</span>
+      </button>
+    </div>
+
+    <div class="d-flex row g-4" [formGroup]="formGroup">
+        <ng-container  *ngFor="let item of licenseArray ;let j =index"  >
+                
+        <div formArrayName="license" *ngIf="item.licenseNumber" class="col-lg-4 col-12">
+            <div [formGroupName]="j">
+                <div class="card-container license-card-container">
+                    <div class="body d-flex justify-content-between license-info">
+                        <div class="license-item">
+                            <div class="row">
+                                <div *ngIf="checkStatus(item.licenseStatus, 'valid')" class="col-lg-12 col-12 mb-3">
+                                    <div class="valid-license status-container">
+                                        <div class="status-label">{{item?.licenseStatusMessage}}</div>
+                                    </div>
+                                </div>
+                                <div *ngIf="checkStatus(item.licenseStatus, 'invalid')" class="col-lg-12 col-12 mb-3">
+                                    <div class="invalid-license status-container">
+                                        <span class="status-label">{{item?.licenseStatusMessage}}</span>
+                                    </div>
+                                </div>
+                                <div *ngIf="checkStatus(item.licenseStatus,'pending')" class="col-lg-12 col-12 mb-3">
+                                    <div class="pending-license status-container">
+                                        <span class="status-label">{{item?.licenseStatusMessage}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <span class="card-label"><i
+                                            class="fak fa-license-number primary-text-color me-1"></i>License
+                                        Number</span>
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <span class="card-label"><i
+                                            class="fak fa-license-state primary-text-color me-1"></i>License
+                                        State</span>
+                                </div>
+                                <div class="col-lg-6 col-12 mt-3">
+                                    <span class="card-value">{{item?.licenseNumber}}</span>
+                                </div>
+                                <div class="col-lg-6 col-12 mt-3">
+                                    <span class="card-value">{{item?.licenseState}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--Part of next phase-->
+                <!-- <hr />
+                <div class="cursor font-small color-secondary d-flex justify-content-end align-items-center me-3 pb-2"
+                    (click)="removeLicense(item,j)"><i class="fa fa-sm fa-trash me-1"></i>Delete</div> -->
+            </div>
+        </div>
+        </ng-container>
+        <!-- <div class="col-lg-4 col-12"  *ngIf="displayAddNewLicense">
+            <div class="card-container license-card-container d-flex justify-content-center align-items-center">
+                <div class="body d-flex justify-content-center  align-items-center">
+                    <div class="add-license cursor" (click)="addLicense()">
+                        <i class="fak fa-lg fa-license-number primary-color"></i>
+                        <span class="ms-2">Add license</span>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</section>

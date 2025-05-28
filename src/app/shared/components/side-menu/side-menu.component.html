@@ -1,0 +1,75 @@
+ 
+<div class="side-menu-wrapper">
+  <div class="menu-item">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link" 
+             [class.active]="activeItem === 'samples'" 
+             aria-current="page" 
+             routerLinkActive="active" 
+             ariaCurrentWhenActive="page" 
+             (click)="redirectToRoute('samples')" style="padding-left: 18px;">
+            <div class="nav-icon-name d-flex justify-content-start">
+              <span class="menu-icon me-2" title="Samples"><i class="fak fa-samples"></i></span>
+              <span class="menu-name">Samples</span>
+            </div>
+          </a>
+        </li>
+        
+        <li class="nav-item" *ngIf="isAocEnabled">
+          <a class="nav-link" 
+             [class.active]="activeItem === 'aoc'" 
+             aria-current="page" 
+             routerLinkActive="active" 
+             ariaCurrentWhenActive="page" 
+             (click)="redirectToAoc()">
+            <div class="nav-icon-name d-flex justify-content-start">
+              <span class="menu-icon me-2" title="Aoc"><i class="fa-solid fa-box-open"></i></span>
+              <span class="menu-name">Shipment Acknowledgment</span>
+            </div>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link ai-nav-link" 
+             [class.active]="activeItem === 'ai-expert'" 
+             aria-current="page" 
+             routerLinkActive="active" 
+             ariaCurrentWhenActive="page" 
+             (click)="redirectToRoute('ai-expert')">
+            <div class="nav-icon-name d-flex justify-content-start">
+              <span class="menu-icon me-2" title="AI Expert"><img src="assets/images/logo/AI_Expert_GIF_Logo.gif" width="28" alt="AI Expert Logo"/></span>
+              <span class="menu-name">AI Expert</span>
+            </div>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a id="faq" class="nav-link" aria-current="page" routerLinkActive="active" ariaCurrentWhenActive="page"
+            routerLink="/faq" style="padding-left: 18px;">
+            <div class="nav-icon-name d-flex justify-content-start">
+              <span class="menu-icon me-2" title="Faq"><i class="fa-2x left-icon fa-regular fa fa-question-circle faq"></i></span>
+              <span class="menu-name">FAQ</span>
+            </div>
+          </a>
+        </li>
+          
+          <!-- Commented for Future use 
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                <div class="nav-icon-name d-flex justify-content-start">
+                  <span class="menu-icon me-2" title="Samples"><i class="fak fa-samples"></i></span>
+                  <span class="menu-name">Samples</span>
+                </div>
+              </a>
+              <ul class="dropdown-menu ">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Separated link</a></li>
+              </ul>
+          </li> -->
+        </ul>
+  </div>
+</div>

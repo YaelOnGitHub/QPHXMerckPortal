@@ -1,0 +1,143 @@
+<div *ngIf="orderDetails">
+    <div class="modal-header" [style.background-color]="bgColor">
+        <span class="close-icon" aria-label="Close" (click)="onCloseModal()" data-toggle="tooltip" data-placement="top"
+            title="Close">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+                    fill="#555555" />
+            </svg>
+        </span>
+
+        <div class="order-details-cell" [style.color]="headerTextColor">
+            <div class="left-side">
+                <div class="orderID">Request Number: <span> {{orderDetails?.orderId}} </span>
+                </div>
+            </div>
+
+            <div class="left-side">
+                <div class="orderID">Status: <span> {{orderDetails?.status}} </span>
+                </div>
+            </div>
+
+            <div class="left-side">
+                <div class="orderID">Request Date: <span> {{ orderDetails?.orderedOn ? (orderDetails?.orderedOn | date :
+                        'MM/dd/YYYY') :'-' }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="order-body">
+            <div class="order-details">
+                <table>
+                    <tbody>
+
+                        <tr class="ordered-by">
+                            <td class="label"> Requested by</td>
+                            <td class="value"> {{orderDetails?.orderedBy}} </td>
+                        </tr>
+                        <tr class="">
+                            <td class="label"> Designation</td>
+                            <td class="value"> {{orderDetails?.designation}}</td>
+                        </tr>
+                        <tr class="">
+                            <td class="label"> SLN</td>
+                            <td class="value"> {{orderDetails?.sln}}</td>
+                        </tr>
+                        <tr class="">
+                            <td class="label"> DEA</td>
+                            <td class="value"> {{orderDetails?.deaNum}}</td>
+                        </tr>
+
+                        <tr class="bordered">
+                            <td class="label"> NPI number </td>
+                            <td class="value"> {{orderDetails?.npiNumber}}</td>
+                        </tr>
+
+                        <tr class="">
+                            <td class="label"> Ship to</td>
+                            <td class="value ship-address">
+                                <span class="card-value truncate-overflow-2-line " [title]="orderDetails?.address1">
+                                    {{orderDetails?.address1?.toLowerCase()}}
+                                </span>
+                                <span *ngIf="orderDetails?.address2"
+                                    class="card-value truncate-overflow-2-line" [title]="orderDetails?.address2">
+                                    {{orderDetails?.address2?.toLowerCase()}}
+                                </span>
+                                <span class="card-value truncate-overflow-2-line ">
+                                {{orderDetails?.city?.toLowerCase()}},
+                                {{orderDetails?.state?.toUpperCase()}} {{orderDetails?.zipCode?.toLowerCase()}}
+                                </span>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="action == 'viewOrder'" class="product-details">
+                <div class="count">
+                    Total Items: {{orderDetails?.totalItems}}
+                </div>
+                <div class="product-box">
+                    <div class="item" *ngFor="let item of orderDetails?.items">
+                        <div class="item-img">
+                                <img [src]="item?.imageUrl" alt="" [srcDefault]="'assets/img/home/Product_Default.svg'">
+                        </div>
+                        <div class="item-details">
+                            <span> {{item?.name}}</span>
+                            <span class="item-quantity">Requested Qty: {{item?.orderedQuantity}} </span>
+                            <span class="item-quantity">Shipped Qty: {{item?.shippedQuantity}} </span>
+                            <span class="item-id">{{item?.id}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="track-details" *ngIf="action !== 'viewOrder'">
+                <div class="count">
+                  Total Shipments: {{ orderDetails?.trackingDetails?.length}}
+                </div>
+                <div class="track ">
+                    <div class="track-box collapsible" *ngFor="let td of orderDetails?.trackingDetails">
+                        <div class="track-header d-flex justify-content-between" [style.background-color]="bgColor">
+                            <span>Tracking # </span>
+                            <span class="tracking-number" [innerHtml]="getTrackingLink(td)"></span>
+                            <span [style.color]="headerTextColor">{{td?.status}}</span>
+                        </div>
+                        <div class="content">
+                            <div class="inner-content">
+                            <span>Shipment date: {{ td?.shippedOn ? (td?.shippedOn | date : 'MM/dd/YYYY') :'-' }}</span>
+                            <span>Total: {{td.items?.length}} items</span>
+                            </div>
+                            <span>
+                                <i (click)="expandView($event)" class="fa fa-chevron-right custom-icon-arrow" [ngClass]="{'rotate-icon':orderDetails?.trackingDetails?.length === 1}" id="icon"
+                                    value="icon" aria-hidden="true"></i>
+
+
+                                <div class="show-content" [style.display]="orderDetails?.trackingDetails?.length === 1 ? 'block' : 'none'">
+                                    <div class="item" *ngFor="let item of td?.items">
+                                        <div class="item-img">
+                                            <a [href]="item?.imageUrl" target="_blank">
+                                                <img [src]="item?.imageUrl" alt=""
+                                                    [srcDefault]="'assets/img/home/Product_Default.svg'">
+                                            </a>
+                                        </div>
+                                        <div class="item-details">
+                                            <span> {{item?.name}}</span>
+                                            <span class="item-quantity">Requested Qty: {{item?.orderedQuantity}} </span>
+                                            <span class="item-quantity">Shipped Qty: {{item?.shippedQuantity}} </span>
+                                            <span class="item-id">{{item?.id}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </span>
+
+                            <span class="border-main"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>

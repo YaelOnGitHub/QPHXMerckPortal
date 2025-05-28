@@ -1,0 +1,20 @@
+@import "../../../../styles/responsive";
+.set-security-card {
+    box-shadow: 0px 0px 4px 1px var(--boxShadowColor);
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+.content {
+    padding-left: 13%;
+    padding-top: 3%;
+}
+.back-btn-bg {
+    background: var(--backButtonBg);
+    color: var(--colorWhite);
+}
+.footer {
+    margin-top: 16%;
+}
+.btn-width {
+    width: 45%;
+}

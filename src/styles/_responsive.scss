@@ -1,0 +1,23 @@
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px,
+);
+
+$device-media-queries: (
+  mobile: '(max-width: 639px)',
+  tablet-ipad: '(max-width: 1024px) and (min-width: 640px)',
+  tablet-ipad-pro: '(max-width: 1366px) and (min-width: 640px)',
+  desktop: '(min-width: 1025px)'
+);
+
+// @media (max-width: map_get($grid-breakpoints,sm)) {
+//     header {
+//         width: 100% !important;
+//         margin-bottom: 30px !important;
+//         background: var(--headerBgMobile) !important;
+//     }
+// }

@@ -1,0 +1,29 @@
+<div class="card alert-card">
+  <div class="card-header alert-header d-flex justify-content-between align-items-center success">
+    <div class="alert-heading" *ngIf="isCustomTitle">
+      <span>{{customTitle}}</span>
+    </div>
+  </div>
+  <div class="card-body row">
+    <div class="alert-icon mb-2 success col-md-2" *ngIf="icon!=''">
+      <i class="fa-regular fa-4x" [ngClass]="icon"></i>
+    </div>
+    <div class="col-md-10 content">
+      <div class="row">
+        <div *ngIf="SubHeading != ''" class="col-md-12 mb-4">
+          <span class="card-text mt-2">{{SubHeading}}</span>
+        </div>
+        <div class="col-md-12 mb-4">
+          <span class="card-title">{{Heading}}</span>
+        </div>
+    </div>
+    </div>
+  </div>
+
+
+  <div class="card-footer">
+    <button  *ngIf="cancelBtnRequired" type="button" class="btn btn-link-black  btn-round btn-small me-2" (click)="onCancel()">{{cancelBtnText}}
+    </button>
+    <button type="button" (click)="onConfirm()" class="btn btn-primary btn-round btn-small">{{okBtnText}}</button>
+  </div>
+</div>

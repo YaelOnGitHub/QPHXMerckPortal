@@ -1,0 +1,366 @@
+<app-intro-header [headerData]="'REGISTRATION_FORM_HEADER_TEXT'|textDescription" [withBorder]="true"
+  [icon]="'fak fa-registration'" [iconSize]="'4em'">
+</app-intro-header>
+
+<div class="registration-form-container">
+  <form [formGroup]="formGroup">
+    <div class="card-container">
+      <div class="header">{{ ('registrationForm.pageTitles' | translate)[0]?.title }}</div>
+      <div class="body pb-1">
+        <div class="row">
+          <div *ngIf="!hcpNotFound" class="col-lg-7 box-name" [ngClass]="{'pb-2': isSocialMediaEnable}">
+            <div class="hcp-populate-name">{{formGroup?.get('firstName')?.value}}
+              {{formGroup?.get('middleName')?.value}}
+              {{formGroup?.get('lastName')?.value}}</div>
+          </div>
+          <div *ngIf="hcpNotFound" class="col-lg-4">
+            <app-text-input [label]="('registrationForm.formFields' | translate)[0]?.label"
+              [formControlName]="'firstName'" [isRequired]="true"
+              [placeholder]="('registrationForm.formFields' | translate)[0]?.placeholder">
+            </app-text-input>
+          </div>
+          <div *ngIf="hcpNotFound" class="col-lg-3">
+            <app-text-input [label]="('registrationForm.formFields' | translate)[1]?.label"
+              [formControlName]="'lastName'" [isRequired]="true"
+              [placeholder]="('registrationForm.formFields' | translate)[1]?.placeholder">
+            </app-text-input>
+          </div>
+          <div *ngIf="!isSocialLogin" class="col-lg-5 box-email">
+            <app-text-input [label]="('registrationForm.formFields' | translate)[2]?.label" [formControlName]="'email'"
+              [isRequired]="true" [placeholder]="('registrationForm.formFields' | translate)[2]?.placeholder">
+            </app-text-input>
+          </div>
+
+          <div *ngIf="isSocialMediaEnable && isSocialLogin" class="col-lg-5 box-email social-box">
+           <!-- <p>Cesion@gmail.com</p>
+           <div class="google-login">
+            <i class="fa-brands fa-google d-flex justify-content-center align-items-center"></i>
+          </div> -->
+          </div>
+
+          <div class="col-lg-2 box-npi">
+            <app-text-input [label]="('registrationForm.formFields' | translate)[3]?.label" [isReadOnly]="!hcpNotFound"
+              [disabled]="!hcpNotFound" [formControlName]="'npiNumber'" [isRequired]="true" [maxLength]="'10'"
+              [placeholder]="('registrationForm.formFields' | translate)[3]?.placeholder">
+            </app-text-input>
+          </div>
+          <!-- <div *ngIf="!hcpNotFound" class="col-lg-3 box-speciality">
+            <app-text-input [label]="('registrationForm.formFields' | translate)[4]?.label" [isReadOnly]="!hcpNotFound"
+              [disabled]="!hcpNotFound" [formControlName]="'speciality'" [isRequired]="true"
+              [placeholder]="('registrationForm.formFields' | translate)[4]?.label">
+            </app-text-input>
+          </div> -->
+          <div *ngIf="!hcpNotFound" class="col-lg-3 box-speciality">
+            <app-dropdown [multiSelect]="false" [header]="('registrationForm.formFields' | translate)[4]?.label" 
+              [ngClass]="{'disable-select': !specialityNotFound}" [disabled]="!specialityNotFound"
+              [placeholder]="('registrationForm.formFields' | translate)[4]?.label" [formControlName]="'speciality'"
+              [errorMsg]="('registrationForm.formFields' | translate)[4]?.error" [searchable]="false"
+              [dropDownOptions]="specialityList" [sortbyBindLabel]="true"  [bindLabel]="'description'" [bindValue]="'code'" [isRequired]="true">
+            </app-dropdown>
+          </div>
+
+          <div *ngIf="hcpNotFound" class="col-lg-3 box-speciality">
+            <app-dropdown [multiSelect]="false" [header]="('registrationForm.formFields' | translate)[4]?.label" 
+              [placeholder]="('registrationForm.formFields' | translate)[4]?.label" [formControlName]="'speciality'"
+              [errorMsg]="('registrationForm.formFields' | translate)[4]?.error" [searchable]="false"
+              [sortbyBindLabel]="true" [dropDownOptions]="specialityList" [bindLabel]="'description'" [bindValue]="'code'" [isRequired]="true">
+            </app-dropdown>
+          </div>
+
+          <!-- <div *ngIf="!hcpNotFound" class="col-lg-2 box-designation">
+            <app-text-input [label]="('registrationForm.formFields' | translate)[5]?.label" [isReadOnly]="!hcpNotFound"
+              [disabled]="!hcpNotFound" [formControlName]="'professionalDesignation'" [isRequired]="false"
+              [placeholder]="('registrationForm.formFields' | translate)[5]?.placeholder">
+            </app-text-input>
+          </div> -->
+          <div *ngIf="!hcpNotFound" class="col-lg-2 box-designation">
+            <app-dropdown [multiSelect]="false" [header]="('registrationForm.formFields' | translate)[5]?.label"
+              [placeholder]="('registrationForm.formFields' | translate)[5]?.placeholder" [ngClass]="{'disable-select': !designationNoutFound}" [disabled]="!designationNoutFound"
+              [formControlName]="'professionalDesignation'"
+              [errorMsg]="('registrationForm.formFields' | translate)[5]?.error" [searchable]="false"
+              [dropDownOptions]="designationList" [bindLabel]="'abbrivation'" [bindValue]="'abbrivation'"
+              [isRequired]="true">
+            </app-dropdown>
+          </div>
+
+
+          <div *ngIf="hcpNotFound" class="col-lg-2 box-designation">
+            <app-dropdown [multiSelect]="false" [header]="('registrationForm.formFields' | translate)[5]?.label"
+              [placeholder]="('registrationForm.formFields' | translate)[5]?.placeholder" [formControlName]="'professionalDesignation'"
+              [errorMsg]="('registrationForm.formFields' | translate)[5]?.error" [searchable]="false"
+              [dropDownOptions]="designationList" [bindLabel]="'abbreviation'" [bindValue]="'abbreviation'"
+              [isRequired]="true">
+            </app-dropdown>
+          </div>
+
+          <div *ngIf="!isSocialLogin" class="col-lg-5 box-confirmEmail">
+            <app-text-input [label]="('registrationForm.formFields' | translate)[6]?.label"
+              [formControlName]="'confirmEmail'" [isRequired]="true"
+              [placeholder]="('registrationForm.formFields' | translate)[6]?.placeholder" onpaste="return false;"
+              ondrop="return false;">
+              <small class="text-danger" customError
+                *ngIf="formGroup.controls['confirmEmail']?.dirty && formGroup.controls['confirmEmail']?.errors?.notMatch">
+                {{ ('registrationForm.formFields' | translate)[6]?.fieldMatchError }}</small>
+            </app-text-input>
+          </div>
+
+          <div *ngIf="isSocialMediaEnable && isSocialLogin" class="col-lg-5 box-email social-box">
+            <p>{{socialMediaData?.email}}</p>
+          
+            <div *ngIf="socialLoginType == 'google'" class="google-login">
+              <img src="../assets/images/google-icon.jpg" alt="Google">
+            </div>
+          
+            <div class="apple-login" *ngIf="socialLoginType == 'apple'">
+              <i class="fa-brands fa-apple"></i>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div *ngIf="hcpNotFound && !stateLicense?.value?.length" class="card-container">
+      <div class="header">{{('registrationForm.pageTitles' | translate)[1]?.title}}</div>
+      <div class="body d-flex justify-content-between">
+        <div>{{'registrationForm.messages.noLicenseFound' | translate}}</div>
+        <button *ngIf="displayAddNewLicense" class="btn btn-round btn-primary btn-auto"
+          (click)="addEditStateLicense(false,item)">{{('registrationForm.actions' | translate)[1]?.label}}</button>
+      </div>
+    </div>
+
+    <div *ngIf="!hcpNotFound || stateLicense?.value?.length">
+      <div class="d-flex justify-content-between mb-4 mx-4">
+        <div class="section-label">{{('registrationForm.pageTitles' | translate)[1]?.title}}
+          ({{stateLicense?.value?.length}})
+        </div>
+        <div *ngIf="displayAddNewLicense" class="d-flex color-primary secondary-text cursor align-items-center btn-link"
+          (click)="addEditStateLicense(false)">
+          <i class="fa fa-plus fa-lg ms-4 me-2"></i>
+          <span id='contentDesktop'>{{('registrationForm.actions' | translate)[1]?.label}}</span>
+          <span id='contentMobile'>{{('registrationForm.actions' | translate)[0]?.label}}</span>
+        </div>
+      </div>
+      <div formArrayName="stateLicense" class="row">
+        <ng-container *ngFor="let item of stateLicense.controls;  let i =index"  >
+
+        <div *ngIf="getLicenseControlByName(i, 'licenseNumber').value" class="col-lg-4">
+          <div  [formGroupName]="i">
+            <div  class="card-container license-card-container">
+              <div class="header">
+                <div class="left d-flex align-items-center">
+                  <div class="header-capital-letter me-2">{{('registrationForm.pageTitles' | translate)[3]?.title}}
+                  </div>
+                 
+                </div>
+                <div class="right d-flex align-items-center justify-content-between gap-2">
+                  <div class="circle">
+                    <span class="circle-text">{{i+1}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="body d-flex justify-content-between license-info">
+                <div class="license-item">
+                  <div class="row">
+                    <!-- <div class="col-lg-12 col-12 mb-3">
+                      <div class="valid-license status-container">
+                        <div class="font-x-small">{{item.samplingStatus}}</div>
+                      </div>
+                    </div> -->
+
+                    <div class="col-lg-6 col-12">
+                      <span class="card-label"><i class="fak fa-license-number primary-text-color me-1"></i>License
+                        Number</span>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                      <span class="card-label"><i class="fak fa-license-state me-1 primary-text-color"></i>License
+                        State</span>
+                    </div>
+                    <div class="col-lg-6 col-12 mt-2">
+                      <span class="card-value">{{getLicenseControlByName(i, 'licenseNumber').value}}</span>
+                    </div>
+                    <div class="col-lg-6 col-12 mt-2">
+                      <span class="card-value">{{getLicenseControlByName(i, 'licenseState').value}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      </div>
+    </div>
+    <div *ngIf="hcpNotFound && !address?.value?.length" class="card-container">
+      <div class="header">{{('registrationForm.pageTitles' | translate)[2]?.title}}</div>
+      <div class="body d-flex justify-content-between">
+        <div>{{'registrationForm.messages.noAddressFound' | translate}}</div>
+        <button *ngIf="displayAddNewAddress" class="btn btn-round btn-primary btn-auto"
+          (click)="addEditAddress(false,item)">{{('registrationForm.actions' | translate)[2]?.label}}</button>
+      </div>
+    </div>
+
+    <div *ngIf="!hcpNotFound || address?.value?.length">
+      <div class="d-flex justify-content-between mb-4 mx-4">
+        <div class="section-label">{{('registrationForm.pageTitles' | translate)[2]?.title}}
+          ({{address?.value?.length}})</div>
+        <div *ngIf="displayAddNewAddress" class="d-flex color-primary secondary-text cursor align-items-center btn-link"
+          (click)="addEditAddress(false)">
+          <i class="fa fa-plus fa-lg ms-4 me-2"></i>
+          <span id="contentDesktop">{{('registrationForm.actions' | translate)[2]?.label}}</span>
+          <span id="contentMobile">{{('registrationForm.actions' | translate)[0]?.label}}</span>
+        </div>
+      </div>
+      <div formArrayName="address" class="row">
+        <div *ngFor="let item of address.controls; let j =index" class="col-lg-4">
+          <div [formGroupName]="j">
+            <div class="card-container address-card-container">
+              <div class="header">
+                <div class="header-capital-letter">{{('registrationForm.pageTitles' | translate)[4]?.title}}</div>
+                <div class="circle">
+                  <span class="circle-text">{{j+1}}</span>
+                </div>
+              </div>
+              <div class="body">
+                <div class="row">
+                  <div class="col-lg-12  mb-1 d-flex justify-content-start align-items-center">
+                    <!-- <input class="me-2" type="radio" value="item" formControlName="selectedAddress"> -->
+                    <div *ngIf="getAddressControlByName(j, 'HCPFullName').value">
+                      <label class="checkbox-wrapper checkbox-circle-wrapper no-padding-left">
+                        <span *ngIf="getAddressControlByName(j, 'HCPFullName').value">
+                          {{getAddressControlByName(j, 'HCPFullName').value}}</span><span
+                          *ngIf="getAddressControlByName(j, 'HCPDesignation').value">,
+                          {{getAddressControlByName(j, 'HCPDesignation').value}}</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 fullAddressColumn text-uppercase d-flex align-items-start mb-2">
+                    <span class="card-icon">
+                      <i class="fa-light fa-location-dot primary-text-color fa-lg me-2"></i></span>
+                    <div class="d-flex flex-column">
+                      <span class="card-value truncate-overflow-2-line "
+                        [title]="getAddressControlByName(j, 'address1')?.value">
+                        {{getAddressControlByName(j, 'address1').value?.toLowerCase()}}
+                      </span>
+                      <span *ngIf="getAddressControlByName(j, 'address2').value"
+                        class="card-value truncate-overflow-2-line "
+                        [title]="getAddressControlByName(j, 'address2')?.value">
+                        {{getAddressControlByName(j, 'address2').value?.toLowerCase()}}
+                      </span>
+                      <span class="card-value truncate-overflow-2-line ">
+                        {{getAddressControlByName(j, 'city').value?.toLowerCase()}},
+                        {{getAddressControlByName(j,
+                        'state').value?.toUpperCase()}} {{getAddressControlByName(j,
+                        'zipCode').value?.toLowerCase()}}
+                      </span>
+
+                    </div>
+                  </div>
+                  <div class="col-lg-6 mb-1">
+                    <span class="card-label primary-text-color">Tel</span>
+                    <span class="card-value">{{getAddressControlByName(j,
+                      'phoneNum').value}}</span>
+                  </div>
+                  <div class="col-lg-6 mb-1">
+                    <span class="card-label primary-text-color">DEA</span>
+                    <span class="card-value">{{getAddressControlByName(j,
+                      'deaNum').value}}</span>
+                  </div>
+                  <div class="col-lg-6 mb-1">
+                    <span class="card-label primary-text-color">Fax</span>
+                    <span class="card-value">{{getAddressControlByName(j,
+                      'fax').value}}</span>
+                  </div>
+                  <div class="col-lg-6 mb-1">
+                    <span class="card-label primary-text-color">SLN</span>
+                    <span class="card-value "> {{getLicneseInfoByAddressState(j, 'state')?.licenseNumber}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="footer p-0">
+                <div class="d-flex justify-space-around ms-1 mt-2 footer-text">
+                  <!-- <div *ngIf="item.addressStatus?.toLowerCase()==='valid'" class="col-lg-6 col-6 mb-3">
+                    <div class="valid-address status-container">
+                        <div class="status-label">VALID</div>
+                    </div>
+                </div>
+                <div *ngIf="item.addressStatus?.toLowerCase()==='invalid'||!item.addressStatus" class="col-lg-6 ms-1 col-6 mb-3">
+                    <div class="invalid-address status-container">
+                        <span class="status-label">INVALID</span>
+                    </div>
+                </div>
+                <div *ngIf="item.addressStatus?.toLowerCase()==='pending'" class="col-lg-6 col-6 ms-1 mb-3">
+                    <div class="pending-address status-container">
+                        <span class="status-label">PENDING</span>
+                    </div>
+                </div> -->
+                  <div *ngIf="displayEditAddress" class="edit-action ms-auto color-primary cursor"
+                    (click)="addEditAddress(true,item)"><i
+                      class="fa-light fa-pen me-1"></i>{{('registrationForm.actions' | translate)[3]?.label}}</div>
+                  <div *ngIf="displayDeleteAddress" class="delete-action mx-4 color-secondary cursor"
+                    (click)="deleteStateLicenseOrAddress('address',item,j)"><i
+                      class="fa fa-trash me-1"></i>{{('registrationForm.actions' | translate)[4]?.label}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!hcpNotFound" class="card-container termsAndConditions-container">
+        <div class="header">{{('registrationForm.pageTitles' | translate)[5]?.title}}</div>
+        <div class="body">
+          <div class="row g-3">
+            <div class="col-lg-12"><span [innerHTML]="'REGISTRATION_FORM_TERMS_CONDITION'|textDescription"></span></div>
+            <div class="col-lg-12">
+              <label class=" checkbox-wrapper d-flex align-items-center justify-start-start mb-2">
+                <span class="sub-content">{{('registrationForm.messages.acceptText' | translate)}}</span>
+                <input type="checkbox" [formControlName]="'acceptTermsAndConditions'" (change)="onCheckChange($event)">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="d-flex flex-wrap justify-content-center justify-content-md-end justify-content-lg-end">
+              <button class="btn btn-round btn-link-black width-160 mb-2 me-lg-2  mb-lg-0"
+                (click)="navigate()">{{('registrationForm.messages.back' |
+                translate)}}</button>
+
+              <button type="button"
+                [disabled]="!formGroup.valid || !formGroup.get('acceptTermsAndConditions').value || !(this.getAddressInfo()?.length && this.getLicenseInfo()?.length)"
+                class="btn btn-round btn-primary width-160 ms-1"
+                (click)="onSubmit()">{{('registrationForm.messages.submit' | translate)}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-container termsAndConditions-container"
+      *ngIf="hcpNotFound && stateLicense?.value?.length && address?.value?.length">
+      <div class="header">{{('registrationForm.pageTitles' | translate)[5]?.title}}</div>
+      <div class="body">
+        <div class="row g-3">
+          <div class="col-lg-12"><span [innerHTML]="'REGISTRATION_FORM_TERMS_CONDITION'|textDescription"></span></div>
+          <div class="col-lg-12 checkbox">
+            <label class="col checkbox-wrapper d-flex align-items-center justify-start-start mb-2">
+              <span class="sub-content">{{('registrationForm.messages.acceptText' | translate)}}</span>
+              <input type="checkbox" [formControlName]="'acceptTermsAndConditions'" (change)="onCheckChange($event)">
+              <span class="checkmark"></span>
+            </label>
+            <div class="d-flex flex-wrap justify-content-center justify-content-md-end justify-content-lg-end">
+              <button class="btn btn-link-black width-160 mb-2 me-lg-2  mb-lg-0"
+                (click)="navigate()">{{('registrationForm.messages.back' |
+                translate)}}</button>
+              <button type="button"
+                [disabled]="!formGroup.valid || !formGroup.get('acceptTermsAndConditions').value || !(this.getAddressInfo()?.length && this.getLicenseInfo()?.length)"
+                class="btn btn-round   btn-primary width-160 ms-1"
+                (click)="onSubmit()">{{('registrationForm.messages.submit' | translate)}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end p-3">
+      <button *ngIf="hcpNotFound && !stateLicense?.value?.length" class="btn btn-round   btn-auto mb-4 me-3"
+        (click)="navigate()">{{('registrationForm.messages.back' | translate)}}</button>
+    </div>
+  </form>
+</div>

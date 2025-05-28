@@ -1,0 +1,93 @@
+@import "../../../../styles/responsive";
+@import "../../../../styles//variables";
+@import "../../../../styles/mixin";
+
+.modal+.modal {
+    background-color: rgba(0, 0, 0, 0.58);
+}
+
+.card {
+    background: var(--colorSurface);
+    border-radius: 7px;
+    box-shadow: none;
+    border: none;
+
+    .card-body {
+        min-height: 100px;
+        justify-content: center;
+        align-items: center;
+        padding-top: 30px;
+
+        .alert-icon {
+            margin-top: -100px;
+            padding-left: 25px;
+            &.success {
+                color: var(--primaryColor);
+            }
+        }
+
+        .content {
+          padding-right: 40px;
+        }
+
+        .card-title {
+          @include font(var(--fontBold), 600, 17px, 18px);
+        }
+        .card-text {
+          @include font(var(--fontRegular), 200, 14px, 18px);
+        }
+
+    }
+
+    .card-header {
+      padding: 20px;
+        &.success {
+            background-color: #7EDFCD;
+        }
+        border: none;
+        .close {
+            text-align: end;
+            padding: 10px 0px;
+            cursor: pointer;
+        }
+    }
+
+    .card-footer {
+        background: rgba(74, 74, 74, 0.08);
+        padding: 15px;
+        border: none;
+        text-align: right;
+
+        .brn {
+            min-width: 50%;
+        }
+    }
+}
+
+@media (max-width: map_get($grid-breakpoints, md)) {
+
+    .modal-dialog-centered {
+        align-items: flex-start;
+    }
+
+    .card {
+        .card-body {
+            .alert-icon {
+              margin-top: 0px !important;
+                i {
+                    font-size: 3em;
+                }
+            }
+        }
+
+        .card-header {
+            .alert-heading {
+                @include font(var(--fontBold), 600, 16px, 19px);
+            }
+        }
+
+        .card-footer {
+            min-height: 80px;
+        }
+    }
+}

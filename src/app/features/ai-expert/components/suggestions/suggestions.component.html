@@ -1,0 +1,34 @@
+<!--Suggestions-->
+<article class="p-4 sm:p-6 md:p-10 mb-2" [class.fade-out]="isFadingOut" [class.hidden]="isHidden">
+    <div class="flex flex-col gap-4 sm:gap-6">
+      <div class="flex flex-col items-center sm:flex-row gap-4 sm:gap-6 justify-center">
+        <section class="suggestion" (click)="handleSuggestionClick('Do you have product Y?')">
+          <h4 class="text-[#4A4A4A] font-[600] text-sm sm:text-base leading-tight">Do you have product Y?</h4>
+          <p class="text-[#9E9E9E] text-xs sm:text-sm leading-tight">for a pharmacy company</p>
+        </section>
+
+        <section class="suggestion" (click)="handleSuggestionClick('How often can I place an order?')">
+          <h4 class="text-[#4A4A4A] font-[600] text-sm sm:text-base leading-tight">
+            How often can I place an order?
+          </h4>
+          <p class="text-[#9E9E9E] text-xs sm:text-sm leading-tight">statuses</p>
+        </section>
+      </div>
+
+      <div class="flex flex-col items-center sm:flex-row gap-4 sm:gap-6 justify-center">
+        <section class="suggestion" (click)="handleSuggestionClick('When did I last place an order?')">
+          <h4 class="text-[#4A4A4A] font-[600] text-sm sm:text-base leading-tight">
+            When did I last place an order?
+          </h4>
+          <p class="text-[#9E9E9E] text-xs sm:text-sm leading-tight">for whom</p>
+        </section>
+
+        <section class="suggestion" (click)="handleSuggestionClick('Which products are my top sellers?')">
+          <h4 class="text-[#4A4A4A] font-[600] text-sm sm:text-base leading-tight">
+            Which products are my top sellers?
+          </h4>
+          <p class="text-[#9E9E9E] text-xs sm:text-sm leading-tight">among doctors</p>
+        </section>
+      </div>
+    </div>
+</article>

@@ -1,0 +1,134 @@
+@import "../../../styles/common";
+@import "../../../styles/variables";
+@import "../../../styles/mixin";
+
+
+.faq-container {
+  background-color: var(--layoutBgColor);
+  background-image: url("../../../assets/images/backgrounds/product-page-dots-bg.png");
+  padding: 45px 90px;
+
+  .text-title {
+    @include font(var(--fontRegular), 400, 24px, 18px);
+  }
+
+  .footer {
+    text-align: center;
+    @include font(var(--fontRegular), 400, 14px, 17px);
+
+    .number {
+      color: var(--primaryColor);
+    }
+
+    span {
+      color: var(--colorOnSurface_2)
+    }
+  }
+
+  .accordion {
+    padding: 14px 49px;
+    background: #fff;
+    border-radius: 12px;
+
+    .accordion-item {
+      border: 0;
+      border-bottom: var(--bs-accordion-border-width) solid var(--bs-accordion-border-color);
+      box-sizing: border-box;
+      border-radius: 0 !important;
+    }
+  }
+
+  .category-title {
+    @include font(var(--fontBold), 600, 18px, 22px);
+  }
+
+  .accordion-body {
+    border-left: 3px solid var(--primaryColor);
+    margin-left: 80px;
+    margin-top: 0;
+    margin-bottom: 23px;
+    width: 60%;
+    color: var(--colorGrayShade_1);
+    padding: 0px;
+    padding-left: 22px;
+    @include font(var(--fontRegular), 400, 14px, 22px);
+    letter-spacing: 0em;
+    text-align: left;
+
+
+  }
+
+  .accordion-button {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    color: var(--textPrimary);
+    padding-left: 36px;
+    padding-bottom: 17px;
+
+    &::after {
+      content: "+";
+      background-image: none;
+      font-size: 34px;
+      line-height: 9px;
+      position: absolute;
+      left: 0px;
+      top: 19px;
+      color: var(--primaryColor);
+    }
+  }
+
+  .accordion-button:not(.collapsed) {
+    &:after {
+      content: "";
+      font-family: FontAwesome, var(--fontRegular);
+      font-size: 22px;
+      transform: none;
+      top: 20px;
+    }
+  }
+
+  .accordion-item:last-of-type {
+    border: 0 !important;
+  }
+
+}
+
+.faq-footer-text {
+  background-color: var(--layoutBgColor);
+  background-image: url("../../../assets/images/backgrounds/product-page-dots-bg.png");
+  padding: 8px;
+  color: var(--textSecondary);
+  @include font(var(--fontRegular), 400, 14px, 18px);
+  padding-top: 60px;
+  padding-left: 15px;
+}
+
+@media (max-width: map_get($grid-breakpoints, sm)) {
+
+  .faq-container {
+   margin-top: 35px !important;
+  }
+
+}
+
+@media (max-width: map_get($grid-breakpoints, md)) {
+
+  .faq-container {
+   margin-top: 0;
+  }
+
+}
+
+@media #{map-get($device-media-queries,mobile)} {
+
+  .faq-container {
+    padding: 0px;
+  }
+
+  .accordion-body {
+    margin-left: 40px !important;
+    padding-left: 10px !important;
+  }
+
+} 

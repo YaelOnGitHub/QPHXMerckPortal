@@ -1,0 +1,153 @@
+.ads-container{
+  img{
+    width: 100%;
+  }
+}
+.about-us {
+  // max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #555555;
+}
+
+.about-us h1 {
+  text-align: left;
+  font-size: 1.25rem;
+  margin: 20px 0;
+  color: #5D626F;
+  font-weight: 600;
+}
+
+.content {
+  display: block;
+  justify-content: space-between;
+  background-color: #f1f6fc;
+  margin-bottom: 20px;
+}
+
+.about-content{
+  width: 100%;
+  color: #5D626F;
+  strong{
+    color: #2F7CB0;
+  }
+  p{
+    padding: 10px 15px;
+    font-size: 13px;
+  }  
+}
+.second{
+  width:65%;
+  margin: 0 auto;
+}
+
+.about-content img {
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+
+ .benefits-content {
+  width: 100%;
+  display: flex;
+  color: #5D626F;
+  .benefit-left{
+    float: left;
+  }
+  .benefit-right{
+    float: right;
+    margin:0 30px 0 45px;    
+    h2 {
+      font-size: 1.1rem;
+      color: #387ca7;
+      margin-bottom: 10px;
+      font-weight: bold;
+      text-align: center;
+    }
+    ul {
+      list-style: inside;
+      padding: 0;
+    }    
+    ul li {
+      margin-bottom: 10px;
+      line-height: 1.5;
+      font-size: 13px;
+      font-weight: 600;
+      text-indent: -18px;
+    }
+  }
+}
+
+.mobile-about-img{display: none;}
+
+
+.visit-us {
+  text-align: left;
+  margin:5px 0 20px 20px;
+    a {
+      color: #0074b7;
+      text-decoration: none;
+      font-weight: bold;
+      &:hover {
+        text-decoration: underline;
+      }
+    }    
+}
+
+.highlight {
+  background-color: #F6BEE5;
+  margin-bottom: 20px;
+  p{
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px;
+    text-align: center;
+  }
+}
+.for-mobile{display: none;}
+.for-desktop{display: block;}
+@media ((max-width: 768px) and (min-width: 320px)) {
+  .for-mobile{display: block !important;}
+  .for-desktop{display: none;}
+  h1{
+    background: url("https://qprx-artifacts.s3.amazonaws.com/SIT/images/generic-images/heading-arrow.png") no-repeat top left;
+    padding: 4px 0 5px 43px !important;
+  }
+  .content{
+   padding:15px 25px;
+   .second{
+    width: 100%;
+    p:first-child{
+      padding: 25px 0 !important;
+      display: inline-block;
+    }
+   }
+  }
+  .about-content{
+    p{
+      padding: 10px 0;
+    }
+  }
+  .benefits-content{
+    display: block;
+  .benefit-left{
+      .desktop-about-img{
+        display: none;
+      }
+      .mobile-about-img{
+        display: block !important;
+        width: 100%;
+      }
+    }
+    .benefit-right{
+      h2{
+      margin-bottom: 15px;
+    }
+    }
+    .visit-us{
+      float: left;
+      width: 100%;
+    }
+  }
+ }

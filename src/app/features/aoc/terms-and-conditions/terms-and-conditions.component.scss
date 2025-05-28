@@ -1,0 +1,29 @@
+@import "../../../../styles/responsive";
+@import "../../../../styles/variables";
+@import "../../../../styles/mixin"; 
+ 
+ #terms-and-conditions-wrapper {
+     background: rgba(8, 168, 238, 0.04);
+     border-radius: 7px;
+     padding: 25px 30px;
+     .terms-and-conditions-card{
+        @include font(var(--fontRegular), 400, 14px, 22px);
+        color: var(--textPrimary);
+        .content {
+            p {
+                @include font(var(--fontRegular), 400, 14px, 22px);
+                color: var(--textSecondary);
+            }
+        }
+        h2{
+            @include font(var(--fontBold), 700, 16px, 18px);
+            color: var(--colorOnSurface);
+        }
+        
+        .row {
+            border-bottom: 1px solid var(--colorCardBorder_1);
+            margin: 18px 0px;
+        }
+     }
+     
+ }

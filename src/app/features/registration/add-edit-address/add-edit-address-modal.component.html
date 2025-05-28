@@ -1,0 +1,97 @@
+<div class="add-edit-license-container modal-container">
+    <header class="modal-header">
+        <span *ngIf="!isEdit">{{('addEditAddress.actions' | translate)[0]?.label}}</span>
+        <span *ngIf="isEdit">{{('addEditAddress.actions' | translate)[1]?.label}}</span>
+        <span type="button" aria-label="Close" class="close pull-right" (click)="closeModal()">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </span>
+    </header>
+    <div [formGroup]="formGroup">
+        <div class="modal-body">
+            <div class="row">
+                <app-text-input [label]="('addEditAddress.formFields' | translate)[0]?.label" [maxLength]="'100'"
+                    [placeholder]="('addEditAddress.formFields' | translate)[0]?.placeholder"
+                    [formControlName]="'address1'" [isRequired]="true">
+                </app-text-input>
+            </div>
+            <div class="row">
+                <app-text-input [label]="('addEditAddress.formFields' | translate)[1]?.label" [maxLength]="'100'"
+                    [placeholder]="('addEditAddress.formFields' | translate)[1]?.placeholder"
+                    [formControlName]="'address2'">
+                </app-text-input>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <app-text-input [label]="('addEditAddress.formFields' | translate)[2]?.label" [maxLength]="'30'"
+                        [placeholder]="('addEditAddress.formFields' | translate)[2]?.placeholder"
+                        [formControlName]="'city'" [isRequired]="true">
+                    </app-text-input>
+                </div>
+                <div class="col-lg-6">
+                    <app-dropdown [multiSelect]="false" [header]="('addEditAddress.formFields' | translate)[3]?.label" (change)="validateLicense()"
+                        [placeholder]="('addEditAddress.formFields' | translate)[3]?.placeholder"
+                        [formControlName]="'state'" [errorMsg]="('addEditAddress.formFields' | translate)[3]?.error"
+                        [searchable]="true" [dropDownOptions]="stateList" [bindLabel]="'stateCode'"
+                        [bindValue]="'stateCode'" [isRequired]="true">
+                    </app-dropdown>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <app-text-input [label]="('addEditAddress.formFields' | translate)[4]?.label" [maxLength]="'5'"
+                        [placeholder]="('addEditAddress.formFields' | translate)[4]?.placeholder" [errorMsg]="'Enter only number.'"
+                        [formControlName]="'zipCode'" [isRequired]="true">
+                    </app-text-input>
+                </div>
+                <div class="col-lg-6">
+                    <app-text-input [label]="('addEditAddress.formFields' | translate)[5]?.label" [maxLength]="'9'"
+                        [placeholder]="('addEditAddress.formFields' | translate)[5]?.placeholder"
+                        [formControlName]="'deaNumber'" [isRequired]="isDeaRequired">
+                    </app-text-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <app-text-input [label]="('addEditAddress.formFields' | translate)[6]?.label" [maxLength]="'14'"
+                        [placeholder]="('addEditAddress.formFields' | translate)[6]?.placeholder" [errorMsg]="'Enter only number.'"
+                        [formControlName]="'phone'" [isRequired]="true">
+                    </app-text-input>
+                </div>
+                <div class="col-lg-6">
+                    <app-text-input [label]="('addEditAddress.formFields' | translate)[7]?.label" [maxLength]="'14'"
+                        [placeholder]="('addEditAddress.formFields' | translate)[7]?.placeholder" [errorMsg]="'Enter only number.'"
+                        [formControlName]="'fax'" [isRequired]="false">
+                    </app-text-input>
+                </div>
+            </div>
+            <div class="row">
+              
+            <div *ngIf="isShowPrefferAddress" [ngClass]="{'invalid-license': isValidLicense}" class="col-lg-6 col-12">
+
+                <!-- <app-text-input [label]="('addEditAddress.formFields' | translate)[8]?.label" 
+                        [formControlName]="'isPreferredAddress'" [isRequired]="false" 
+                        [type]="'checkbox'">
+                    </app-text-input> -->
+                <label for="isPreferredAddress" class="font-small mt-3 license-info cursor PrefferedAddress checkbox-wrapper">
+                    <span class="label">Set as preferred address</span>
+                    <input class="ms-2"  formControlName="isPreferredAddress" type="checkbox" id="isPreferredAddress">
+                    <span class="checkmark"></span>
+                </label>
+
+            </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+            <button *ngIf="!isEdit" type="button" class="btn btn-black-link btn-small ms-5 btn btn-round"
+            (click)="closeModal()">{{('addEditAddress.actions' | translate)[3]?.label}}</button>
+            <button *ngIf="!isEdit" type="button" [disabled]="!formGroup.valid" class="btn btn-primary btn-small btn-round"
+                (click)="addEditAddress()">{{('addEditAddress.actions'| translate)[2]?.label}}
+            </button>
+            <button *ngIf="isEdit" type="button" class="btn btn-black-link btn-small ms-5 btn btn-round"
+                (click)="closeModal()">{{('addEditAddress.actions' | translate)[3]?.label}}</button>
+            <button *ngIf="isEdit" type="button" [disabled]="!formGroup.valid"
+                class="btn btn-primary  btn-small btn-round" (click)="addEditAddress()">{{('addEditAddress.actions' |
+                translate)[4]?.label}}</button>
+        </div>
+    </div>
+</div>

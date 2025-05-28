@@ -1,0 +1,190 @@
+@import "../../../../styles/responsive";
+@import "../../../../styles/variables";
+@import "../../../../styles/mixin";
+
+.requested-item-wrapper {
+    @include boxShadow();
+}
+.requested-item-card {
+    background: var(--colorSurface);
+    border-radius: 7px;
+    .no-items {
+        @include font(var(--fontRegular), 400, 14px, 20px);
+        color: var(--textSecondary);
+    }
+
+    .requested-item-body {
+        &:after {
+            height: 0;
+            content: 's';
+            border-bottom: 1px solid var(--colorCardBorder);
+            width: 97%;
+            display: block;
+            margin: auto;
+            color: transparent;
+        }
+
+        &:last-child {
+            &::after {
+                border: none;
+            }
+        }
+    }
+
+    .requested-item-header {
+        padding: 5px 10px;
+        background-color: #E6F4F8;
+        @include font(var(--fontBold), 600, 14px, 20px);
+        color: var(--textPrimary);
+    }
+
+    .requested-item-list {
+        align-items: center;
+        padding: 10px 15px;
+
+        .product-img {
+            width: 120px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #f1f1f1;
+
+            img {
+                object-fit: contain;
+                max-height: 100%;
+                max-width: 100%;
+            }
+
+            .icon {
+                color: var(--colorGrayShade_3);
+            }
+        }
+
+        .product-description-wrapper {
+            .product-description-row {
+                align-items: center;
+
+                h2 {
+                    @include font(var(--fontBold), 600, 18px, 20px);
+                    color: var(--colorGrayShade_2);
+                }
+
+                .product-description-item {
+                    span {
+                        @include font(var(--fontBold), 600, 12px, 20px);
+                    }
+                }
+
+                .checkbox-wrapper {
+                  @include font(var(--fontRegular), 600, 18px, 14px);
+                  padding-top: 4px;
+                  margin-top: 12px;
+                  color: #25D5CA;
+                  &.subscribe {                    
+                    color: var(--primaryColor);
+                  }
+                }
+            }
+
+            .ng-select .ng-select-container {
+                border-radius: 25px;
+                border-color: var(--primaryColor);
+                min-height: 30px;
+                height: 30px;
+            }
+
+            .ng-select.ng-select-opened.ng-select-bottom>.ng-select-container {
+                border-radius: 25px;
+                border-color: var(--primaryColor);
+            }
+
+            .ng-select .ng-arrow-wrapper {
+                background-color: var(--primaryColor);
+                min-height: 30px;
+                line-height: 30px;
+                min-width: 50px;
+            }
+
+            .ng-select .ng-arrow-wrapper .ng-arrow {
+                border-color: var(--colorOnPrimary) transparent transparent;
+            }
+
+            .ng-select.ng-select-opened>.ng-select-container .ng-arrow {
+                border-color: transparent transparent var(--colorOnPrimary);
+            }
+        }
+
+    }
+
+}
+
+.requested-item-footer {
+    background-color: var(--colorWhite);
+    padding: 10px;
+    border-top: 1px solid var(--colorCardBorder);
+    padding-right: 4rem;
+    .total-items {
+        @include font(var(--fontBold), 700, 16px, 18px);
+        // text-transform: uppercase;
+
+        // span {
+        //     @include font(var(--fontRegular), 400, 16px, 18px);
+        //     // color: var(--textSecondary);
+        // }
+    }
+}
+
+.disable-text {
+  opacity: 0.6;
+}
+.disable-background {
+  opacity: 0.6;
+}
+
+@media (max-width: map_get($grid-breakpoints, lg)) {
+  .product-remove {
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: map_get($grid-breakpoints, md)) {
+    .requested-item-card {
+        padding: 0px;
+
+        .requested-item-body {
+            padding: 0px 15px;
+        }
+
+        .requested-item-list {
+            padding: 25px 0px;
+            align-items: flex-start;
+
+            .product-img {
+                width: 90px;
+                height: 50px;
+            }
+
+            .product-description-item {
+                margin-bottom: 25px;
+            }
+
+            .product-description-wrapper {
+                .ng-select .ng-select-container {
+                    // width: 150px;
+                    // margin: auto;
+                }
+            }
+        }
+
+        .requested-item-footer {
+            margin: 31px 15px;
+        }
+    }
+
+}
+@media (max-width: map_get($grid-breakpoints, sm)) {
+  .stepper-content {
+    justify-content: revert !important;
+  }
+}

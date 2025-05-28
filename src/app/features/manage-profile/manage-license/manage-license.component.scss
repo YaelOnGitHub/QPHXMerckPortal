@@ -1,0 +1,56 @@
+@import "../../../../styles/mixin";
+@import "../../../../styles/responsive";
+@import "../../../../styles/variables";
+
+ 
+
+.license-container {
+
+    .primary-color {
+        color: var(--primaryColor);
+    }
+    
+
+  .new-license {
+    text-align: end;
+
+    button {
+      text-align: inherit;
+      margin-top: -20px;
+      margin-bottom: 20px;
+      border: 0;
+    }
+
+    span {
+      color: var(--primaryColor);
+    }
+  }
+
+    .status-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 70px;
+        height: 18px;
+        color: #ffffff;
+        border-radius: 2px;
+    }
+
+    
+}
+
+@media (max-width: map_get($grid-breakpoints, md)) {
+    .col-12 > div {
+        border: 1px solid var(--colorCardBorder_1);
+        border-radius: 5px;
+        
+        &.add-license {
+            border-style: dotted;
+            height: 80px;
+        }
+    }
+
+    .card-container.license-card-container .invalid-license {
+      width: 60% !important;
+    }
+}

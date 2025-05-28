@@ -1,0 +1,59 @@
+@import "../styles/responsive";
+@import "../styles/mixin";
+
+.modal-container {
+    .modal-header {
+        background: var(--modalHeaderColor);
+        @include font(var(--fontRegular), 400, 18px, 18px);
+        padding: 12px;
+        color: var(--textSecondary);
+    }
+
+    .modal-body {
+        padding: 15px;
+        .modal-content {
+            border: none;
+            padding: 15px;
+        }
+    }
+
+    .modal-footer {
+        //   margin-top: 2rem;
+        display: flex;
+        border-top: none;
+        background: rgba(74, 74, 74, 0.08);
+        padding: 5px;
+    }
+
+    
+
+
+    .close {
+        float: right;
+    }
+
+    .text-small {
+        @include font(var(--fontRegular), 500, 16px, 16px);
+    }
+
+    .text-medium {
+        @include font(var(--fontBold), 600, 14px, 17px);
+    }
+
+    .text-large {
+        @include font(var(--fontRegular), 700, 18px, 21px);
+    }
+ 
+}
+
+.custom-modal{
+    top:40px;
+}
+
+@media (max-width: map_get($grid-breakpoints, md)) {
+
+    .modal-content,
+    .modal-container {
+        max-width: 100%;
+    }
+}

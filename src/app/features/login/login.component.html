@@ -1,0 +1,78 @@
+<div id="login-warpper" [ngStyle]="{'background': isPopUp ? 'none' : '', 'height': isPopUp? '100%':''}">
+  <div class="container">
+    <span *ngIf ="isPopUp" type="button" aria-label="Close" class="close" (click)="closeLoginModal()">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </span>
+    <div class="row justify-content-center">
+      <div class="col-lg-5 col-sm-5 col-cust">
+        <div *ngIf="isNewBrandBanner || !isQPHARMA" class="card-new">
+          <div class="card-header text-center">
+            <div class="client-logo-wrapper">
+              <img class="client-logo" [src]="'CLIENT_LOGO'|textDescription:false" alt="" />
+            </div>
+            <h2 class="text-uppercase">Login</h2>
+            <p>Please login to access your account</p>
+          </div>
+          <div class="card-body text-center pb-0">
+            <form [formGroup]="loginForm">
+              <div class="col-sm-12 mb-4">
+                <app-text-input [label]="'Username'" [icon]="'fa-light fa-user'"
+                  [errorMessage]="'Please enter user name'" [formControlName]="'username'"
+                  [isInvalid]="isInvalidUsername" [isRequired]="true">
+                </app-text-input>
+              </div>
+
+              <div class="col-sm-12">
+                <app-text-input [label]="'Password'" [type]="showPassword ? 'text' : 'password'"
+                  [isInvalid]="isInvalidPassword" [icon]="'fa-light fa-key'" [errorMessage]="'Please enter password'"
+                  [formControlName]="'password'" [isRequired]="true">
+                  <div class="input-group-text" [ngClass]="{'isInvalidForm': isInvalidPassword}">
+                    <i alt="show" class="far fa-eye eye-show" (click)="showPassword = !showPassword"
+                      *ngIf="showPassword"></i>
+                    <i alt="hide" class="far fa-eye-slash eye-hide" (click)="showPassword = !showPassword"
+                      *ngIf="!showPassword"></i>
+                  </div>
+                </app-text-input>
+              </div>
+
+              <div class="col-sm-12 mt-4 ">
+                <div class="formGroup">
+                  <button (click)="signIn()" class="btn btn-primary btn-round btn-width-auto">Login</button>
+                </div>
+                <div class="forgotPasswordLink d-flex  justify-content-between mt-2 text-start">
+                  <a href="javascript:void(0);" (click)="forgotPassword()">Forgot Password?</a>
+                  <span class="registrationLink"> <a href="javascript:void(0);" (click)="onRedirectToRegister(true)">Not
+                      Registered?</a></span>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- Commented for future use -->
+          <div *ngIf="isSocialMediaEnable" class="card-footer text-center pt-0">
+            <div class="social-login-divider" data-label="OR"></div>
+            <div class="social-media-login d-flex justify-content-center align-items-center">
+
+              <div class="google-login me-4">
+                <asl-google-signin-button shape="circle" size="large"
+                  logo_alignment="center"></asl-google-signin-button>
+              </div>
+              <a (click)="onAppleAuthLogin()" class="facebook-login">
+                <i class="fa-brands fa-apple"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!isNewBrandBanner && isQPHARMA" class="card new-brands-coming">
+          <span type="button" aria-label="Close" class="close pull-right" (click)="closeModal()">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </span>
+          <img [src]="'LOGIN_MODAL_IMAGE'|textDescription:false" alt="brands comming" />
+        </div>
+
+        <div *ngIf="isQPHARMA && !isPopUp" class="login-footer-logo">
+          <img class="client-logo" src="./../../../assets/images/logo/{{companyFooterLogo}}.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="stepper-dropdown">
+  <label>  
+    <select class="form-select form-select-sm" id="pagination-dropdown" [(ngModel)]="selectedQnt" (change)='onOptionsSelected($event)'>
+    <option *ngFor="let opt of dropdownOptions" value="{{opt}}">{{opt}}</option>
+  </select> 
+  </label>
+
+</div>
+

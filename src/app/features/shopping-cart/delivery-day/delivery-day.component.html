@@ -1,0 +1,55 @@
+<div class="cart-section-header d-flex justify-content-between align-items-sm-center">
+    <div>
+        <i class="fa-light fa-calendar fa-lg me-2 primary-text-color"></i> <span>Preferred Delivery Day (Optional)</span>
+    </div>
+  </div>
+
+<div class="delivery-item-wrapper">
+    <div class="delivery-item-card">
+        <div class="delivery-item-header">
+           Please select delivery day (Optional)
+        </div>
+        <div class="delivery-item-body">
+            <div class="row">
+            <div class="col-lg-9">
+            <div class="delivery-body-description" [innerHTML]="'PREFFERED_DELIVERY_DESCRIPTION'|textDescription:true">                
+            </div>
+              <div class="delivery-body-buttons-Section">
+             <div class="button-section">
+
+                  <div class="btn-action-class" *ngFor="let day of deliveredDays; let i = index" > 
+                     <button type="button" 
+                     [ngClass]="day.isActive ? 'btn-primary' : 'btn-light'" 
+                     (click)="onButtonClick(i)" 
+                     class="btn btn-light btn-sm">
+                     {{day.day}}
+                    </button>
+                     </div>
+                 
+                </div>
+              </div>
+<!-- <div class="delivery-footer-Section">
+    <p>Note, While every effort will be made to ensure delivery on the preferred day(s),there may be exceptions due to reasons beyond our control</p>
+</div> -->
+            </div>
+
+            <div class="col-lg-3 body-right-section">
+             <div class="body-right-section-delivery-date">
+              
+                <div class="col-12 body-right-section-delivery-date-description">
+                <p class="mb-0"><b>Projected Delivery Date</b></p>
+                <p>based on your selection(s) is</p>
+                <div class="col-8 delivery-body-date-Section">
+                    {{deliveryDate | date: 'MM/dd/yyyy'}}
+                 </div>
+
+                </div>
+               
+             </div>
+            </div>
+
+        </div>
+
+        </div>
+    </div>
+</div>

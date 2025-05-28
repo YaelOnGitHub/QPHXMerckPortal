@@ -1,0 +1,260 @@
+@import "../../../styles/responsive";
+@import "../../../styles/variables";
+@import "../../../styles/mixin";
+
+#contentDesktop {
+    display: flex;
+}
+#contentMobile {
+    display: none;
+}
+
+.total-items {
+  @include font(var(--fontBold), 700, 16px, 18px);
+}
+.alert-warning {
+  border-color: var(--colorGrayShade_3);
+  color: var(--alertColor);
+  display: flex;
+  .icon {  
+    padding-right: 15px;
+  }
+  p {
+    margin-bottom: 0px !important;
+  }
+  .cs-validation {
+    p {
+      margin-bottom: 0px !important;
+    }
+  }
+  span {
+    font-weight: 600;
+  }
+
+}
+
+.order-submission-container {
+    background-color: var(--colorSurface);
+    border: 1px solid var(--colorCardBorder);
+    border-radius: 5px;
+    padding: 30px 20px;
+    input {
+        text-indent: 10px;
+    }
+    ::-webkit-input-placeholder {
+        /* Edge */
+        @include font(var(--fontRegular), 400, 14px, 18px);
+    }
+
+    :-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        @include font(var(--fontRegular), 400, 14px, 18px);
+    }
+
+    ::placeholder {
+        @include font(var(--fontRegular), 400, 14px, 18px);
+    }
+    .order-submission-menu {
+        display: flex;
+        border: solid 1px var(--colorCardBorder);
+        width: 364px;
+        flex: wrap;
+        border-radius: 25px;
+        background-color: var(--colorSecondary);
+        color: var(--colorOnSecondary);
+        div {
+            margin-top: 0;
+            border-top-left-radius: 25px;
+            border-bottom-left-radius: 25px;
+        }
+        div span,
+        div + span {
+            margin-left: 15px;
+            margin-top: 10px;
+            @include font(var(--fontRegular), 700, 16px, 18px);
+        }
+        .nav {
+            background-color: var(--primaryColor);
+            height: 40px;
+            width: 160px;
+            display: flex;
+            flex-wrap: wrap;
+            padding-left: 0;
+            margin-bottom: 0;
+            color: var(--colorOnPrimary);
+        }
+    }
+ 
+    .order-submission-content {
+        p{
+            @include font(var(--fontRegular), 400, 14px, 22px);
+            color: var(--textSecondary);
+        }
+        .forgotPin a {
+            @include font(var(--fontRegular), 400, 12px, 22px);
+            color: var(--primaryColor);
+            margin-top: -5px;
+            margin-left: 4px;
+        }
+        .content {
+          @include font(var(--fontRegular), 400, 14px, 22px);
+          color: var(--textSecondary);
+        }
+
+    }
+}
+
+@media (max-width: map_get($grid-breakpoints,md)) {
+    #contentDesktop {
+        display: none;
+    }
+    #contentMobile {
+        display: block;
+        order:5;
+    }
+    .order-submission-container {
+        padding: 30px 0 0 0;
+        .order-submission-menu {
+            div + span {
+                margin-left: 14px;
+                margin-top: 10px;
+                @include font(var(--fontRegular), 700, 14px, 18px);
+            }
+            width: 320px;
+            .nav {
+                width: 140px;
+                span {
+                    margin-top: 10px;
+                }
+                .font-small {
+                    @include font(var(--fontRegular), 700, 14px, 18px);
+                }
+            }
+        }
+        .order-submission-content {
+            .font-highlighted {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+        .content {
+          @include font(var(--fontRegular), 400, 14px, 22px);
+          color: var(--textSecondary);
+        }
+    }
+}
+
+
+#shopping-cart-container {
+    background-color: var(--layoutBgColor);
+    background-image: url("../../../assets/images/backgrounds/product-page-dots-bg.png");
+    padding: 30px 80px;
+
+    .intro-section {
+        .btn {
+            height: 35px;
+            line-height: 15px;
+            min-width: auto;
+            padding: 7px 46px;
+            @include font(var(--fontBold), 600, 16px, 18px);
+            span {
+                @include font(var(--fontBold), 600, 16px, 18px);
+            }
+        }
+
+        h2 {
+            @include font(var(--fontBold), 700, 20px, 24px);
+            color: var(--textPrimary);
+        }
+
+        p {
+            color: var(--textPrimary);
+        }
+
+        a {
+            @include font(var(--fontBold), 600, 12px, 14px);
+        }
+
+        .total-items {
+            margin-left: auto;
+            border: 1px solid var(--colorSecondary);
+            border-radius: 20px;
+            padding: 12px;
+            width: 228px;
+            text-align: center;
+
+            // width: calc(100% - 392px);
+            p {
+                @include font(var(--fontBold), 600, 18px, 18px);
+            }
+
+            span {
+                @include font(var(--fontRegular), 400, 18px, 18px);
+            }
+        }
+    }
+
+    .cancel-btn {
+      margin-top: -22px
+    }
+    .cart-section-header {
+        @include font(var(--fontBold), 600, 14px, 20px);
+        color: var(--textPrimary);
+        padding: 0 15px;
+        margin: 15px;
+    }
+}
+
+@media (max-width: map_get($grid-breakpoints, md)) {
+    #shopping-cart-container {
+        padding: 15px;
+        padding-top: 50px;
+        .intro-section {
+            .btn {
+                min-width: 120px;
+            }
+
+            h2 {
+                @include font(var(--fontBold), 600, 20px, 20px);
+                color: var(--textPrimary);
+            }
+
+            .total-items {
+                width: auto;
+                border: none;
+                padding: 0px;
+                text-align: right;
+                p {
+                    @include font(var(--fontBold), 600, 14px, 14px);
+                    color: var(--textPrimary);
+                    white-space: nowrap;
+                    span {
+                        @include font(var(--fontRegular), 400, 14px, 14px);
+                    }
+                }
+            }
+        }
+
+        
+        .cart-section-header {
+            @include font(var(--fontBold), 600, 16px, 20px);
+            padding: 0px;
+            margin: 15px 0px;
+        }
+    }
+    #contentDesktop {
+        display: none;
+    }
+    #contentMobile {
+        display: flex;
+    }
+}
+
+@media (max-width: map_get($grid-breakpoints, lg)) {
+  #shopping-cart-container {
+    .cancel-btn {
+      margin-top: 0px
+    }
+  }
+
+}

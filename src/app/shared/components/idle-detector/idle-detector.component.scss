@@ -1,0 +1,86 @@
+.model-countdown {
+  .modal-content {
+    min-width: 340px;
+    max-width: 350px;
+    height: unset !important;
+  }
+
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    overflow-y: hidden;
+
+    .modal-header {
+      background-color: var(--primaryColor);
+      padding: 6px 15px;
+      justify-content: flex-start !important;
+      align-items: center;
+    }
+
+    h2 {
+      margin-bottom: 0px;
+    }
+
+    .inactive-icon {
+      color: #fff;
+      display: inline-block;
+      font-size: 25px;
+      margin-right: 5px;
+      padding-top: 4px;
+    }
+
+    .modal-title {
+      color: #fff;
+      margin-bottom: 0px;
+      margin-left: 15px;
+    }
+  }
+
+  .modal-dialog {
+    margin: 0px !important;
+  }
+
+  .close {
+    opacity: 1;
+
+    span {
+      color: #fff;
+    }
+  }
+
+}
+
+.modal-body {
+  background-image: url("../../../../assets/images/backgrounds/product-page-dots-bg.png");
+}
+
+.backshadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.modal-dialog::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.idle-msg {
+  font-family: var(--fontRegular);
+  text-align: center;
+}
+
+.idle-count {
+  text-align: center;
+  font-weight: 900;
+}

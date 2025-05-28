@@ -1,0 +1,44 @@
+.side-menu-wrapper {
+    margin-top: 55px;
+    .menu-item{
+        .nav {
+            flex-wrap: nowrap;
+        }
+        .faq {
+          font-size: 1.2em;
+        }
+    }
+    .list-group {
+        .list-group-item {
+            background-color: transparent;
+        }
+
+        background-color: transparent;
+    }
+
+    a.nav-link {
+        padding: 20px 15px;
+        color: #fff;
+        &.active {
+            background-color: var(--activeLinkColor);
+        }
+    }
+
+    .dropdown-menu {
+        position: relative !important;
+        transform: none !important;
+    }
+}
+
+.collapsed{
+    .nav-icon-name{
+        justify-content: center!important;
+    }
+    .menu-name{
+        display: none;
+    }
+}
+
+.nav-item{
+    cursor: pointer;
+}

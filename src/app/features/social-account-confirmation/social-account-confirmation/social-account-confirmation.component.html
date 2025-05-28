@@ -1,0 +1,28 @@
+<div class="social-container main-container">
+  <div class="row px-2 intro-section">
+  </div>
+  <app-intro-header [iconSize]="'3.5em'" [headerData]="'SOCIAL_ACCOUNT_CONFIRMATION_HEADER_TEXT' | textDescription"
+    [withBorder]="true" [isWrapper]="true" [icon]="'fak fa-thanks'">
+    <h1>Account Confirmation</h1>
+  </app-intro-header>
+  <ng-container *ngIf="apiDataLoaded">
+    <div *ngIf="!socialLinkResponse.data.isVerified" class="alert alert-warning">
+      <div class="icon hidden-xs">
+        <i class="fa-solid fa-circle-info"></i>
+      </div>
+      <span>{{socialLinkResponse.data.verificationMessage}}</span>
+    </div>
+    <div *ngIf="socialLinkResponse.data.isVerified" class="alert alert-success">
+      <div class="icon hidden-xs">
+        <i class="fa-solid fa-circle-info"></i>
+      </div>
+      <span>{{socialLinkResponse.data.verificationMessage}}</span>
+    </div>
+    <div class="btn-container">
+    <button *ngIf="showResendButton()" class="btn btn-primary btn-round width-155"
+      (click)="resendEmail()">Resend</button>
+    <button *ngIf="showLoginButton()" class="btn btn-primary btn-round width-155"
+      (click)="redirectToLogin()">Login</button>
+    </div>
+  </ng-container>
+</div>

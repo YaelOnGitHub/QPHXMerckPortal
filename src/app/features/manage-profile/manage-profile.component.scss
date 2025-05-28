@@ -1,0 +1,165 @@
+@import "../../../styles/responsive";
+@import "../../../styles/variables";
+@import "../../../styles/mixin";
+
+
+.collapsed {
+    .manage-profile-wrapper {
+        padding: 20px;
+    }
+}
+
+.manage-profile-wrapper {
+    // margin-top: -30px;
+    background-color: var(--layoutBgColor);
+    background-image: url("../../../assets/images/backgrounds/product-page-dots-bg.png");
+    padding: 15px;
+
+    ul.nav.nav-tabs {
+        background: #FCFCFC;
+        justify-content: space-between;
+        align-items: center;
+        border: none;
+
+        li.nav-item {
+            border-right: 1px solid #EDEDED;
+            flex-grow: 1;
+            text-align: center;
+
+            &:last-child {
+                border: none;
+            }
+        }
+
+        .nav-link {
+            color: #B1B1B1;
+            border: none;
+            border-bottom: 2px solid transparent;
+            padding: 9px 15px;
+            border-radius: 0px;
+
+            span {
+                @include font(var(--fontBold), 400, 14px, 24px);
+            }
+
+            &.active {
+                border: none;
+             //   background: rgba(230, 244, 248, 0.45);
+                background: var(--profileManageActiveColor);
+                color: #6C6C6C;
+                border-bottom: 2px solid var(--profileManageColor_1);
+
+                span {
+                    @include font(var(--fontBold), 700, 14px, 24px);
+                }
+            }
+
+            &:focus {
+                border: none;
+                border-bottom: 2px solid var(--profileManageColor_1);
+            }
+
+            &:hover {
+                border: none;
+                border-bottom: 2px solid var(--profileManageColor_1);
+                background: var(--profileManageActiveColor);
+
+              //  background: rgba(230, 244, 248, 0.45);
+                color: #6C6C6C;
+
+                span {
+                    @include font(var(--fontBold), 700, 14px, 24px);
+                }
+            }
+        }
+    }
+
+    .tab-content {
+        margin-top: 5px;
+
+        .tabs-content-wrapper {
+            position: relative;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            background-color: var(--colorWhite);
+
+            #tabs-content-layer {
+                background: var(--profileManageColor);
+                mix-blend-mode: multiply;
+                height: 40px;
+                width: 100%;
+                inset: 0;
+                z-index: 1;
+                border-radius: 10px 10px 40px 0;
+            }
+
+            .tabs-content-body-wrapper {
+                background: var(--profileManageColor);
+                border-radius: 0 10px 10px;
+
+                .tabs-content-body {
+                    padding: 30px 60px;
+                    background-color: var(--colorWhite);
+                    border-radius: 35px 10px 10px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: map_get($grid-breakpoints, md)) {
+    .manage-profile-wrapper {
+        padding: 15px;
+
+        ul.nav.nav-tabs {
+            flex-direction: row;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+            overflow: hidden;
+            overflow-x: auto;
+            margin-bottom: 20px;
+            margin-top: 60px;
+
+            li.nav-item {
+                margin-right: 10px;
+            }
+
+            .nav-link {
+                padding: 6px 15px;
+                border-radius: 25px;
+                // background-color: #D9D9DB;
+
+                &.active {
+                    border: none;
+                    background-color: var(--profileManageActiveColor);
+                }
+
+                &:focus {
+                    border: none;
+                    border-bottom: 2px solid var(--profileManageColor_1);
+                }
+            }
+        }
+
+        .tab-content {
+            padding: 3%;
+            .tabs-content-wrapper {
+                .tabs-content-body-wrapper {
+                    .tabs-content-body {
+                        padding: 15px;
+                    }
+                }
+            }
+        }
+
+        .back-btn {
+          padding-bottom: 10px;
+          padding-top: 0px;
+        }
+    }
+    .collapsed {
+        .manage-profile-wrapper {
+            padding:0px;
+        }
+    }
+}

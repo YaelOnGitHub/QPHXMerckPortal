@@ -1,0 +1,24 @@
+@import "./../../../../styles/mixin";
+@import "./../../../../styles/responsive";
+@import "./../../../../styles/variables";
+
+.edit-license-container {
+    .label {
+        color: var(--colorOnSurface_2);
+    }
+
+    .address-line {
+        margin-top: 27px;
+    }
+
+    .clear-btn {
+        border: none;
+    }
+
+    .font-label {
+        @include font(var(--fontRegular), 600, 16px, 16px);
+    }
+    .address-2-margin {
+        margin-top: 27px;
+    }
+}

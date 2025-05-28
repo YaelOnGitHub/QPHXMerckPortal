@@ -1,0 +1,63 @@
+<div class="products-filter-wrapper">
+    <div class="filter-header">
+        <div class="modal-close-wrapper d-block d-sm-block d-md-block d-lg-none">
+            <a href="javascript:void(0);" (click)="onCloseModal()">
+                <i class="fa-light fa-xmark"></i>
+            </a>
+        </div>
+        <div class="modal-heading d-block d-sm-block d-md-block d-lg-none">
+            Filters
+        </div>
+        <div class="filter-clear" (click)="resetFilter()">
+            <span> Clear All</span> <i class="fa-sharp fa-solid fa-filter ms-2"></i>
+        </div>
+    </div>
+    <div class="filter-group">
+        <div *ngIf="manufacturerArray?.length>0" class="filter-part">
+            <h3 class="mb-4"><i class="fak fa-badge me-2 primary-text-color"></i> Manufacturers</h3>
+            <ul class="list-group">
+                <ng-container *ngFor="let item of manufacturerArray">
+                    <li class="list-group-item d-flex">
+                        <label class="col checkbox-wrapper">{{item.manufacturerDescription}}
+                            <input type="checkbox" id="item.manufacturerDescription" name="item.manufacturerDescription"
+                                aria-label="item.manufacturerDescription" [checked]="item.isChecked"
+                                (change)="valuechange($event,item,'manufacturer')">
+                            <span class="checkmark"></span>
+                        </label>
+                    </li>
+                </ng-container>
+            </ul>
+        </div>
+        <hr class="divider" *ngIf="manufacturerArray?.length>0">
+        <div class="filter-part">
+            <h3 class="mb-4"><i class="fak fa-inventory me-2 primary-text-color"></i> Product Type</h3>
+            <ul class="list-group">
+                <ng-container *ngFor="let item of productTypeArray">
+                    <li class="list-group-item d-flex">
+                        <label class="col checkbox-wrapper">{{item.productTypeDescption}}
+                            <input type="checkbox" id="item.productTypeDescption" name="item.productTypeDescption"
+                                aria-label="item.productTypeDescption" [checked]="item.isChecked"
+                                (change)="valuechange($event,item,'productTypes')">
+                            <span class="checkmark"></span>
+                        </label>
+                    </li>
+                </ng-container>
+            </ul>
+        </div>
+        <hr class="divider">
+        <div class="filter-part">
+            <ul class="list-group">
+                <li class="list-group-item">
+                      <label class="col checkbox-wrapper" >New
+                    <input type="checkbox" (change)="valuechange($event,null,'new')" [(ngModel)]="newCheck">
+                    <span class="checkmark"></span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="filter-footer text-center d-block d-sm-block d-md-block d-lg-none">
+        <button type="button" class="btn btn-primary btn-round btn-auto" (click)="onAllFilters()"> Show Results <span
+                *ngIf="filterArray?.length">({{filterArray?.length}})</span></button>
+    </div>
+</div>

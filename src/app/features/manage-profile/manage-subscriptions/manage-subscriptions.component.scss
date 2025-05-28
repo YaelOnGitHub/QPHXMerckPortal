@@ -1,0 +1,139 @@
+@import "../../../../styles/mixin";
+@import "../../../../styles/responsive";
+@import "../../../../styles/variables";
+
+
+
+.license-container {
+
+  .primary-color {
+    color: var(--primaryColor);
+  }
+
+  .subscription-img {
+    width: 250px;
+    height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .subscription-img>img {
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 100%;
+  }
+
+  .subscription-checkbox-label {
+    color: #25d5ca;
+  }
+
+  .recurring {
+    padding: 20px;
+     .btn-light {
+      background: #FFFFFF;      
+      border: 1px solid var(--primaryColor);
+      box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.15);
+      border-radius: 30px;
+      color: var(--primaryColor);
+      display: flex;
+      padding-top: 10px;
+     }
+  }
+
+  .subscription-box-shadow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    margin: 15px 0px;
+    border: 1px solid #EDEDED;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    height: 180px;
+    overflow: hidden;
+
+    .card-product {
+      padding-top: 15px;
+      padding-right: 10px;
+      .card-value {
+        @include font(var(--fontRegular), 600, 16px, 16px);
+        color: var(--textPrimary);
+      }
+  
+      .description {
+        padding-top: 5px;
+        @include font(var(--fontRegular), 400, 12px, 16px);
+        color: var(--colorGrayShade_1);
+        word-wrap: break-word;
+      }
+    }
+   
+  }
+
+  .subscription-list {
+    padding-top: 30px;
+    padding-left: 75px;
+    padding-right: 30px;
+  }
+
+  .subscription-list-header {
+    color: #949090;
+    .product-text {
+      text-align: center;
+    }
+  }
+
+  .subscription-list-header-label {
+    @include font(var(--fontRegular), 400, 17px, 22px);
+    color: var(--colorOnSurface_2);
+  }
+
+}
+.no-records {
+  text-align: center;
+  margin-top: 100px;
+  font-size: 20px;
+}
+
+@media (max-width: map_get($grid-breakpoints, lg)) {
+  .col-12>div {
+    border: 1px solid var(--colorCardBorder_1);
+    border-radius: 5px;
+    background-color: var(--colorSurface);
+  }
+  .subscription-img  {
+    width: 150px !important;
+  }
+  .subscription-box-shadow {
+    overflow-x: auto !important;
+  }
+}
+
+@media (max-width: map_get($grid-breakpoints, md)) {
+  .col-12>div {
+    border: 1px solid var(--colorCardBorder_1);
+    border-radius: 5px;
+    background-color: var(--colorSurface);
+  }
+
+  .subscription-img  {
+    padding-right: 10px !important;
+  }
+
+  .card-product {
+    padding: 0 !important;
+  }
+
+  .subscription-box-shadow {
+    padding-left: 0 !important;
+  }
+  
+}
+
+@media (max-width: map_get($grid-breakpoints, sm)) {
+  .subscription-list {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+}

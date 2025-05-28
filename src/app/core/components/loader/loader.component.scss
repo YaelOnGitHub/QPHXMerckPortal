@@ -1,0 +1,25 @@
+@import "../../../../styles/variables";
+.loader {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0;
+    z-index: 99999;
+    .overlay{
+        background-color: #ededed;
+        position: absolute;
+        opacity: .5;
+        width: 100%;
+        height: 100%;
+    }
+    .loader-item{
+        position: absolute;
+        z-index: 99999;
+        .fa-loader{
+            color: var(--primaryColor);
+        }
+    }
+}

@@ -1,0 +1,118 @@
+<section class="shipping-address-container overflow-hidden container-fluid">
+    <app-intro-header [headerData]="null" [iconSize]="'3.5em'" [headerData]="'MANAGE_ADDRESS_HEADER_TEXT'|textDescription"
+        [withBorder]="false" [isWrapper]="false" [icon]="'fa-regular fa-location-dot'">
+        <h1>Manage Addresses ({{address?.length}})</h1>
+
+    </app-intro-header>
+      <div *ngIf="displayAddNewAddress" class="new-address">
+        <button type="button" class="btn btn-default" (click)="addAddress(false)" aria-label="Left Align">
+          <i class="fak fa-2x fa-new-address primary-text-color"></i>
+          <span class="ms-2">Add Address</span>
+        </button>
+      </div>
+    <div class="d-flex row g-4" [formGroup]="formGroup">
+        <div formArrayName="address" *ngFor="let item of address.value ;let j =index" class="col-lg-4 col-12">
+            <div [formGroupName]="j">
+                <div class="card-container address-card-container">
+                    <div class="body">
+                        <div class="row">
+                            <div class="col-lg-12 mt-1 mb-1 d-flex justify-content-between align-items-center">
+                                <label class="checkbox-wrapper checkbox-circle-wrapper no-padding-left">
+                                    <span *ngIf="item.HCPFullName">
+                                        {{item.HCPFullName}}</span><span *ngIf="item.designation">,
+                                        {{item?.designation}}</span>
+                                </label>
+                                <div>
+                                    <div *ngIf="item.addressStatus?.toLowerCase()==='valid'"
+                                        class="col-lg-12 col-12 mb-3">
+                                        <div class="valid-address status-container">
+                                            <div class="status-label">{{item?.addressStatusMessage}}</div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="item.addressStatus?.toLowerCase()==='invalid'||!item.addressStatus"
+                                        class="col-lg-12 col-12 mb-3">
+                                        <div class="invalid-address status-container">
+                                            <span class="status-label">{{item?.addressStatusMessage}}</span>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="item.addressStatus?.toLowerCase()==='pending'"
+                                        class="col-lg-12 col-12 mb-3">
+                                        <div class="pending-address status-container">
+                                            <span class="status-label">{{item?.addressStatusMessage}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 mb-2 d-flex fullAddressColumn">
+                                <span class="card-icon">
+                                    <i class="fa-light fa-location-dot primary-text-color fa-lg me-2"></i></span>
+                                <div class="d-flex flex-column">
+                                    <span class="card-value truncate-overflow-2-line "
+                                        [title]="getAddressControlByName(j, 'address1')?.value">
+                                        {{getAddressControlByName(j, 'address1').value?.toLowerCase()}}
+                                    </span>
+                                    <span *ngIf="getAddressControlByName(j, 'address2').value"
+                                        class="card-value truncate-overflow-2-line "
+                                        [title]="getAddressControlByName(j, 'address2')?.value">
+                                        {{getAddressControlByName(j, 'address2').value?.toLowerCase()}}
+                                    </span>
+                                    <span class="card-value truncate-overflow-2-line ">
+                                        {{getAddressControlByName(j, 'city').value?.toLowerCase()}},
+                                        {{getAddressControlByName(j,
+                                        'state').value?.toUpperCase()}} {{getAddressControlByName(j,
+                                        'zipCode').value?.toLowerCase()}}
+                                    </span>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-2">
+                                <span class="card-label primary-text-color">Tel</span>
+                                <span class="card-value"> {{getAddressControlByName(j, 'phone').value}}</span>
+                            </div>
+                            <div class="col-lg-6 mb-2">
+                                <span class="card-label primary-text-color">DEA</span>
+                                <span class="card-value "> {{getAddressControlByName(j,
+                                    'deaNum').value}}</span>
+                            </div>
+                            <div class="col-lg-6 mb-2">
+                                <span class="card-label primary-text-color">Fax</span>
+                                <span class="card-value">
+                                    {{getAddressControlByName(j, 'fax').value}}</span>
+                            </div>
+                            <div class="col-lg-6 mb-2">
+                                <span class="card-label primary-text-color">SLN</span>
+                                <span class="card-value "> {{getAddressControlByName(j, 'licenseNumber').value}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer d-flex justify-content-between align-items-center">
+                        <div>
+                            <span *ngIf="item.isPreferredAddress=='Y'" class="badge preferredAddressBadge">Preferred
+                                Address</span>
+                        </div>
+                        <div class="d-flex justify-space-around my-2 footer-text">
+                            <div *ngIf="displayEditAddress" class="edit-action ms-auto color-primary cursor"
+                                (click)="addEditAddress(true,item)"><i class="fa-light fa-pen me-1"></i>Edit</div>
+                            <div *ngIf="displayDeleteAddress" class=" delete-action mx-4 color-secondary cursor"
+                                (click)=" deleteStateLicenseOrAddress('address',item,j)"><i
+                                    class="fa fa-trash me-1"></i>Delete
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-sm-4" *ngIf="displayAddNewAddress">
+            <div
+                class="card-container address-card-container add-addres-container d-flex justify-content-center  align-items-center">
+                <div class="add-address cursor" (click)="addAddress(false)">
+                    <i class="fak fa-2x fa-new-address primary-text-color"></i>
+                    <span class="ms-2">Add address</span>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</section>
+<!-- <section class="manage-address-buttons">
+    <button type="submit" class="btn btn-round btn-primary add-button ms-4 btn-size" (click)="onSubmit()">Save</button>
+</section> -->

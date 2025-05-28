@@ -1,0 +1,149 @@
+article::-webkit-scrollbar-thumb{
+    background-color: #C4C4C4;
+    width: 10px;
+    height: 10px;
+    border-radius: 10rem;
+}
+
+article::-webkit-scrollbar{
+    background-color: transparent;
+    width: 4px;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s forwards;
+  }
+  
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+  
+
+.sent-message-wrap{
+    animation: send-animation 0.8s ease 0s 1 normal forwards;
+    width: 100%;
+    height: auto;
+    /* background-color: rgb(255, 195, 127); */
+}
+
+.sent-bubble{
+    width: 80%;
+    /* background-color: rgb(43, 217, 226); */
+    padding: 14px;
+    display: flex;
+    justify-content: end;
+    
+    p{
+        color: #4A4A4A;
+        background-color: #EFEFEE;
+        padding: 9px 14px;
+        font-size: 15px;
+        border-radius: 6px;
+    }
+}
+
+@keyframes send-animation {
+	0% {
+		opacity: 0;
+		transform: translateY(25px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+
+.receive-message-wrap{
+    width: 100%;
+    height: auto;
+}
+
+.receive-bubble{
+    width: 80%;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+
+    p{
+        color: #4A4A4A;
+        font-size: 15px;
+        padding-top: 18px;
+    }
+}
+
+.user-profile{
+    /* background-color: black; */
+    width: 40px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;    
+}
+
+.ai-profile {
+    width: 50px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.profile{
+    background-color: #50D9FF;
+    padding: 8px;
+    border-radius: 10rem;
+    color: white;
+    font-weight: 600;
+}
+
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    padding: 9px 14px;
+
+    span {
+        height: 8px;
+        width: 8px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        animation: typing 1.4s infinite ease-in-out both;
+
+        &:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        &:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        &:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+    }
+}
+
+@keyframes typing {
+    0% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+
+    20% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+}

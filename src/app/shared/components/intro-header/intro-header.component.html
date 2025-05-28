@@ -1,0 +1,36 @@
+<div id="intro-header" [ngClass]="{'withBorder':withBorder,'withoutWrapper':!isWrapper}">
+    <div id="intro-bg-layer" *ngIf="isWrapper"></div>
+    <div class="intro-wrapper">
+        <div class="intro-body">
+            <div class="left-img">
+                <i *ngIf="icon" [ngClass]="icon" class="fa-2x left-icon icon-color" [style.font-size]="iconSize"></i>
+            </div>
+            <div class="right-txt ms-4" [ngClass]="{'visiable':isViewToggle}">
+                <ng-content></ng-content>
+                <div #introData></div>
+                <div *ngIf="subHeading">{{subHeading}}</div>
+            </div>
+            <div class="toggle-wrapper">
+                <a class="toggle-link" (click)="onToggle(isViewToggle)">{{!isViewToggle?'Show Details...':'Hide
+                    Details'}}</a>
+            </div>
+        </div>
+    </div>
+    <ng-container *ngTemplateOutlet="contentTemplate">
+    </ng-container>
+</div>
+
+
+
+<!-- <div class="right-txt ms-4">
+    <h1>{{heading}}</h1>
+    <p>{{subHeading}}</p>
+    <div class="row intro-list">
+        <div [ngClass]="getColumn()" class="col-sm-12" *ngFor="let step of stepsList">
+            <p>
+                {{step}}
+            </p>
+        </div>
+
+    </div>
+</div> -->

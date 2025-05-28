@@ -1,0 +1,199 @@
+@import "../../../../styles/responsive";
+@import "../../../../styles/mixin";
+
+#intro-header {
+    position: relative;
+    &.withBorder {
+        @include boxShadow();
+        background-color: var(--colorWhite);
+    }
+
+    margin-bottom: 30px;
+    border-radius: 10px;
+
+    .intro-wrapper {
+        background: var(--registrationIntroBg);
+        border-radius: 0px 10px 10px;
+
+        .intro-body {
+          
+            .left-img {
+                .left-icon {
+                    font-size: 6.5em;
+                }
+            }
+
+            padding: 18px;
+            background-color: var(--colorWhite);
+            border-radius: 35px 10px 10px;
+            display: flex;
+            align-items: flex-start;
+            
+
+            &.empty {
+                display: block;
+            }
+
+        }
+    }
+
+    h1 {
+        @include font(var(--fontRegular), 700, 18px, 24px);
+        // text-transform: capitalize;
+        color: var(--textPrimary);
+        position: relative;
+        z-index: 3;
+    }
+
+    h2 {
+        @include font(var(--fontRegular), 500, 18px, 24px);
+        // text-transform: capitalize;
+        color: var(--textPrimary);
+        position: relative;
+        z-index: 3;
+    }
+
+    .h1 {
+        @include font(var(--fontRegular), 700, 18px, 24px);
+        // text-transform: capitalize;
+        color: var(--textPrimary);
+        position: relative;
+        z-index: 3;
+    }
+
+    p {
+        font-family: var(--fontRegular);
+        @include font(var(--fontRegular), 400, 16px, 18px);
+        color: var(--textPrimary);
+        position: relative;
+        z-index: 3;
+    }
+
+    li {
+      line-height: 18px;
+      color: var(--textPrimary);
+    }
+
+    .right-txt {
+        // flex-basis: 70%;
+        margin-left: 15px !important;
+
+        // div {
+        //     // h1 {
+        //     //     font-family: var(--fontBold);
+        //     //     @include font(var(--fontRegular), 600, 16px, 20px);
+        //     //     color: var(--textPrimary);
+        //     //     position: relative;
+        //     //     z-index: 3;
+        //     // }
+        // }
+    }
+
+    .intro-list {
+        div {
+            width: 100%;
+        }
+
+        p {
+            @include font(var(--fontRegular), 400, 14px, 18px);
+            color: var(--textSecondary);
+            margin-bottom: 5px;
+        }
+    }
+
+    #intro-bg-layer {
+        background: var(--registrationIntroBg);
+        mix-blend-mode: multiply;
+        height: 35px;
+        width: 100%;
+        right: 0px;
+        left: 0px;
+        top: 0px;
+        bottom: 0px;
+        z-index: 1;
+        border-radius: 10px 10px 35px 0;
+    }
+
+    .toggle-wrapper {
+        display: none;
+    }
+
+    &.withoutWrapper {
+        .intro-wrapper {
+            background: none;
+            border-radius: none;
+
+            .intro-body {
+                padding: 0;
+            }
+        }
+    }
+}
+
+.icon-color {
+    color: var(--iconColor);
+}
+
+@media (max-width: map_get($grid-breakpoints, md)) {
+    #intro-header {
+        h1 {
+            font-size: 18px;
+        }
+
+        .intro-wrapper {
+            .intro-body {
+                //flex-wrap: wrap;
+                font-size: 15px;
+                padding: 12px;
+
+                .left-img {
+                    // flex-basis: 18%;
+
+                    .left-icon {
+                        font-size: 3em !important;
+                    }
+                }
+
+                .right-txt {
+                    // flex-basis: 75%;
+                    flex: 1;
+                    width: 70%;
+                    margin-left: 10px !important;
+
+                    p a {
+                      word-wrap: break-word;
+                    }
+
+                    // .intro-list {
+                    //     display: none;
+                    // }
+
+                    &.visiable {
+                        p {
+                            display: block;
+
+                            
+                        }
+
+                        .intro-list {
+                            display: block;
+                        }
+                    }
+                }
+
+
+                .toggle-wrapper {
+                    .toggle-link {
+                        @include font(var(--fontBold), 400, 14px, 17px);
+                        color: var(--primaryColor);
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        .toggle-wrapper {
+            // display: block;
+        }
+    }
+}

@@ -1,0 +1,290 @@
+<div class="order-history-container main-container">
+
+  <form [formGroup]="filterForm!" (keydown.enter)="$event.preventDefault()">
+
+      <div class="row px-2 intro-section">
+          <div class="col-md-8 col-sm-12 mb-4">
+              <button id='contentDesktop' type="button" class="btn btn-primary btn-round"
+                  (click)="onRedirectToProductPage()">Back</button>
+          </div>
+
+      </div>
+      <div class="row">
+          <app-intro-header [headerData]="'ORDERHISTORY_DASHBOARD_HEADER_TEXT' | textDescription" [iconSize]="'3em'" [withBorder]="true" [isWrapper]="true"
+          [icon]="''">
+              <h1 class="text-title">Shipment Acknowledgment</h1>
+          </app-intro-header>
+      </div>
+      <div class="row">
+
+          <div class="col-md-4 col-sm-12">
+              <div class="result-count mt-4 px-2">{{totalAocCount}} Results</div>
+          </div>
+
+      
+      </div>
+
+      <div class="row row-item" *ngFor="let data of aocData; let i = index" (click)="toggleExpand(i)">
+        <div class="col-md-9 col-sm-12 order-history-item" [style.border-color]="data.isBlockerAoc ? '#f42c46' : orderClasses[data.statusCode]?.borderColor">
+          <div class="row">
+              <!-- Request Number -->
+              <div class="col-sm-12 col-md-3 item-label order-item">
+                  <span class="title">Request Number</span>
+                  <span class="title-content">{{data?.requestTransactionId}}</span>
+              </div>
+              <!-- Shipment Number -->
+              <div class="col-sm-12 col-md-3 item-label border-left">
+                    <span class="title">Shipment Number</span>
+                    <span class="title-content">{{data?.shipmentTrackingNumber}}</span>
+              </div>
+              <!-- Request Date -->
+              <div class="col-sm-12 col-md-3 item-label border-left">
+                  <span class="title">Request Date</span>
+                  <span class="title-content">{{ data?.requestDate ? (data?.requestDate | date:'MM/dd/yyyy') : '-' }}</span>
+              </div>
+              <!-- Items -->
+              <div class="col-sm-12 col-md-3 item-label border-left">
+                  <span class="title">Items</span>
+                  <span class="title-content">{{data?.products.length}}</span>
+              </div>
+          </div>
+      
+          
+          <!-- Expanded content wrapper that spans the entire row -->
+          <div class="expanded-content-wrapper" [ngClass]="{'expanded': expandedIndex === i}" (click)="$event.stopPropagation()">
+            <div class="expanded-content">
+              <div class="info-container">
+                <!-- Container for side-by-side sections -->
+                <div class="info-sections">
+                  <div class="info-section request-info">
+                    <div class="info-heading">Request Information</div>
+                    <table class="info-table">
+                      <tr>
+                        <td><strong>Name:</strong></td>
+                        <td>
+                          {{ data?.firstName }}<span *ngIf="data?.lastName"> {{ data?.lastName }}</span>
+                          <!-- Only add middleName with a space if it exists -->
+                          <span *ngIf="data?.middleName"> {{ data?.middleName }}</span>
+                          <!-- Add the comma and professional designation, but ensure the comma is properly placed -->
+                          <span *ngIf="data?.profDesig">, {{ data?.profDesig }}</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><strong>State License Number:</strong></td>
+                        <td>{{data?.licenseNumber}}</td>
+                      </tr>
+                      <tr>
+                        <td><strong>License State:</strong></td>
+                        <td>{{data?.licenseState}}</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Request Number:</strong></td>
+                        <td>{{data?.requestTransactionId}}</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Request Date:</strong></td>
+                        
+                        <td>{{data.requestDate ? (data?.requestDate | date:'MM/dd/yyyy') : 'N/A' }}</td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="info-section shipment-info">
+                    <div class="info-heading">Shipment Information</div>
+                    <table class="info-table">
+                      <tr>
+                        <td><strong>Shipped Address:</strong></td>
+                        <td>{{data?.shippedAddress1 }} {{data?.shippedAddress2 }} {{data?.shippedCity }} {{data?.shippedState }} {{data?.shippedZip }}</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Ship Date:</strong></td>
+                        <td>{{ data?.shipmentDate ? (data?.shipmentDate | date:'MM/dd/yyyy') : 'N/A' }}</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Delivered Date:</strong></td>
+                        
+                        <td>{{ data?.deliveryDate ? (data?.deliveryDate | date:'MM/dd/yyyy') : 'N/A' }}</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Carrier:</strong></td>
+                        <td>{{data?.carrier}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tracking:</strong></td>
+                        <td>
+                            <ng-container *ngIf="data?.carrier?.toLowerCase().includes('ups'); else fedexLink">
+                                <a [href]="'https://www.ups.com/track?tracknum=' + data?.shipmentTrackingNumber" target="_blank">
+                                    {{data?.shipmentTrackingNumber}}
+                                </a>
+                            </ng-container>
+                            <ng-template #fedexLink>
+                                <ng-container *ngIf="data?.carrier?.toLowerCase().includes('fedex')">
+                                    <a [href]="'https://www.fedex.com/fedextrack/?trknbr=' + data?.shipmentTrackingNumber" target="_blank">
+                                        {{data?.shipmentTrackingNumber}}
+                                    </a>
+                                </ng-container>
+                                <ng-container *ngIf="!(data?.carrier?.toLowerCase().includes('fedex') || data?.carrier?.toLowerCase().includes('ups'))">
+                                    {{data?.shipmentTrackingNumber}}
+                                </ng-container>
+                            </ng-template>
+                        </td>
+                    </tr>
+                    </table>
+                  </div>
+                </div>
+                <!-- New Request Details section -->
+                <div class="info-section request-details">
+                  <div class="info-heading-details">Request Details</div>
+                  <table class="info-table info-table-details">
+                    <thead>
+                      <tr>
+                        <th>Product ID</th>
+                        <th>Product</th>
+                        <th>Lot Number</th>
+                        <th>Expiration Date</th>
+                        <th>Shipped Quantity</th>
+                        <th>Received Quantity</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let product of data.products">
+                        <td>{{product.mstrProdClientId}}</td>
+                        <td [title]="product.productName">
+                          {{ product.productName | truncate:35 }}
+                        </td>
+                        <td>{{product.productLotNumber}}</td>
+                        
+                        <td>{{product.productLotExpiration ? (product?.productLotExpiration | date:'MM/dd/yyyy') : 'N/A' }}</td>
+                        <td>{{product.shippedQuantity}}</td>
+                        <td>
+                          <div class="input-container">
+                            <div class="custom-arrow">
+                              <button 
+                                (click)="increaseQuantity(product)" 
+                                [disabled]="product.receivedQuantity >= product.shippedQuantity" 
+                                class="arrow-btn up-arrow">▲</button>
+                              <input 
+                                type="number" 
+                                name="receivedQuantity{{i}}" 
+                                [(ngModel)]="product.receivedQuantity" 
+                                [ngModelOptions]="{ standalone: true }" 
+                                class="form-control" 
+                                [ngClass]="{'isInvalidForm': !product.receivedQuantity}" 
+                                required 
+                                min="0" 
+                                [max]="product.shippedQuantity" 
+                                style="width: 60px; text-align: center;" 
+                                readonly 
+                              />
+                              <button 
+                                (click)="decreaseQuantity(product)" 
+                                [disabled]="product.receivedQuantity <= 0" 
+                                class="arrow-btn down-arrow">▼</button>
+                            </div>
+                          </div>
+                        </td>
+                        
+                        
+                        
+                        
+                        
+                        
+                      
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="cart-section-header">
+                <i class="fak fa-t-c fa-lg me-2 primary-text-color"></i>
+                <span>Terms and Conditions</span>
+              </div>
+              <app-terms-and-conditions [requestedProductList]="requestedProductList"></app-terms-and-conditions>
+              <div class="cart-section-header">
+                <i class="fak fa-order-subm fa-lg me-2 primary-text-color"></i>
+                <span>AOC Submission</span>
+              </div>
+              <div class="order-submission-container">
+                <section class="order-submission-content container-fluid">
+                  <div [formGroup]="formGroup" class="row d-flex">
+                    <div class="col-lg-12 col-12">
+                      <span class="content" [innerHTML]="'PIN_CHECKOUT_TERMS_AND_CONDITIONS' | textDescription"></span>
+                    </div>
+                    <div class="col-lg-6 col-12 font-highlighted"></div>
+                    <div class="col-lg-2 col-12">
+                      <div class="enter-pin-input-wrapper">
+                        <div *ngIf="PREFERRED_VERIFICATION_METHOD === IS_PIN_AUTHENTICATION">
+                          <app-text-input [placeholder]="'Enter PIN'" [type]="'password'" [label]="'PIN'"
+                            [formControlName]="'createPin'" [maxLength]="'4'" (change)="checkPinPattern('createPin')"
+                            [isRequired]="true">
+                          </app-text-input>
+                          <div class="forgotPin">
+                            <a href="javascript:void(0);" (click)="forgotPin()">Forgot PIN?</a>
+                          </div>
+                        </div>
+                        <div *ngIf="PREFERRED_VERIFICATION_METHOD === IS_PASSWORD_AUTHENTICATION">
+                          <app-text-input [placeholder]="'Enter Password'" [type]="'password'" [label]="'Password'"
+                            [formControlName]="'password'" [isRequired]="true">
+                          </app-text-input>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="submit" class="col-lg-3 col-6 align-self-center mb-3">
+                      <button type="submit"
+                        [disabled]="!(formGroup.valid && isTermAndConditionValid)"
+                        class="btn btn-primary btn-round btn-auto" (click)="onSubmit(data)">Submit</button>
+                    </div>
+                    <div *ngIf="isAtLeastOneProductItemValid" class="text-danger cancel-btn col-lg-4 mb-2">
+                      <span class="cursor" (click)="onCancelOrder()">Cancel</span>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-12 button-container pt-3">
+          <button 
+          class="action-button order_btn" 
+          [ngStyle]="{'background-color': data.isBlockerAoc ? '#f42c46' : 'var(--primaryColor)'}"
+          (click)="toggleExpand(i); $event.stopPropagation();"> <!-- Stop propagation to avoid triggering row click -->
+          View & Acknowledge
+      </button>
+        </div>
+      </div>
+      
+        
+        
+        
+
+  </form>
+
+  <div class="row no-records" *ngIf="!aocData?.length">
+      <div class="col-sm-12 no-result-found">
+          No history available!
+      </div>
+  </div>
+
+  <div class="row mt-5" *ngIf="aocData?.length">
+      <div class="col-md-6 col-lg-4 col-sm-12 mx-5 rows-filters">
+          <label class="pagination-label">Rows per page</label><select id="pagination-dropdown" (change)='onOptionsSelected($event)'>
+              <option value="3">3</option>
+              <option value="6">6</option>
+              <option value="9">9</option>
+          </select>
+          <span class="page-selection px-4">{{startItemCount}}-{{itemsLabelPerPage}} of {{totalAocCount}}</span>
+      </div>
+   
+
+      <div class="col-md-4 col-lg-5 col-sm-12">
+          <pagination [(ngModel)]="page" [boundaryLinks]="true" [totalItems]="totalAocCount" [itemsPerPage]="itemsPerPage"
+              [maxSize]="5"
+              (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+              lastText="&raquo;">
+
+          </pagination>
+      </div>
+  </div>
+
+
+
+</div>

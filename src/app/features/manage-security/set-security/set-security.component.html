@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <app-intro-header [headerData]="'SECURITY_QUESTION_HEADER_TEXT'|textDescription" [withBorder]="true" [iconSize]="'4em'" [icon]="'fak fa-set-password'"
+        [contentTemplate]="contentTemplate">
+      </app-intro-header>
+      <ng-template #contentTemplate>
+        <div class="content pb-4">
+          <div [formGroup]="formGroup">
+            <div class="row">
+              <div class="col-lg-8">
+                <app-dropdown [multiSelect]="false" [header]="'Security Question'"
+                  [placeholder]="'Please select question'" [formControlName]="'securityQuestions'" [searchable]="false"
+                  [dropDownOptions]="securityQuestionList" [bindLabel]="'question'" [bindValue]="'id'">
+                </app-dropdown>
+                <app-text-input [label]="'Your Answer'" [formControlName]="'securityAnswer'"
+                  [placeholder]="'Please type your answer'">
+                </app-text-input>
+                <div class="footer">
+                  <button class="btn btn-round btn-link-black btn-width" (click)="navigate()">Back</button>
+                  <button type=" submit" [disabled]="!formGroup.valid" class="btn btn-round btn-primary ms-1 btn-width"
+                    (click)="onSave()">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

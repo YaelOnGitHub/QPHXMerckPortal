@@ -1,0 +1,189 @@
+@import "../../../styles/responsive";
+@import "../../../styles/mixin";
+
+#login-warpper {
+    height: calc(100vh - 110px);
+    background: url("../../../assets/images/backgrounds/login-bg-dots.png"), var(--loginBgColor);
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    display: flex;
+    overflow-y: hidden;
+    align-items: center;
+    justify-content: center;
+
+    .close{
+
+        float: right;
+        font-size: 24px;
+        color: gray;
+        padding-top: 5px;
+        padding-right: 2px;
+    }
+  
+    .new-brands-coming {
+      padding: 0 !important;
+      background: #2f8db7 !important;
+      .close {
+        i {
+          position: absolute;
+          top: 5px;
+          right: 10px;
+          font-size: 20px;
+          cursor: pointer;
+        }
+      }
+      img {
+        border-radius: 18px;
+      }
+      .idle-count {
+        color: var(--colorWhite);
+      }
+    }
+
+    .card-new {
+        background: var(--colorWhite);
+       // box-shadow: 0px 4px 6px var(--boxShadowColor);
+        border-radius: 20px;
+        padding: 15px 30px;
+
+        .card-header {
+            background-color: transparent;
+            border: none;
+
+            h2 {
+                @include font(var(--fontBold), 700, 20px, 26px);
+                color: var(--textPrimary);
+            }
+
+            p {
+                @include font(var(--fontRegular), 400, 14px, 22px);
+                color: var(--colorGrayShade_2);
+            }
+
+            .client-logo-wrapper {
+                margin-bottom: 15px;
+
+                .client-logo {
+                    width: 60%;
+                    height: auto;
+                    object-fit: contain;
+                }
+            }
+        }
+
+        .isInvalidForm {
+            border-bottom: 2px solid red !important;
+        }
+
+        .card-body {
+            ::ng-deep .form-control {
+                height: 30px !important;
+            }
+
+            ::ng-deep .form-group {
+                margin-bottom: 0px !important;
+            }
+
+            .forgotPasswordLink a {
+                @include font(var(--fontRegular), 400, 14px, 22px);
+                color: var(--forgetPasswordLinkColor);
+            }
+
+            .registrationLink {
+                @include font(var(--fontRegular), 400, 14px, 22px);
+                color: var(--forgetPasswordLinkColor);
+            }
+        }
+
+        .card-footer {
+            background-color: transparent;
+            border: none;
+
+            p {
+                @include font(var(--fontRegular), 400, 12px, 40px);
+                letter-spacing: 0.3px;
+                color: var(--textSecondary);
+                margin-bottom: 5px;
+            }
+
+            .social-media-login {
+                a {
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50px;
+                  border: 1px solid var(--colorGrayShade_3);
+                  line-height: 40px;
+
+                    &.google-login {
+                        color: var(--googleColorCode);
+                        font-size: 1.3em;
+                    }
+
+                    &.facebook-login {
+                        color: black;
+                        cursor: pointer;
+                        font-size: 1.4em;
+                        img {
+                          padding-bottom: 8px
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .col-cust {
+        width: 450px;
+    }
+
+    .login-footer-logo {
+        text-align: center;
+        margin: 10px;
+    }
+
+    .btn {
+
+    &.btn:active {
+     --bs-btn-active-bg: var(--primaryColor);
+    }
+    }
+}
+
+@media #{map-get($device-media-queries,tablet-ipad)} {
+
+  .col-cust {
+    padding-top: 200px;
+  }
+  #login-warpper {
+   overflow-y: auto; 
+  }
+}
+
+@media (max-width: map_get($grid-breakpoints, md)) {
+    .col-cust {
+        width: 100% !important;
+    }
+}
+
+::ng-deep .form-input-group {
+    margin-top: 0px !important;
+}
+
+.social-login-divider {
+    height: 1px;
+    width: 100%;
+    border-top: solid thin #f0f0f0;
+    margin: 24px 0;
+    text-align: center;
+}
+.social-login-divider:after {
+    content: attr(data-label);
+    display: inline-block;
+    background: #fff;
+    padding: 0 32px;
+    position: relative;
+    top: -10px;
+    font-size: 12px;
+    color: #9b9b9b;
+}

@@ -1,0 +1,28 @@
+<div class="text-input-container">
+    <div class="form-group">
+        <label class="lato-bold-font" *ngIf="label"><i *ngIf="icon" class="{{icon}} me-1"></i>{{label}} <span
+                class="required" [ngClass]="{'text-danger':isRequired}" *ngIf="isRequired">*</span></label>
+        <div *ngIf="isReadOnly" class="form-input-group input-group mb-2">
+            <input #input [autocomplete]="autoComplete" (input)="onChangeValue($event)" maxLength="{{maxLength}}"  [ngClass]="{'isInvalidForm': isInvalid}"
+                contactNumberFormat formatType="{{formatType}}"  [required]="isRequired" readonly aria-readonly="true"
+                [attr.disabled]="disabled ? '' : null" [type]="type" [placeholder]="placeholder" class="form-control"
+                [formControl]="control" (blur)="onBlur($event)" (focus)="onFocus($event)" />
+            <ng-content></ng-content>
+        </div>
+        <div *ngIf="!isReadOnly" class="form-input-group input-group mb-3">
+            <input #input [autocomplete]="autoComplete" (input)="onChangeValue($event)" maxLength="{{maxLength}}"  [ngClass]="{'isInvalidForm': isInvalid}"
+                contactNumberFormat formatType="{{formatType}}"  [required]="isRequired" aria-readonly="true"
+                [attr.disabled]="disabled ? '' : null" [type]="type" [placeholder]="placeholder" class="form-control"
+                [formControl]="control" (blur)="onBlur($event)" (focus)="onFocus($event)" />
+            <ng-content></ng-content>
+        </div>
+        <small *ngIf="hint" class="form-text text-muted">{{hint}}</small>
+        <small class="text-danger" *ngIf="control && !control?.valid 
+    && control?.touched && control?.errors && control?.errors?.['required']"></small>
+            <small class="text-danger" *ngIf="showPrimaryError && control && !control.valid 
+            && control?.touched && (control?.errors?.['pattern'] || control?.errors?.['minlength'])">
+            {{ errorMsg ? errorMsg : ('common.validityText' | translate) }}
+        </small>
+        <ng-content select="[customError]"></ng-content>
+    </div>
+</div>

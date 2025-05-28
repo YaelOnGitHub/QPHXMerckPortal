@@ -1,0 +1,24 @@
+<div class="resend-email modal-container">
+  <header class="modal-header">
+    <span>Resend Confirmation Link</span>
+    <span type="button" aria-label="Close" class="close float-end" (click)="closeModal()">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </span>
+  </header>
+  <div [formGroup]="formGroup">
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-sm-10 offset-sm-1">
+          <app-text-input [label]="'Email'" [placeholder]="'Enter Email'" [type]="'email'" [formControlName]="'email'"
+            [isRequired]="true">
+          </app-text-input>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-link-black ms-5 " (click)="closeModal()">Cancel</button>
+      <button [disabled]="!formGroup.valid" type="button" class="btn btn-primary ms-2  btn-round  btn-small"
+        (click)="resendLink()">Resend</button>
+    </div>
+  </div>
+</div>

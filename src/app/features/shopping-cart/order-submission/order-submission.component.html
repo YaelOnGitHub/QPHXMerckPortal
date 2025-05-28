@@ -1,0 +1,52 @@
+<div class="order-submission-container">
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary btn-small btn-round-ltb ">Sign electronically</button>
+        <button type="button" class="btn btn-secondary btn-small btn-round-rtb">Download & sign form</button>
+    </div>
+
+    <!-- <section class="order-submission-menu ms-2 mt-2">
+        <div class="nav">
+            <span class="font-small">Sign Electronically</span>
+        </div>
+        <span class="font-small">Download & Sign Form</span>
+    </section> -->
+    <section class="order-submission-content container-fluid">
+        <div [formGroup]="formGroup" class="row d-flex">
+            <div class="col-lg-12 col-12 mt-3">
+                <p>
+                  Your PIN serves as the electronic signature for this request of the above-listed items(s) for distribution to patients,
+                   and as an attestation that you are a healthcare practitioner licensed by federal and state authorities at the address provided to prescribe, 
+                   request, receive and distribute the item(s) requested.
+                </p>
+            </div>
+            <div class="col-lg-6 col-12 mt-3 font-highlighted">
+                <!-- <p>
+                    Submitting my PIN as an electronic signature,I verify
+                    that the sample(s) listed above
+                    were
+                    requested and
+                    received.
+                </p> -->
+            </div>
+            <div class="col-lg-2 col-12 mt-3 px-0">
+                <div class="enter-pin-input-wrapper">
+                    <!-- <input type="text" class="input-specs" placeholder="Enter Your PIN" [formControlName]="'createPin'"> -->
+                    <app-text-input [placeholder]="'Enter PIN'" [label]="'PIN'"  [formControlName]="'createPin'" [isRequired]="true">
+                    </app-text-input>
+                    <div class="forgotPin">
+                        <a href="javascript:void(0);">Forgot PIN?</a>
+                    </div>
+                </div>
+            </div>
+            <div id='contentMobile' class="col-6 mt-3">
+                <button type="button" class="btn" (click)="onRedirectToProductPage()">Back</button>
+            </div>
+            <div id="submit" class="col-lg-3 col-6 mt-3">
+                <button type="submit" [disabled]="!(formGroup.valid && isTermAndConditionValid && isAtLeastOneProductItemValid)" class="btn btn-primary btn-round btn-auto"
+                    (click)="onSubmit()">Submit</button>
+            </div>
+            <div class="text-danger col-lg-12 col-md-12 col-12 mb-2">Cancel</div>
+        </div>
+    </section>
+</div>

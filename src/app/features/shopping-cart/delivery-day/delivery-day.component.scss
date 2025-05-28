@@ -1,0 +1,113 @@
+@import "../../../../styles/responsive";
+@import "../../../../styles/variables";
+@import "../../../../styles/mixin";
+
+.cart-section-header {
+  padding-bottom: 15px;
+  font-weight: bold;
+}
+
+.delivery-item-wrapper {
+  @include boxShadow();
+}
+
+.delivery-item-card {
+  background: var(--colorSurface);
+  border-radius: 7px;
+
+  .delivery-item-header {
+    padding: 5px 10px;
+    background-color: var(--preferedDeliveryBgColor);
+    @include font(var(--fontBold), 600, 14px, 20px);
+    color: var(--textPrimary);
+  }
+}
+
+.delivery-body-description {
+  padding: 11px 0px 0px 25px;
+  @include font(var(--fontRegular), 400, 14px, 22px);
+}
+
+.delivery-footer-Section {
+  padding: 11px 0px 0px 25px;
+  font-family: var(--fontRegular);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.delivery-body-buttons-Section {
+  background-color: var(--preferedDeliveryBgColor);
+  margin-left: 23px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.btn-action-class {
+  display: inline;
+  margin: 0 10px
+}
+
+.button-section {
+  padding: 15px;
+}
+
+.button-section button {
+  min-width: 140px;
+  border: 1px solid var(--colorSecondary);
+  border-radius: 4px
+}
+
+.body-right-section-delivery-date {
+  margin-bottom: 15px;
+  border-left: 2px solid lightgray;
+  text-align: center
+}
+
+.body-right-section {
+  padding: 11px;
+}
+
+.body-right-section-delivery-date-description {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.body-right-section-delivery-date-description p {
+
+  font-family: var(--fontRegular);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: center;
+  // padding-left: 70px;
+}
+
+.delivery-body-date-Section {
+  padding: 12px;
+  height: 68px;
+  @include font(var(--fontRegular), 600, 21px, 20px);
+  color: var(--primaryColor);
+  // background-color: var(--preferedDeliveryBgColor);
+  text-align: center;
+  margin: 0 auto
+}
+
+h3 {
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+@media (max-width: map_get($grid-breakpoints, md)) {
+  .delivery-item-card {
+    padding: 0px;
+
+    .delivery-item-body {
+      padding: 0px 15px;
+    }
+
+
+  }
+
+
+}

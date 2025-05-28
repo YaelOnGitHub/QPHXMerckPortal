@@ -1,0 +1,117 @@
+@import "../../../../styles/responsive";
+@import "../../../../styles/mixin";
+@import "../../../../styles/variables";
+
+.stepper__input {
+    width: 100%;
+    max-width: 80px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    i {
+        color: #08a8ee;
+
+        &.error {
+            color: var(--colorError);
+        }
+    }
+
+}
+
+.stepper__input .stepper-input-field {
+    color: #08a8ee;
+    @include font(var(--fontRegular), 700, 14px, 24px);
+}
+
+.stepper__input .stepper-input-field {
+    color: #08a8ee;
+    @include font(var(--fontRegular), 700, 14px, 24px);
+}
+
+.stepper__input button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    min-width: 30px;
+    height: 30px;
+    user-select: none;
+    border: 1px solid #d3d3d3;
+    background-color: #fff;
+}
+
+.stepper__input button {
+    &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+}
+
+.circle-icon {
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 0 1px 2px var(--primaryColor);
+}
+
+.stepper-dropdown {
+   padding-left: 4px;
+  //  width: 100%;
+    min-width: 140px;
+    position: relative;
+    label {
+      width: 100%;
+    }
+
+}
+
+.stepper-dropdown:after {
+  content: "\f0d7";
+  font: 17px/1 FontAwesome;
+  color: var(--colorWhite);
+  right: 1px;
+  top: 5px;
+  height: 39px;
+  padding: 12px 10px 3px;
+  position: absolute;
+  pointer-events: none;
+  background: var(--primaryColor);
+}
+
+/* IE11 hide native button (thanks Matt!) */
+select::-ms-expand {
+  display: none;
+  }
+  
+
+  .stepper-dropdown select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    padding-left: 45px;
+    height: 39px;    
+    float: right;
+    margin: 5px 0px;
+    padding: 0px 24px;
+    font-size: 16px;
+    line-height: 2.5;
+    // color: #333;
+    background-color: var(--colorWhite);
+    background-image: none;
+    // border: 1px solid #0ebeff;
+    -ms-word-break: normal;
+    word-break: normal;
+  }

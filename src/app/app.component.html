@@ -1,0 +1,28 @@
+<div id="app-wrapper" [ngClass]="{'collapsed':isSidebarCollapse}">
+    <app-header [logo]="'qpharmaRx'" *ngIf="isHeader" [authHeader]="isAuthHeader"></app-header>
+    <div class="d-flex mt-5">
+        <div id="sidebar-wrapper" *ngIf="isSidebar">
+            <div id="sidebar-content">
+                <div class="sidebar-toggle-btn">
+                    <a href="javascript:void(0);" (click)="onToggleSidebar(isSidebarCollapse)">
+                        <i class="fa-light fa-angle-left"
+                            [ngClass]="{'fa-angle-right':isSidebarCollapse,'fa-angle-left':!isSidebarCollapse}"></i>
+                    </a>
+                </div>
+                <app-side-menu></app-side-menu>
+            </div>
+        </div>
+        <div id="page-content-wrapper">
+            <router-outlet></router-outlet>
+        </div>
+
+    </div>
+    <app-idle-detector [clientTitle]="client" [clientIcon]="clientIcon" *ngIf="isLoggedIn"></app-idle-detector>
+
+    <app-footer *ngIf="isFooter" [logo]="'qpharmaRx'"></app-footer>
+
+    <div *ngIf="isLoading">
+        <app-loader></app-loader>
+    </div>
+
+</div>

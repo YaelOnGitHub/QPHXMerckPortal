@@ -1,0 +1,41 @@
+<div class="faq-container main-container">
+  <h2 class="text-title px-4"></h2>
+  <div class="row px-2 intro-section">
+    <div class="col-12 col-sm-12 mb-4">
+        <button id='contentDesktop' type="button" class="btn btn-primary btn-round width-155"
+            (click)="redirectBack()">Back</button>
+    </div>
+</div>
+
+  <app-intro-header [iconSize]="'3.5em'" [headerData]="'FAQ_HEADER_TEXT' | textDescription"
+    [withBorder]="true" [isWrapper]="true" [icon]="'fa-regular fa fa-question-circle'">
+    <h1>Frequently asked questions</h1>
+  </app-intro-header>
+
+  <ng-container *ngIf="apiDataLoaded">
+  <div class="accordion mt-5" [id]="'accordionExample'+ i" *ngFor="let item of groupFaqByCategory; let i=index">
+    <span class="category-title">{{item.category}}</span>
+    <div *ngFor="let faq of item.faqs; let j =index" class="accordion-item">
+      <h4 class="accordion-header" [id]="'heading'+j+i">
+        <button class="accordion-button" type="button" [ngClass]="{ 'collapsed': j+i != -1 }" data-bs-toggle="collapse"
+          [attr.data-bs-target]="'#collapse'+j+i" aria-expanded="true" [attr.aria-controls]="'collapse'+j+i">
+          {{faq.question}}
+        </button>
+      </h4>
+      <div [id]="'collapse'+j+i" class="accordion-collapse collapse" [ngClass]="{ 'show': j+i == -1 }"
+        [attr.aria-labelledby]="'heading'+j+i" data-bs-parent="#accordionExample">
+        <div class="accordion-body" [innerHTML]="faq.answer"> 
+          <!-- {{fq.body}} -->
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+  <div class="accordion mt-5" id="accordionExample" *ngIf="!apiDataLoaded">
+    No Questions Available  
+  </div>
+
+ 
+</div>
+<div *ngIf="isMerck" class="faq-footer-text" [innerHTML]="'FAQ_APPLICATION_FOOTER_TEXT'|textDescription:true">
+</div>

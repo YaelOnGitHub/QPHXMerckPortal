@@ -1,0 +1,316 @@
+{
+
+  "hcpSearch": {
+    "title": "User Eligibility Search",
+    "searchResultsTitle": "HCP Search Results",
+    "formFields": [
+      {
+        "label": "Search by NPI Number (National Provider Identifier Number)"
+      },
+      {
+        "label": "NPI Individual Number",
+        "error": "Please use a valid NPI Number",
+        "placeholder": "Enter NPI number"
+      },
+      {
+        "label": "Search by License and Designation"
+      },
+      {
+        "label": "License State",
+        "error": "Please make sure to provide information in the required fields",
+        "placeholder": "Select"
+      },
+      {
+        "label": "Designation",
+        "error": "Please make sure to provide information in the required fields",
+        "placeholder": "Select"
+      },
+      {
+        "label": "License Number",
+        "error": "Please use a valid license number",
+        "placeholder": "Enter license"
+      }
+    ],
+    "dataFields": [
+      {
+        "title": "First Name"
+      },
+      {
+        "title": "Last Name"
+      },
+      {
+        "title": "Designation"
+      },
+      {
+        "title": "License State"
+      },
+      {
+        "title": "License Number"
+      },
+      {
+        "title": "NPI Number"
+      }
+    ],
+    "actions": [
+      {
+        "title": "Search"
+      },
+      {
+        "title": "Login"
+      },
+      {
+        "title": "Register"
+      },
+      {
+        "title": "Back"
+      }
+    ],
+    "messages": {
+      "loading": "Loading...",
+      "dataNotFound": "Thank you for your interest in Merck product samples.Based on the information that you provided, we were unable to verify your eligibility for the program.If you feel this is an error, please verify that the NPI number / State License information was entered correctly. You may re-enter your NPI number / State License information, or switch the search method and try again. If you used or are using the NPI number serch option, please ensure that you entered your Individual NPI number and not your Office NPI number.If you require any assistance or have any questions, please see the see FAQs page or contact us using the options listed at the bottom of the page.",
+      "alreadyRegistered": "Already Registered?",
+      "noInfoFound": "Thank you for your interest in Merck product samples.Based on the information that you provided, we were unable to verify your eligibility for the program.If you feel this is an error, please verify that the NPI number / State License information was entered correctly. You may re-enter your NPI number / State License information, or switch the search method and try again. If you used or are using the NPI number serch option, please ensure that you entered your Individual NPI number and not your Office NPI number.If you require any assistance or have any questions, please see the see FAQs page or contact us using the options listed at the bottom of the page.",
+      "registerManually": "Based on the information that you provided, we are unable to find your information in our system. Please click on the button below to proceed with manual registration."
+    }
+  },
+  "forgotPassword": {
+    "title": "Forgot Password",
+    "formFields": [
+      {
+        "label": "Your email address",
+        "error": "Please use a valid Your email address",
+        "placeholder": "Enter email"
+      }
+    ]
+  },
+  "registrationForm": {
+    "pageTitles": [
+      {
+        "title": "PROFESSIONAL INFORMATION"
+      },
+      {
+        "title": "State Licenses"
+      },
+      {
+        "title": "Addresses"
+      },
+      {
+        "title": "LICENSE"
+      },
+      {
+        "title": "ADDRESS"
+      },
+      {
+        "title": "Terms & Conditions"
+      }
+    ],
+    "formFields": [
+      {
+        "label": "First Name",
+        "placeholder": "Enter first name"
+      },
+      {
+        "label": "Last Name",
+        "placeholder": "Enter last name"
+      },
+      {
+        "label": "Email Address",
+        "placeholder": "Enter email address"
+      },
+      {
+        "label": "NPI number",
+        "placeholder": "Enter NPI number"
+      },
+      {
+        "label": "Specialty",
+        "error": "Please make sure to provide information in the required fields.",
+        "placeholder": "Select specialty"
+      },
+      {
+        "label": "Prof. Designation",
+        "error": "Please make sure to provide information in the required fields.",
+        "placeholder": "Select designation"
+      },
+      {
+        "label": "Confirm Email Address",
+        "fieldMatchError": "Fields do not match.",
+        "placeholder": "Re-enter email address"
+      },
+      {
+        "label": "License Number",
+        "error": "Please use a valid license number."
+      },
+      {
+        "label": "License State"
+      },
+      {
+        "label": "Address"
+      },
+      {
+        "label": "City"
+      },
+      {
+        "label": "State"
+      },
+      {
+        "label": "ZIP"
+      },
+      {
+        "label": "DEA"
+      },
+      {
+        "label": "Phone"
+      },
+      {
+        "label": "Fax"
+      }
+    ],
+    "actions": [
+      {
+        "label": "Add New"
+      },
+      {
+        "label": "Add License"
+      },
+      {
+        "label": "Add Address"
+      },
+      {
+        "label": "Edit"
+      },
+      {
+        "label": "Delete"
+      }
+    ],
+    "messages": {
+      "noLicenseFound": "No license found. You can add it now.",
+      "noAddressFound": "No address found. You can add it now.",
+      "acceptText": "I accept all of the above.",
+      "back": "Back",
+      "submit": "Submit"
+    }
+  },
+  "registrationConfirmation": {
+    "message": "Congratulations",
+    "action": "Login"
+  },
+  "deleteLicenseAddress": {
+    "message": "Once deleted, it can not be undone.",
+    "actions": [
+      {
+        "label": "Cancel"
+      },
+      {
+        "label": "Delete"
+      }
+    ]
+  },
+  "addEditAddress": {
+    "actions": [
+      {
+        "label": "Add Address"
+      },
+      {
+        "label": "Edit Address"
+      },
+      {
+        "label": "Save"
+      },
+      {
+        "label": "Cancel"
+      },
+      {
+        "label": "Save"
+      }
+    ],
+    "formFields": [
+      {
+        "label": "Address Line 1",
+        "placeholder": "Enter address line 1"
+      },
+      {
+        "label": "Address Line 2",
+        "placeholder": "Enter address line 2"
+      },
+      {
+        "label": "City",
+        "placeholder": "Enter city"
+      },
+      {
+        "label": "State",
+        "placeholder": "Select state",
+        "error": "Please make sure to provide information in the required fields."
+      },
+      {
+        "label": "ZIP",
+        "placeholder": "Enter ZIP"
+      },
+      {
+        "label": "DEA",
+        "placeholder": "Enter DEA"
+      },
+      {
+        "label": "Phone",
+        "placeholder": "Enter phone number"
+      },
+      {
+        "label": "Fax",
+        "placeholder": "Enter fax number"
+      },
+      {
+        "label": "Set as preferred address",
+        "placeholder": ""
+      },
+      {
+        "label": "CDS",
+        "placeholder": "Enter CDS"
+      }
+    ]
+  },
+  "changePIN": {
+    "pageTitles":[
+      {
+        "title":"Change PIN"
+      },{
+
+      }
+    ]
+  },
+  "addEditLicense": {
+    "pageTitles": [
+      {
+        "label": "Add License"
+      },
+      {
+        "label": "Edit License"
+      }
+    ],
+    "formFields": [
+      {
+        "label": "License Number",
+        "placeholder": "Enter license number"
+      },
+      {
+        "label": "State",
+        "placeholder": "Select state",
+        "error": "Please make sure to provide information in the required fields."
+      }
+    ],
+    "actions": [
+      {
+        "label": "Save",
+        "placeholder": "Enter license number"
+      },
+      {
+        "label": "Cancel"
+      },
+      {
+        "label": "Save License"
+      }
+    ]
+  },
+  "common": {
+    "validityText": "Please enter a valid input ",
+    "logOutText":"Are you sure you want to logout?"
+  }
+}

@@ -1,0 +1,166 @@
+@import "../../../../styles/responsive";
+@import "../../../../styles/variables";
+@import "../../../../styles/mixin";
+
+.products-filter-wrapper {
+    background-color: var(--colorWhite);
+   // height: calc(100vh - 60px);
+    height: 100%;
+    box-shadow: 0px 0px 4px var(--boxShadowColorShade_1);
+
+    .filter-clear {
+        padding: 15px;
+        text-align: right;
+
+        span {
+            @include font(var(--fontBold), 600, 14px, 18px);
+        }
+
+        .fa-filter {
+            font-size: 14px;
+            color: var(--primaryColor);
+            cursor: pointer;
+        }
+    }
+
+    .filter-group {
+        width: 100%;
+        padding: 15px;
+
+        h3 {
+            @include font(var(--fontBold), 600, 16px, 18px);
+            color: var(--textPrimary);
+        }
+
+        .divider {
+            margin: 15px -15px;
+            border: 1px solid #f2f2f2;
+            box-shadow: 1px 0px 1px #e5e5e5;
+        }
+
+        .list-group {
+            padding-left: 26px;
+
+            .list-group-item {
+                border: none;
+                padding: 0px;
+                margin-bottom: 10px;
+
+                .checkbox-wrapper {
+                    padding-left: 25px;
+                    margin-bottom: 0px;
+                    @include font(var(--fontRegular), 400, 14px, 18px);
+                    color: var(--textPrimary);
+
+                    .checkmark {
+                        position: absolute;
+                        top: 2px;
+                        left: 0;
+                        height: 13px;
+                        line-height: 13px;
+                        width: 13px;
+
+                        &:after {
+                            font-size: 10px;
+                            padding: 0 2px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: map_get($grid-breakpoints, lg)) {
+    #products-list-container .col-left {
+        display: none;
+    }
+
+    #page-content-wrapper #products-list-container .col-right {
+        width: 100%;
+    }
+
+    .products-filter-wrapper {
+        box-shadow: none;
+
+        .filter-group {
+            min-height: 70vh;
+
+            .list-group {
+                padding-left: 0px !important;
+                display: block;
+
+                .list-group-item {
+                    display: inline-flex !important;
+                    width: 50%;
+                    align-items: center;
+
+                    .checkbox-wrapper {
+                        padding-left: 30px;
+                        margin-bottom: 0px;
+                        @include font(var(--fontRegular), 600, 15px, 25px);
+                        color: var(--textPrimary);
+
+                        .checkmark {
+                            position: absolute;
+                            top: 2px;
+                            left: 0;
+                            height: 22px;
+                            line-height: 22px;
+                            width: 22px;
+
+                            &:after {
+                                font-size: 15px;
+                                padding: 0 2px;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+        .filter-header {
+            padding: 5px 15px;
+            background-color: var(--primaryColor);
+            color: var(--colorSurface);
+
+            .modal-heading {
+                text-align: center;
+                @include font(var(--fontRegular), 600, 20px, 24px);
+            }
+
+            .modal-close-wrapper {
+                text-align: right;
+
+                a {
+                    color: var(--colorOnSurface);
+                    font-size: 1.5em;
+                }
+            }
+        }
+
+        .filter-footer {
+            text-align: center;
+            padding: 15px;
+            border: 1px solid var(--colorCardBorder_1);
+
+            .btn {
+                width: 80%;
+            }
+        }
+
+        .filter-clear {
+            span {
+                @include font(var(--fontBold), 600, 16px, 18px);
+            }
+
+            .fa-filter {
+                color: var(--colorSurface);
+                font-size: 16px;
+            }
+        }
+
+    }
+
+}

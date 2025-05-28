@@ -1,0 +1,46 @@
+<section class="license-container overflow-hidden container-fluid">
+    <app-intro-header [headerData]="null" [iconSize]="'3.5em'" [headerData]="'MANAGE_SUBSCRIPTION_HEADER_TEXT'|textDescription"
+      [withBorder]="false" [isWrapper]="false" [icon]="'fas fa-bell'">
+      <h1>Automated Requests ({{subscriptionProductsArray?.length}})</h1>
+  
+    </app-intro-header>
+    <div class="d-flex row g-4 subscription-list">
+      <div *ngIf="subscriptionProductsArray?.length" class="row subscription-list-header">
+        <div class="col-lg-12 col-12"><span class="subscription-list-header-label">Automated Request Products</span></div>
+      </div>
+      <ng-container *ngFor="let item of subscriptionProductsArray ;let j =index">
+  
+        <div class="row subscription-box-shadow">
+          <div class="body d-flex justify-content-between license-info">
+            <div class="col-lg-3 col-md-5 col-sm-5">
+              <div class="subscription-img">
+                <img *ngIf="item?.productLogo" [src]="item?.productLogo" alt="Product Image" />
+                <div class="d-flex justify-content-center">
+                  <i *ngIf="!item?.productLogo" class="fak fa-inventory icon fa-4x"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-5 card-product">
+              <span class="card-value">{{item.productName}}</span>
+              <p class="description">{{item.productDescription}}</p>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 recurring">
+              <div class="subscription-checkbox-control">
+                <button type="button" (click)="unSubscribe(item.subscriptionId)" class="btn btn-light btn-sm btn-light">
+                  <i class="fa fa-bell-slash"></i> Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="row no-records" *ngIf="!subscriptionProductsArray?.length">
+      <div class="col-sm-12 no-result-found">
+          No Automated Request available.
+      </div>
+  </div>
+
+  </section>

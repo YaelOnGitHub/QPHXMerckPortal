@@ -1,0 +1,65 @@
+<section class="help container"> 
+
+<div class="faq-container">
+  <div class="ads-container">
+    <img src="https://qprx-artifacts.s3.us-east-1.amazonaws.com/SIT/images/generic-images/ads-banner.png" />
+  </div>
+  <div class="heading-search">
+    <h1>Frequently asked questions</h1>
+    <input type="text" class="help-search" placeholder="Type keyword" [(ngModel)]="inputValue"  (input)="onSearch($event)"/>
+    <button *ngIf="inputValue" (click)="clearInput()" class="clear-button">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <!-- <div class="row px-2 intro-section">
+    <div class="col-12 col-sm-12 mb-4">
+        <button id='contentDesktop' type="button" class="btn btn-primary btn-round width-155"
+            (click)="redirectBack()">Back</button>
+    </div>
+  </div> -->
+    <!-- <app-intro-header [iconSize]="'3.5em'" [headerData]="'FAQ_HEADER_TEXT' | textDescription"
+    [withBorder]="true" [isWrapper]="true" [icon]="'fa-regular fa fa-question-circle'">
+    <h1>Frequently asked questions</h1>
+  </app-intro-header> -->
+  
+  <div class="quest-ans-section">
+    <div class="for-mobile-help-bg"></div>
+    <div class="right">
+      <ng-container *ngIf="groupFaqByCategory.length > 0; else noData">
+        <div class="accordion mt-2" [id]="'accordionExample'+ i" *ngFor="let item of groupFaqByCategory; let i=index">
+          <span class="category-title">{{item.category}}</span>
+          <div *ngFor="let faq of item.faqs; let j =index" class="accordion-item">
+            <h4 class="accordion-header" [id]="'heading'+j+i">
+              <button class="accordion-button" type="button" [ngClass]="{ 'collapsed': j+i != -1 }" data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#collapse'+j+i" aria-expanded="true" [attr.aria-controls]="'collapse'+j+i">
+                {{faq.question}}
+              </button>
+            </h4>
+            <div [id]="'collapse'+j+i" class="accordion-collapse collapse" [ngClass]="{ 'show': j+i == -1 }"
+              [attr.aria-labelledby]="'heading'+j+i" data-bs-parent="#accordionExample">
+              <div class="accordion-body" [innerHTML]="faq.answer"> 
+                <!-- {{fq.body}} -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noData>
+        <div class="accordion mt-5" id="accordionExample">
+          Your search did not match any result.
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <div class="highlight">
+    <p>Do you still have questions? Please call our help center  <a href="tel:1-888-664-8595">1-888-664-8595</a></p>
+</div>
+</div>
+</section>
+ 
+
+
+
+<div *ngIf="isMerck" class="faq-footer-text" [innerHTML]="'FAQ_APPLICATION_FOOTER_TEXT'|textDescription:true">
+</div>

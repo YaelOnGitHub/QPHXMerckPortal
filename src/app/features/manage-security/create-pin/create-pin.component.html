@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <app-intro-header [headerData]="'CREATE_PIN_HEADER_TEXT'|textDescription" [withBorder]="true"
+                [icon]="'fak fa-create-pin'" [iconSize]="'4em'" [contentTemplate]="contentTemplate" [subHeading]="">
+                <p class="h1">Create PIN</p>
+            </app-intro-header>
+            <ng-template #contentTemplate>
+                <div class="content">
+                    <div [formGroup]="formGroup">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <app-text-input [label]="'Create 4-digit PIN'" [isRequired]="true"
+                                    [formControlName]="'NewPin'" [placeholder]="'Enter PIN'" [maxLength]="'4'"
+                                    (change)="onNewPinChanged()"
+                                    [type]="createPin ? 'text' : 'password'"
+                                    >
+                                    <div class="input-group-text">
+                                        <i alt="show" class="far fa-eye eye-show" (click)="createPin = !createPin"
+                                            *ngIf="createPin"></i>
+                                        <i alt="hide" class="far fa-eye-slash eye-hide"
+                                            (click)="createPin = !createPin" *ngIf="!createPin"></i>
+                                    </div>
+                                </app-text-input>
+                            </div>
+                            <div class="col-lg-6">
+                                <app-text-input [label]="'Confirm PIN'" [formControlName]="'ConfirmPin'"
+                                    [type]="showPassword ? 'text' : 'password'" onpaste="return false;"
+                                    ondrop="return false;" [isRequired]="true" [placeholder]="'Re-enter PIN'"
+                                    [maxLength]="'4'" appDisableCutCopyPaste (change)="onConfirmPinChanged()">
+                                    <div class="input-group-text">
+                                        <i alt="show" class="far fa-eye eye-show" (click)="showPassword = !showPassword"
+                                            *ngIf="showPassword"></i>
+                                        <i alt="hide" class="far fa-eye-slash eye-hide"
+                                            (click)="showPassword = !showPassword" *ngIf="!showPassword"></i>
+                                    </div>
+                                </app-text-input>
+                                <small class="text-danger" customError
+                                    *ngIf="formGroup.controls['ConfirmPin'].hasError('noPINMatch')">
+                                    PIN does not match
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+    <div class="card-container termsAndConditions-container">
+        <div class="header">
+            <div class="left d-flex align-items-center">
+                <div class="header-capital-letter me-2">{{('registrationForm.pageTitles' | translate)[5]?.title}}
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="row g-3">
+                <div class="col-lg-12"><span [innerHTML]="'CREATE_PIN_TERMS_CONDITIONS'|textDescription"></span></div>
+                <div class="col-lg-12 checkbox">
+                    <label class="col checkbox-wrapper d-flex align-items-center justify-start-start mb-2">
+                        <span class="sub-content">{{('registrationForm.messages.acceptText' | translate)}}</span>
+                        <input type="checkbox" [formControlName]="'acceptTermsAndConditions'"
+                            (change)="onCheckChange($event)">
+                        <span class="checkmark"></span>
+                    </label>
+                    <div class="d-flex flex-wrap justify-content-end">
+                        <button class="btn btn-round  width-160" (click)="navigate()">Back</button>
+                        <button type="submit"
+                            [disabled]="!formGroup.valid || !formGroup.get('acceptTermsAndConditions').value"
+                            class="btn btn-round btn-primary add-button ms-4 width-160"
+                            (click)="onSubmit()">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

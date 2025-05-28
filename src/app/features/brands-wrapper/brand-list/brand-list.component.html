@@ -1,0 +1,51 @@
+<div class="brands-listing-wrapper">
+  <div class="row">
+    <app-intro-header [headerData]="'BRAND_PAGE_HEADER_TEXT' | textDescription" [iconSize]="'3em'" [withBorder]="true" [isWrapper]="true"
+    [icon]="''">
+        <h1 class="text-title">Brands<span *ngIf="allBrandsList?.length > 0 "> ({{allBrandsList.length}})</span></h1>
+    </app-intro-header>
+  </div>
+  
+    <div class="row  sort-search-wrapper  mt-2 mb-4">
+
+    <div class="col-md-5 col-sm-4 col-lg-4 top-items">
+        <span class="sort-title">Sort By: </span>
+        <div class="group active first-filter" (click)="onChangeSorting()" [class.active]="brandRequestParam.sort === 'ASC'">
+          <i class="fa-regular fa-arrow-up-short-wide"></i> <span> Ascending</span>
+      </div>
+      <div class="group" (click)="onChangeSorting()" [class.active]="brandRequestParam.sort !== 'ASC'">
+          <i class="fa-regular fa-arrow-down-wide-short"></i> <span> Descending</span>
+      </div>
+    </div>
+
+
+    <div class="search-group  col-md-4 col-sm-4 col-lg-4">
+      <div class="input-group">
+        <input type="text" class="form-control" [formControl]="searchBrandValue"
+          placeholder="Type a Product Name" />
+        <span class="input-group-text" *ngIf="searchBrandValue?.value==''"><i
+            class="fa-light fa-magnifying-glass"></i></span>
+        <span class="input-group-text" (click)="onClearSearch()" *ngIf="searchBrandValue?.value!==''"><i
+            class="fa-light fa-xmark"></i></span>
+      </div>
+    </div>
+
+    </div>
+
+  
+
+  <div class="brands-item-wrapper">
+    <div class="brand" *ngIf="allBrandsList?.length">
+      <div class="row brand-item" *ngFor="let brand of allBrandsList">
+        <app-brand-item [brand]="brand">
+        </app-brand-item>
+      </div>
+    </div>
+    <div class="row" *ngIf="!allBrandsList?.length">
+      <div class="col-sm-12 no-result-found">
+        No brand available!
+      </div>
+    </div>
+
+  </div>
+</div>

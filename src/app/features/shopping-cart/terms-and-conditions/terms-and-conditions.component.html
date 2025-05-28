@@ -1,0 +1,13 @@
+<div id="terms-and-conditions-wrapper" [formGroup]="formGroup">
+    <div class="terms-and-conditions-card" *ngFor="let termsAndConditionItem of termsAndConditionsList">
+       <div class="content">
+        <p [innerHTML]="termsAndConditionItem?.fieldValue"></p>
+       </div>
+    </div>
+    <div class="terms-and-conditions-card-footer">
+        <label class="col checkbox-wrapper"> I accept the Terms and Conditions.
+            <input type="checkbox" [formControlName]="'termsAndCondition'" (change)="onChangeTermsAndConditions($event)">
+            <span class="checkmark"></span>
+        </label>
+    </div>
+</div>

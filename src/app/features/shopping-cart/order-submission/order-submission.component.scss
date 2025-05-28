@@ -1,0 +1,114 @@
+@import "../../../../styles/mixin";
+@import "../../../../styles/responsive";
+@import "../../../../styles/variables";
+@import "../../../../styles/mixin";
+
+#contentDesktop {
+    display: block;
+}
+#contentMobile {
+    display: none;
+}
+
+.order-submission-container {
+    background-color: var(--colorSurface);
+    border: 1px solid var(--colorCardBorder);
+    border-radius: 5px;
+    padding: 30px 20px;
+    input {
+        text-indent: 10px;
+    }
+    ::-webkit-input-placeholder {
+        /* Edge */
+        @include font(var(--fontRegular), 400, 14px, 18px);
+    }
+
+    :-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        @include font(var(--fontRegular), 400, 14px, 18px);
+    }
+
+    ::placeholder {
+        @include font(var(--fontRegular), 400, 14px, 18px);
+    }
+    .order-submission-menu {
+        display: flex;
+        border: solid 1px var(--colorCardBorder);
+        width: 364px;
+        flex: wrap;
+        border-radius: 25px;
+        background-color: var(--colorSecondary);
+        color: var(--colorOnSecondary);
+        div {
+            margin-top: 0;
+            border-top-left-radius: 25px;
+            border-bottom-left-radius: 25px;
+        }
+        div span,
+        div + span {
+            margin-left: 15px;
+            margin-top: 10px;
+            @include font(var(--fontRegular), 700, 16px, 18px);
+        }
+        .nav {
+            background-color: var(--primaryColor);
+            height: 40px;
+            width: 160px;
+            display: flex;
+            flex-wrap: wrap;
+            padding-left: 0;
+            margin-bottom: 0;
+            color: var(--colorOnPrimary);
+            //@include font(var(--fontRegular), 700, 16px, 18px);
+        }
+    }
+ 
+    .order-submission-content {
+        p{
+            @include font(var(--fontRegular), 400, 14px, 22px);
+            color: var(--textSecondary);
+        }
+        .forgotPin a {
+            @include font(var(--fontRegular), 400, 12px, 22px);
+            color: var(--primaryColor);
+            margin-top: -5px;
+            margin-left: 4px;
+        }
+    }
+}
+
+@media (max-width: map_get($grid-breakpoints,md)) {
+    #contentDesktop {
+        display: none;
+    }
+    #contentMobile {
+        display: block;
+        order:5;
+    }
+    .order-submission-container {
+        padding: 30px 0 0 0;
+        .order-submission-menu {
+            div + span {
+                margin-left: 14px;
+                margin-top: 10px;
+                @include font(var(--fontRegular), 700, 14px, 18px);
+            }
+            width: 320px;
+            .nav {
+                width: 140px;
+                span {
+                    margin-top: 10px;
+                }
+                .font-small {
+                    @include font(var(--fontRegular), 700, 14px, 18px);
+                }
+            }
+        }
+        .order-submission-content {
+            .font-highlighted {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+    }
+}

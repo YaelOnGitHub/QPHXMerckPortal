@@ -1,0 +1,192 @@
+<div class="registration-card ">
+    <app-intro-header [headerData]="'SEARCH_REGISTRATION_HEADER_HEADER_TEXT'|textDescription"
+        [withBorder]="true" [icon]="isMerck ? '' : 'fak fa-thanks'" [iconSize]="'5em'">
+    </app-intro-header>
+
+    <div class="section-divider d-block d-md-none"></div>
+    <div class="section-Wrapper">
+        <div class="section-body">
+            <h2>{{'hcpSearch.title' | translate}}</h2>
+            <form [formGroup]="formGroup" class="mt-4">
+                <div class="form-check">
+                    <div class="form-check-input-block">
+                        <input class="form-check-input" [value]="HCP_SEARCH_BY_NPI_NUMBER" type="radio"
+                            (change)="onEligibilitySearchChange(HCP_SEARCH_BY_NPI_NUMBER)"
+                            [formControlName]="'hcpSearchBy'" name="hcpSearchBy">
+                    </div>
+                    <label class="form-check-label">
+                        {{ ('hcpSearch.formFields' | translate)[0]?.label }}
+                    </label>
+                </div>
+                <div class="row mt-4 mb-4 " *ngIf="HCP_SEARCH_BY == HCP_SEARCH_BY_NPI_NUMBER">
+                    <div class="col-sm-12 col-md-6 col-lg-4 mb-sm-4 mb-4 pt-4">
+                        <div class="formGroup">
+                            <app-text-input [errorMessage]="('hcpSearch.formFields' | translate)[1]?.error"
+                                [maxLength]="'10'" [label]="('hcpSearch.formFields' | translate)[1]?.label"
+                                [placeholder]="('hcpSearch.formFields' | translate)[1]?.placeholder"
+                                [formControlName]="'npiNumber'" (change)="onNPINumberTypeChanged()" [isRequired]="true">
+                            </app-text-input>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 mb-sm-4 mb-4 captcha-social">
+                        <div class="formGroup mt-lg-2">
+                            <re-captcha (resolved)="resolved($event)" (error)="errored($event)" errorMode="handled"
+                                formControlName="captchaResponse"></re-captcha>
+                        </div>
+
+                        <div *ngIf="isSocialMediaEnable && isSocialLogin == 'google'" class="google-login">
+                          <img src="../assets/images/google-icon.jpg" alt="Google">
+                       </div> 
+                       <div  class="apple-login" *ngIf="isSocialMediaEnable && isSocialLogin == 'apple'" >
+                        <i class="fa-brands fa-apple"></i>
+                      </div>   
+                    </div>
+        
+                    <div class="col-sm-12 col-md-6 col-lg-4 d-none d-sm-block mt-4">
+                        <div class="formGroup" style="    margin-bottom: 30px;">
+                            <button [disabled]="!formGroup.valid" (click)="onSearchHCP(formGroup)"
+                                class="btn btn-primary btn-round width-155">{{('hcpSearch.actions' |
+                                translate)[0]?.title }}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-check mt-4">
+                    <div class="form-check-input-block">
+                        <input class="form-check-input" [value]="HCP_SEARCH_BY_STATE_AND_DESIGNATION" type="radio"
+                            (change)="onEligibilitySearchChange(HCP_SEARCH_BY_STATE_AND_DESIGNATION)"
+                            [formControlName]="'hcpSearchBy'" name="hcpSearchBy">
+                    </div>
+                    <label class="form-check-label">
+                        {{ ('hcpSearch.formFields' | translate)[2]?.label }}
+                    </label>
+                </div>
+                <div class="row mt-4 mb-4  " *ngIf="HCP_SEARCH_BY == HCP_SEARCH_BY_STATE_AND_DESIGNATION">
+                    <div class="col-sm-12 col-md-6 col-lg-2 mb-sm-4 mb-4 pt-3">
+                        <app-dropdown [multiSelect]="false" [isRequired]="true"
+                            [header]="('hcpSearch.formFields' | translate)[3]?.label"
+                            [errorMsg]="('hcpSearch.formFields' | translate)[3]?.error"
+                            [placeholder]="('hcpSearch.formFields' | translate)[3]?.placeholder"
+                            [formControlName]="'licenseState'" [dropDownOptions]="licenseStateList"
+                            [bindLabel]="'stateCode'" [bindValue]="'stateCode'" [searchable]="true"></app-dropdown>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-2 mb-sm-4 mb-4 pt-3">
+                        <app-dropdown [multiSelect]="false" [isRequired]="true"
+                            [errorMsg]="('hcpSearch.formFields' | translate)[4]?.error"
+                            [header]="('hcpSearch.formFields' | translate)[4]?.label"
+                            [placeholder]="('hcpSearch.formFields' | translate)[4]?.placeholder"
+                            [formControlName]="'designation'" [dropDownOptions]="designationList"
+                            [bindLabel]="'abbreviation'" [bindValue]="'abbreviation'" [searchable]="true"></app-dropdown>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-2 mb-sm-4 mb-4 pt-3">
+                        <app-text-input [label]="('hcpSearch.formFields' | translate)[5]?.label"
+                            [errorMessage]="('hcpSearch.formFields' | translate)[5]?.error"
+                            [formControlName]="'licenseNumber'"
+                            [placeholder]="('hcpSearch.formFields' | translate)[5]?.placeholder" [isRequired]="true">
+                        </app-text-input>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-3 mb-sm-4 mb-4 captcha-social">
+                        <div class="formGroup">
+                            <re-captcha (resolved)="resolved($event)" (error)="errored($event)" errorMode="handled"
+                                formControlName="captchaResponse"></re-captcha>
+                        </div>
+                        <div *ngIf="isSocialMediaEnable && isSocialLogin == 'google'" class="google-login">
+                          <img src="../assets/images/google-icon.jpg" alt="Google">
+                       </div> 
+                       <div  class="apple-login" *ngIf="isSocialMediaEnable && isSocialLogin == 'apple'" >
+                        <i class="fa-brands fa-apple"></i>
+                      </div>   
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-3 mb-sm-4 mt-3 d-none d-sm-block align-self-start">
+                        <div class="formGroup  text-lg-end">
+                            <button [disabled]="!formGroup.valid" (click)="onSearchHCP(formGroup)"
+                                class="btn btn-primary btn-round width-155">{{('hcpSearch.actions' |
+                                translate)[0]?.title }}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="card-footer  d-flex justify-content-end align-items-center mb-2">
+        <span class="me-4">{{'hcpSearch.messages.alreadyRegistered' | translate}}</span> <span (click)="redirectToLogin()"
+            class="btn btn-primary btn-round btn-small d-flex justify-content-center">{{('hcpSearch.actions' |
+            translate)[1]?.title
+            }}</span>
+    </div>
+</div>
+<ng-container *ngIf="isAlreadyLogin && !isNPISearchResult" >
+<h2 class="registration-section-heading" *ngIf="hcpList?.length">{{'hcpSearch.searchResultsTitle' | translate}}
+    ({{hcpList?.length}})</h2>
+<div class="registration-card box-shadow hcpTable-DesktopView justify-content-center align-self-center"
+    *ngIf="isHCPLoader">
+    <div class="p-4 text-center">
+        <span class="HCPListLoader">
+            <i class="fak fa-loader fa-spin"></i>
+            <span class="d-block">
+                {{'hcpSearch.messages.loading' | translate}}
+            </span>
+        </span>
+    </div>
+</div>
+</ng-container>
+
+
+<ng-container *ngIf="isAlreadyLogin" > 
+    <div class="registration-card box-shadow hcpTable-DesktopView mt-4 d-none d-md-block" *ngIf="hcpList?.length && !isNPISearchResult">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>{{('hcpSearch.dataFields' | translate)[0]?.title }}</th>
+                <th>{{('hcpSearch.dataFields' | translate)[1]?.title }}</th>
+                <th>{{('hcpSearch.dataFields' | translate)[2]?.title }}</th>
+                <th>{{('hcpSearch.dataFields' | translate)[3]?.title }}</th>
+                <th>{{('hcpSearch.dataFields' | translate)[4]?.title }}</th>
+                <th>{{('hcpSearch.dataFields' | translate)[5]?.title }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let hcp of hcpList;let i = index" (click)="onSelectHCP(hcp.hcpId,hcp.isTargetHcp)">
+                <td>{{hcp.firstName}}</td>
+                <td>{{hcp.lastName}}</td>
+                <td>{{hcp.profDesignation}}</td>
+                <td>{{hcp.licenseState}}</td>
+                <td>{{hcp.licenseNumber}}</td>
+                <td>{{hcp.npiNumber}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="!isNPISearchResult" id="hcpTable-MobileView" class="d-block d-md-none mb-4 mt-4">
+    <ng-container *ngFor="let hcp of hcpList;let i = index">
+        <div class="card">
+            <div class="card-header">
+                {{hcp.firstName}} {{hcp.lastName}}
+            </div>
+            <div class="card-body" (click)="onSelectHCP(hcp.HcpId)">
+                <div class="row">
+                    <div class="col-6 label mb-2">Designation</div>
+                    <div class="col-6 value mb-2 text-end">{{hcp.profDesignation}}</div>
+                    <div class="col-6 label mb-2">License State</div>
+                    <div class="col-6 value mb-2 text-end">{{hcp.licenseState}}</div>
+                    <div class="col-6 label mb-2">License Number</div>
+                    <div class="col-6 value mb-2 text-end">{{hcp.licenseNumber}}</div>
+                    <div class="col-6 label mb-2">NPI Number</div>
+                    <div class="col-6 value mb-2 text-end">{{hcp.npiNumber}}</div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>
+</ng-container> 
+<div class="card-footer-button d-block d-sm-none">
+    <div class="row">
+        <div class="col-6">
+            <button class="btn btn-link btn-round" (click)="onBackAction()">{{('hcpSearch.actions' |
+                translate)[3]?.title }}</button>
+        </div>
+        <div class="col-6">
+            <button [disabled]="!formGroup.valid" (click)="onSearchHCP(formGroup)"
+                class="btn btn-primary btn-round">{{('hcpSearch.actions' | translate)[0]?.title }}</button>
+        </div>
+    </div>
+</div>

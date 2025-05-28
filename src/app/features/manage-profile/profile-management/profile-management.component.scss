@@ -1,0 +1,168 @@
+@import "../../../../styles/responsive";
+@import "../../../../styles/variables";
+@import "../../../../styles/mixin";
+
+.profile-management-wrapper {
+
+    .profile-row {
+      padding-left: 80px;
+    }
+    .view-profile {
+        h2 {
+            @include font(var(--fontBold), 700, 18px, 21px);
+            color: var(--colorOnSurface_1);
+            text-transform: uppercase;
+        }
+        p {
+            @include font(var(--fontBold), 700, 16px, 22px);
+            color: #8e8e8e;
+        }
+    }
+
+    .social-login {
+      align-self: center;
+      display: flex;
+
+      i {
+        font-size: 40px;
+        line-height: 50px;
+        padding-left: 60px;
+        padding-top: 5px;
+      }
+
+     
+    .google-login {
+      padding-left: 45px;
+      padding-top: 10px;
+
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+      .facebook-login {
+        color: var(--facebookColorCode);
+        font-size: 1.3em;
+      }
+    }
+
+    .profile-management-header-wrapper {
+        h2 {
+            @include font(var(--fontBold), 700, 20px, 24px);
+            color: var(--colorOnSurface_1);
+        }
+
+        p {
+            @include font(var(--fontBold), 600, 16px, 20px);
+        }
+
+        .icon {
+            font-size: 4.5em;
+            color: var(--profileManageColor);
+            line-height: 0px;
+        }
+    }
+
+    .profile-image-wrapper {
+        .circle {
+            width: 90px;
+            height: 90px;
+            margin: auto;
+            background: var(--colorWhite);
+            border-radius: 7px;
+            border-radius: 50%;
+            position: relative;
+            line-height: 90px;
+            text-align: center;
+
+            .profile-img {
+                width: 84px;
+                height: 84px;
+                object-fit: contain;
+                z-index: 2;
+                position: relative;
+                border-radius: 100%;
+            }
+
+            .profile-icon {
+                font-size: 2em;
+                z-index: 2;
+                position: relative;
+            }
+
+            &:after {
+                content: "inner-circle";
+                background-color: var(--colorWhite);
+                width: 84px;
+                height: 84px;
+                position: absolute;
+                margin: auto;
+                border-radius: 52%;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                top: 0;
+                color: transparent;
+                z-index: 1;
+            }
+        }
+    }
+
+    .profile-upload-image-wrapper {
+        width: 35px;
+        height: 35px;
+        margin: -15px auto auto;
+        position: relative;
+        line-height: 33px;
+        text-align: center;
+        border: 1px solid #d3d3d3;
+        border-radius: 100%;
+        z-index: 2;
+        background-color: var(--colorWhite);
+        box-shadow: -1px 4px 10px -4px rgb(42 98 255 / 8%);
+
+        input[type="file"] {
+            opacity: 0;
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            margin: auto;
+        }
+    }
+
+    @media (max-width: map_get($grid-breakpoints,md)) {
+        .view-profile {
+            margin-left: 0;
+            text-align: center;
+            p {
+                word-wrap: break-word;
+            }
+        }
+    }
+
+}
+@media (max-width: map_get($grid-breakpoints,sm)) {
+  .profile-row {
+    padding-left: 0 !important;
+  }
+
+  .social-container {
+    display: block !important;
+    text-align: center;
+  }
+
+  .social-login {
+    display: block !important;
+    text-align: center;
+    padding: 10px;
+
+    .google-login {
+      padding: 0 !important;
+    }
+  }
+}

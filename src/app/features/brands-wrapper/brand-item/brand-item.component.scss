@@ -1,0 +1,118 @@
+@import "../../../../styles/responsive";
+@import "../../../../styles/variables";
+@import "../../../../styles/mixin";
+
+
+.brands-lists {
+  background: var(--colorWhite);
+  padding: 20px;
+  margin-bottom: 15px;
+  height: 205px;
+  border: 1px solid #EDEDED;
+  box-shadow: 0 1px 6px #00000026;
+  border-radius: 3px;
+
+  #contentDesktop {
+    &.brand-link-wrapper {
+        height: fit-content;
+        flex-grow: 1;
+        flex-shrink: 1;
+
+        .brand-link-item{
+            display: inline-flex;
+            margin-bottom: 5px;
+            .fa {
+              color: var(--primaryColor)
+            }
+        }
+
+    }
+
+    &.visit-product-wrapper {
+        display: flex;
+        justify-content: flex-start;
+    }
+    
+    .link-description-font {
+      @include font(var(--fontRegular), 400, 12px, 18px);
+      text-transform: capitalize;
+  }
+  .border-box {
+    border: 1px solid var(--colorCardBorder_1);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+}
+
+  .brand-name {
+      @include font(var(--fontRegular), 700, 18px, 16px);
+      cursor: pointer;
+    }
+    .brand-description {
+  
+      @include font(var(--fontRegular), 400, 16px, 14px);
+      padding-top: 10px;
+      cursor: pointer;
+    }
+  .brand-img {
+    border-right: 1px solid #D3D3D3;
+    height: 100%;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    img {
+      max-width: 100%;
+      padding-right: 30px;    
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .box-warning {
+    padding: 5px 7px;
+    border-radius: 5px;
+    border: 1px solid;
+  }
+
+  .no-borders {
+    border: 0;
+  }
+  
+  .brand-link-item > img{
+    height: 18px;
+  }
+}
+
+@media (max-width: map_get($grid-breakpoints, sm)) {
+  .brands-lists {
+      height: 400px;
+      .brand-img {
+        border: 0;
+      }
+  }
+}
+
+@media (max-width: map_get($grid-breakpoints, md)) {
+
+  .brand-img {
+    img {
+      position: inherit !important;
+      top: 0 !important;
+      left: 0 !important;
+      transform: none !important;
+      padding-right: 10px !important;
+    }
+  }
+}
+
+@media (max-width: map_get($grid-breakpoints, lg)) {
+  .brands-lists {
+      overflow-x: auto !important;
+  }
+}

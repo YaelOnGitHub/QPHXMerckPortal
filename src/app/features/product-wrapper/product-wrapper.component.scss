@@ -1,0 +1,30 @@
+@import "../../../styles/responsive";
+@import "../../../styles/variables";
+@import "../../../styles/mixin";
+
+#products-list-container {
+    // margin-top: -30px;
+    background-color: var(--layoutBgColor);
+    background-image: url("../../../assets/images/backgrounds/product-page-dots-bg.png");
+
+    .col-left {
+        flex: 0 0 auto;
+        width: 19%;
+        margin-left: -0.75rem;
+    }
+    .col-right {
+        flex: 0 0 auto;
+        width: calc(100% - 19%);
+    }
+
+    @media (max-width: map_get($grid-breakpoints,md)) {
+        .col-left {
+            width: 100%;
+            display: none;
+        }
+        .col-right {
+            flex: 0 0 auto;
+            width: 100%;
+        }
+    }
+}

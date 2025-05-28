@@ -1,0 +1,90 @@
+@import "../../../../styles/responsive";
+.isInvalidForm {
+    // animation: error-form 2s ease-in-out forwards;
+    border-bottom: 2px solid red !important;
+}
+.text-input-container {
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        margin-bottom: 1%;
+        input:focus {
+            // border: 0px 0px 2px 2px #0bc2a1;
+        }
+        label {
+            font-family: var(--fontRegular);
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 20px;
+            color: var(--textPrimary);
+            margin-bottom: 0px;
+        }
+    }
+    .form-control {
+        box-shadow: none !important;
+        border: none;
+        border-bottom: 1px solid var(--formControlBottomBr);
+        border-radius: 0px !important;
+        height: 40px;
+        padding-left: 0px;
+        font-family: var(--fontBold);
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 16px;
+        color: var(--textPrimary);
+        letter-spacing: .44px;
+    }
+
+    ::placeholder {
+        font-family: var(--fontRegular);
+        color: var(--formControlPlaceholderColor);
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        padding-left: 0px;
+        letter-spacing: 0.44px;
+        // text-transform: capitalize;
+    }
+    :-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        font-family: var(--fontRegular);
+        color: var(--formControlPlaceholderColor);
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        padding-left: 0px;
+        letter-spacing: 0.44px;
+        // text-transform:capitalize;
+    }
+
+    ::-ms-input-placeholder {
+        /* Microsoft Edge */
+        font-family: var(--fontRegular);
+        color: var(--formControlPlaceholderColor);
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        padding-left: 0px;
+        letter-spacing: 0.44px;
+        // text-transform: capitalize;
+    }
+    .form-input-group {
+        width: 100%;
+    }
+
+    ::ng-deep .input-group-text {
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        padding: 0 5px;
+        border-bottom: 1px solid var(--formControlBottomBr);
+    }
+}
+
+@media (max-width: map_get($grid-breakpoints,md)) {
+    .form-control {
+        font-size: 15px;
+    }
+}

@@ -1,0 +1,38 @@
+<div class="add-edit-license-container modal-container">
+    <header class="modal-header">
+        <span *ngIf="!isEdit">{{('addEditLicense.pageTitles' | translate)[0]?.label}}</span>
+        <span *ngIf="isEdit">{{('addEditLicense.pageTitles' | translate)[1]?.label}}</span>
+        <span type="button" aria-label="Close" class="close float-end" (click)="closeModal()">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </span>
+    </header>
+    <div [formGroup]="formGroup">
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-10 offset-sm-1">
+                    <app-text-input [label]="('addEditLicense.formFields' | translate)[0]?.label"
+                        [placeholder]="('addEditLicense.formFields' | translate)[0]?.placeholder"
+                        [formControlName]="'licenseNumber'" [isRequired]="true"  [maxLength]="'20'" >
+                    </app-text-input>
+                    <app-dropdown [multiSelect]="false" [header]="('addEditLicense.formFields' | translate)[1]?.label"
+                        [placeholder]="('addEditLicense.formFields' | translate)[1]?.placeholder"
+                        [formControlName]="'licenseState'"
+                        [errorMsg]="('addEditLicense.formFields' | translate)[1]?.error" [searchable]="true"
+                        [dropDownOptions]="stateList" [bindLabel]="'stateCode'" [bindValue]="'stateCode'"
+                        [isRequired]="true">
+                    </app-dropdown>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-link-black ms-5 "
+                (click)="closeModal()">{{('addEditLicense.actions' | translate)[1]?.label}}</button>
+            <button *ngIf="!isEdit" [disabled]="!formGroup.valid" type="button"
+                class="btn btn-primary ms-2  btn-round  btn-small" (click)="addEditLicense()">{{('addEditLicense.actions'
+                | translate)[0]?.label}}</button>
+            <button *ngIf="isEdit" [disabled]="!formGroup.valid" type="button" class="btn btn-primary btn-small btn-round  "
+                (click)="addEditLicense()">{{('addEditLicense.actions' |
+                translate)[2]?.label}}</button>
+        </div>
+    </div>
+</div>

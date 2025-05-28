@@ -1,0 +1,27 @@
+<div class="row brands-lists">
+  <div class="col-sm-3">
+    <figure class="brand-img" (click)="redirectToProduct(brand)">
+      <img [src]="brand?.imageUrl" alt="Image" />
+    </figure>
+  </div>
+  <div class="col-sm-9">
+    <div class="brand-name" (click)="redirectToProduct(brand)">{{brand?.name}}</div>
+    <div class="brand-description" (click)="redirectToProduct(brand)" [innerHTML]="brand?.description" ></div>
+      <div #boxWarning  class="box-warning" [ngClass]="{'no-borders':isDefaultWarning}" >
+      </div>
+
+      <div class="col-sm-12 mt-2">
+        <div *ngIf="brand?.brandAdditionalUrls?.length>0" id='contentDesktop' class="brand-link-wrapper">
+            <ng-container *ngFor="let item of brand?.brandAdditionalUrls">
+                <div class="brand-link-item cursor  border-box px-2 me-2"
+                    (click)="accessLink(item?.linkUrl)">
+                    <img [src]="item?.iconUrl" alt=""/>
+                    <span class="primary link-description-font ms-1">{{item?.linkTitle}}</span>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+  </div>
+
+</div>

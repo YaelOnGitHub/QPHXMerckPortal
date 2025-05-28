@@ -1,0 +1,119 @@
+@import "../../../../styles/responsive";
+@import "../../../../styles/variables";
+@import "../../../../styles/mixin";
+
+.products-listing-wrapper {
+    padding: 34px 50px;
+}
+
+.filter-mobile-view {
+  padding-top: 10px
+}
+
+.sort-search-wrapper {
+    h1 {
+        @include font(var(--fontBold), 700, 20px, 24px);
+        color: var(--textPrimary);
+    }
+
+    .sort-result {
+        p {
+            @include font(var(--fontBold), 600, 15px, 18px);
+            color: var(--textPrimary);
+            margin-bottom: 0px;
+        }
+
+        span {
+            @include font(var(--fontRegular), 400, 14px, 18px);
+            color: var(--textPrimary);
+        }
+    }
+
+    .sort-dropdown {
+        background: var(--colorWhite);
+        border: 1px solid var(--colorSecondary);
+        border-radius: 25px;
+
+        .nav-link {
+            padding: 5px 10px;
+            @include font(var(--fontRegular), 400, 15px, 18px);
+            min-width: 125px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--textPrimary);
+        }
+    }
+
+    .search-group {
+      margin-left: auto;
+        // width: 45%;
+        &.mobile-view {
+            width: auto;
+        }
+
+        .form-control {
+            padding-right: 32px;
+            background: var(--colorWhite);
+            border: 1px solid var(--colorSecondary);
+            border-radius: 25px;
+        }
+
+        .input-group-text {
+            background-color: transparent;
+            border: none;
+            border-radius: 0.25rem;
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            bottom: 0px;
+            z-index: 3;
+            color: var(--primaryColor);
+        }
+    }
+
+}
+
+.no-result-found {
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: map_get($grid-breakpoints, lg)) {
+    .products-listing-wrapper {
+        padding: 0px;
+    }
+
+    .search-group {
+        text-align: end;
+    }
+
+    .top-search {
+        padding-top: 55px;
+
+        .input-group {
+            position: absolute;
+            width: calc(100% - 15px);
+            left: 10px;
+            top: 0;
+        }
+    }
+
+    :host ::ng-deep {
+        .pagination {
+            justify-content: center !important;
+        }
+    }
+
+}
+
+@media (max-width: map_get($grid-breakpoints, md)) {
+  .intro-section {
+    padding-top: 40px !important;
+  }  
+  .products-listing-wrapper {
+        padding: 0px;
+    }
+}
