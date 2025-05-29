@@ -41,6 +41,9 @@ export class SuggestionsComponent implements OnInit, OnDestroy {
       this.sharedService.sendSuggest.next(text);
       this.SuggestFadeOut();
       
+      // Clear the textarea by sending an empty string
+      this.sharedService.sendTextInput.next('');
+      
       // Reset the processing flag after a short delay
       setTimeout(() => {
         this.isProcessing = false;

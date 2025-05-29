@@ -6,12 +6,13 @@ textarea{
     outline: none;
     border: none;
     resize: none;
-    overflow: hidden;
+    overflow-y: auto;
     padding: 0;
     margin: 0;
     line-height: 22px;
     box-sizing: border-box;
     display: block;
+    max-height: 100px;
 }
 textarea::placeholder{color: #9E9E9E;}
 
@@ -19,6 +20,8 @@ textarea::placeholder{color: #9E9E9E;}
     border: 1px solid transparent;
     border-radius: 8px;
     transition: border-color 0.2s ease;
+    max-height: 100px;
+    overflow: hidden;
 }
 
 .focus-border:focus-within {

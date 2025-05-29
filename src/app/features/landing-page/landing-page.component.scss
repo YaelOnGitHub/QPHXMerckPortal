@@ -46,7 +46,7 @@
 
 .landing-area {
   display: flex;
-  // height: 87vh;
+  height: 87vh;
   .landing-area-content{
     width: 70%;
     margin-right:5%;
@@ -106,7 +106,7 @@
     }
 }
   .landing-form {
-    // justify-content: center;
+    justify-content: center;
     max-width: 25%;
     width: 100%;
     padding: 20px;
@@ -351,7 +351,7 @@
 
 
 .merck-container {
-  // min-height: calc(100vh - 125px);
+  min-height: calc(100vh - 125px);
   font-family: Helvetica, var(--fontRegular);
   .auth-container {
     padding: 50px 0px;
@@ -453,9 +453,9 @@
     }
   }
 
-  img {
+  /* img {
     max-width: 100%;
-  }
+  } */
 
   .faq-footer-text {
     padding: 8px;

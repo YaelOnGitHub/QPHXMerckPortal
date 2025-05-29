@@ -28,6 +28,16 @@
         position: relative !important;
         transform: none !important;
     }
+
+    .menu-icon {
+        img {
+            width: 28px !important;
+            height: auto !important;
+            min-width: 28px !important;
+            max-width: 28px !important;
+            object-fit: contain;
+        }
+    }
 }
 
 .collapsed{
@@ -37,8 +47,31 @@
     .menu-name{
         display: none;
     }
+
+    .menu-icon {
+        img {
+            width: 28px !important;
+            height: auto !important;
+            min-width: 28px !important;
+            max-width: 28px !important;
+            object-fit: contain;
+        }
+    }
 }
 
 .nav-item{
     cursor: pointer;
+}
+
+// Add specific styling for AI Expert logo
+.ai-nav-link {
+    .menu-icon {
+        img {
+            width: 28px !important;
+            height: auto !important;
+            min-width: 28px !important;
+            max-width: 28px !important;
+            object-fit: contain;
+        }
+    }
 }
