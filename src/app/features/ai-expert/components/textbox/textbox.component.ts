@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Output, PLATFORM_ID, Inject, OnInit, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, OnInit, OnDestroy, Output, PLATFORM_ID, Inject, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SharedService } from '../../services/shared.service';
 import { isPlatformBrowser } from '@angular/common';
@@ -10,78 +10,88 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./textbox.component.scss']
 })
 export class TextboxComponent implements OnInit, OnDestroy {
-  sharedService = inject(SharedService);
+  @ViewChild('messageTextarea') messageTextarea!: ElementRef<HTMLTextAreaElement>;
+  @Output() sendMessage = new EventEmitter<string>();
+
+  constructor(
+    private sharedService: SharedService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
+
   inputText: string = '';
   isMicEnable: boolean = false;
   recognition: any;
   finalTranscript: string = '';
+  isTyping: boolean = false;
 
-  // Property to hold the typing status from the Observable
-  isTypingStatus: boolean = false;
-  // Property to hold the subscription to the isTyping$ Observable
-  private isTypingSubscription: Subscription | undefined;
-
-  @Output() sendMessage = new EventEmitter<string>();
-
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-    // Initialize speech recognition only in browser environment
-    if (isPlatformBrowser(this.platformId)) {
-      if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        this.recognition = new SpeechRecognition();
-        this.recognition.continuous = true;
-        this.recognition.interimResults = true;
-        this.recognition.lang = 'en-US';
-
-        this.recognition.onresult = (event: any) => {
-          let interimTranscript = '';
-
-          for (let i = event.resultIndex; i < event.results.length; i++) {
-            const transcript = event.results[i][0].transcript;
-            if (event.results[i].isFinal) {
-              this.finalTranscript += transcript + ' ';
-            } else {
-              interimTranscript += transcript;
-            }
-          }
-
-          // Update textarea immediately with both final and interim results
-          const textarea = document.querySelector('textarea');
-          if (textarea) {
-            textarea.value = this.finalTranscript + interimTranscript;
-            this.inputText = textarea.value;
-          }
-        };
-
-        this.recognition.onerror = (event: any) => {
-          console.error('Speech recognition error:', event.error);
-          this.isMicEnable = false;
-        };
-
-        this.recognition.onend = () => {
-          if (this.isMicEnable) {
-            this.recognition.start();
-          }
-        };
-      }
-    }
-  }
+  private isTypingSubscription?: Subscription;
 
   ngOnInit(): void {
-      // Subscribe to the isTyping$ observable
-      this.isTypingSubscription = this.sharedService.isTyping$.subscribe(status => {
-          this.isTypingStatus = status; // Update the component's property when the value changes
-      });
+    // Subscribe to typing status
+    this.isTypingSubscription = this.sharedService.isTyping$.subscribe(status => {
+      this.isTyping = status;
+    });
+
+    // Initialize speech recognition only in browser environment
+    if (isPlatformBrowser(this.platformId)) {
+      this.initializeSpeechRecognition();
+    }
   }
 
   ngOnDestroy(): void {
-    // Unsubscribe when the component is destroyed to prevent memory leaks
-    if (this.isTypingSubscription) {
-      this.isTypingSubscription.unsubscribe();
+    // Clean up subscription
+    this.isTypingSubscription?.unsubscribe();
+    
+    // Stop speech recognition if active
+    if (this.isMicEnable && this.recognition) {
+      this.recognition.stop();
     }
   }
 
-  toggleMic() {
+  private initializeSpeechRecognition(): void {
+    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      this.recognition = new SpeechRecognition();
+      this.recognition.continuous = true;
+      this.recognition.interimResults = true;
+      this.recognition.lang = 'en-US';
+
+      this.recognition.onresult = (event: any) => {
+        let interimTranscript = '';
+
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          const transcript = event.results[i][0].transcript;
+          if (event.results[i].isFinal) {
+            this.finalTranscript += transcript + ' ';
+          } else {
+            interimTranscript += transcript;
+          }
+        }
+
+        // Update textarea immediately with both final and interim results
+        if (this.messageTextarea?.nativeElement) {
+          this.messageTextarea.nativeElement.value = this.finalTranscript + interimTranscript;
+          this.inputText = this.messageTextarea.nativeElement.value;
+        }
+      };
+
+      this.recognition.onerror = (event: any) => {
+        console.error('Speech recognition error:', event.error);
+        this.isMicEnable = false;
+        if (this.messageTextarea?.nativeElement) {
+          this.messageTextarea.nativeElement.placeholder = 'Ask anything';
+        }
+      };
+
+      this.recognition.onend = () => {
+        if (this.isMicEnable) {
+          this.recognition.start();
+        }
+      };
+    }
+  }
+
+  toggleMic(): void {
     if (!this.recognition) {
       console.error('Speech recognition not supported');
       return;
@@ -91,24 +101,22 @@ export class TextboxComponent implements OnInit, OnDestroy {
       this.recognition.stop();
       this.isMicEnable = false;
       // Reset placeholder when stopping voice recognition
-      const textarea = document.querySelector('textarea');
-      if (textarea) {
-        textarea.placeholder = 'Ask anything';
+      if (this.messageTextarea?.nativeElement) {
+        this.messageTextarea.nativeElement.placeholder = 'Ask anything';
       }
     } else {
       this.inputText = '';
       this.finalTranscript = '';
-      const textarea = document.querySelector('textarea');
-      if (textarea) {
-        textarea.value = '';
-        textarea.placeholder = 'Listening...';
+      if (this.messageTextarea?.nativeElement) {
+        this.messageTextarea.nativeElement.value = '';
+        this.messageTextarea.nativeElement.placeholder = 'Listening...';
       }
       this.recognition.start();
       this.isMicEnable = true;
     }
   }
 
-  handleSend() {
+  handleSend(): void {
     if (this.inputText.trim()) {
       // Stop voice recognition if it's active
       if (this.isMicEnable) {
@@ -120,11 +128,10 @@ export class TextboxComponent implements OnInit, OnDestroy {
       this.sharedService.sendSuggest.next('');
       this.inputText = '';
       this.finalTranscript = '';
-      const textarea = document.querySelector('textarea');
-      if (textarea) {
-        textarea.value = '';
-        textarea.placeholder = 'Ask anything';
-        textarea.focus();
+      if (this.messageTextarea?.nativeElement) {
+        this.messageTextarea.nativeElement.value = '';
+        this.messageTextarea.nativeElement.placeholder = 'Ask anything';
+        this.messageTextarea.nativeElement.focus();
       }
     }
   }

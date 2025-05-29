@@ -1,4 +1,13 @@
-article::-webkit-scrollbar-thumb{
+article {
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #C4C4C4 transparent; /* For Firefox */
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
     background-color: #C4C4C4;
     width: 10px;
     height: 10px;
@@ -7,7 +16,8 @@ article::-webkit-scrollbar-thumb{
 
 article::-webkit-scrollbar{
     background-color: transparent;
-    width: 4px;
+    border-radius: 10px;
+  }
 }
 
 .fade-in {
@@ -93,6 +103,10 @@ article::-webkit-scrollbar{
     height: 80px;
     display: flex;
     align-items: center;
+}
+
+img{
+    -webkit-user-drag: none;
 }
 
 .profile{

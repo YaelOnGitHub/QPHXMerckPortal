@@ -1,19 +1,34 @@
-import { Component, inject, ViewChild } from '@angular/core';
-import { GreetingsComponent } from '../greetings/greetings.component';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SharedService } from '../../services/shared.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-suggestions',
   templateUrl: './suggestions.component.html',
   styleUrls: ['./suggestions.component.scss']
 })
-export class SuggestionsComponent {
-  sharedService = inject(SharedService);
+export class SuggestionsComponent implements OnInit, OnDestroy {
+  constructor(private sharedService: SharedService) {}
+
   isFadingOut = false;
   isHidden = false;
   isProcessing = false;
+  
+  private sendSuggestSubscription?: Subscription;
 
-  SuggestFadeOut(){
+  ngOnInit(): void {
+    // Subscribe to suggestion messages
+    this.sendSuggestSubscription = this.sharedService.sendSuggest.subscribe(() => {
+      this.SuggestFadeOut();
+    });
+  }
+
+  ngOnDestroy(): void {
+    // Clean up subscription
+    this.sendSuggestSubscription?.unsubscribe();
+  }
+
+  SuggestFadeOut() {
     this.isFadingOut = true;
     setTimeout(() => {
       this.isHidden = true;
@@ -31,11 +46,5 @@ export class SuggestionsComponent {
         this.isProcessing = false;
       }, 1000);
     }
-  }
-  
-  constructor(){
-    this.sharedService.sendSuggest.subscribe(() => {
-      this.SuggestFadeOut();
-    })
   }
 }
